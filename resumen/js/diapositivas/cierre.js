@@ -47,6 +47,7 @@ export function crearCierre(ctx) {
         <div class="pie-abajo">
           <button type="button" class="enlace" data-abre="fuentes">Fuentes</button>
           <button type="button" class="enlace" data-abre="creditos">Créditos de las imágenes</button>
+          <a class="enlace" href="Resumen-Vivienda-en-Bizkaia.pptx" download data-propuesta>Descargar en PowerPoint</a>
           <span>Solo datos agregados, descargados en octubre de 2026.</span>
         </div>
       </div>

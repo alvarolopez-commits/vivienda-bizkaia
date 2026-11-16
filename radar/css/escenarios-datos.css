@@ -1,0 +1,128 @@
+/* Escenarios y Datos (vistas del Radar antiguo, portadas al Radar nuevo el 2026-11-17).
+   Las reglas son las de las hojas del Radar antiguo (app.css y vistas.css) que usan las clases de estas dos vistas, acotadas a #view-escenarios y #view-datos para
+   no tocar Situación ni Indicadores. Los tokens del antiguo se traducen a los del Radar nuevo; las cifras van en Geist, como en el resto del proyecto. */
+#view-escenarios, #view-datos {
+  --card-pad: 20px; --gap: 24px; --barra: 48px; --t-ui: 200ms;
+  --cifra: var(--font-ui);
+  --control: var(--pci-border-strong); --control-h: 40px;
+  --fs-kpi: 28px; --fs-section: 20px;
+  --radius-card: var(--r-card); --radius-control: var(--r-control);
+  --raised: var(--pci-surface-raised); --rule: var(--pci-table-divider); --sheet: var(--pci-surface);
+}
+:is(#view-escenarios, #view-datos) .num,
+:is(#view-escenarios, #view-datos) table,
+:is(#view-escenarios, #view-datos) .kpi-valor {font-variant-numeric: tabular-nums lining-nums;}
+:is(#view-escenarios, #view-datos) .sr-only {position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;}
+:is(#view-escenarios, #view-datos) .sec {display: grid; gap: 16px; margin-top: 48px;}
+:is(#view-escenarios, #view-datos) .sec-cab {display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px;}
+:is(#view-escenarios, #view-datos) .sec-cab h2 {font-size: var(--fs-section); font-weight: 600;}
+:is(#view-escenarios, #view-datos) .sec-lead {color: var(--muted); max-width: 72ch;}
+:is(#view-escenarios, #view-datos) .fuente {font-size: 12px; color: var(--faint);}
+:is(#view-escenarios, #view-datos) .fuente a {color: var(--muted);}
+:is(#view-escenarios, #view-datos) .nota {font-size: 13px; color: var(--muted);}
+:is(#view-escenarios, #view-datos) .carta {background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--radius-card); padding: var(--card-pad); min-width: 0;}
+:is(#view-escenarios, #view-datos) .carta h3 {font-size: 15px; font-weight: 600;}
+:is(#view-escenarios, #view-datos) .carta-cab {display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin-bottom: 12px;}
+:is(#view-escenarios, #view-datos) .boton {display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: var(--control-h); padding: 5px 12px; border: 1px solid var(--control); border-radius: var(--radius-control); background: var(--sheet); color: var(--ink); font-weight: 500; text-decoration: none; cursor: pointer; transition: background var(--t-ui), border-color var(--t-ui);}
+:is(#view-escenarios, #view-datos) .boton:hover {background: var(--raised); border-color: var(--muted);}
+:is(#view-escenarios, #view-datos) .boton:active {transform: translateY(1px);}
+:is(#view-escenarios, #view-datos) .opciones {display: flex; flex-wrap: wrap; gap: 6px;}
+:is(#view-escenarios, #view-datos) .opcion {min-height: var(--control-h); padding: 5px 12px; border: 1px solid var(--control); border-radius: 999px; background: var(--sheet); color: var(--muted); font-weight: 500; cursor: pointer; transition: background var(--t-ui), color var(--t-ui), border-color var(--t-ui);}
+:is(#view-escenarios, #view-datos) .opcion:hover {color: var(--ink); border-color: var(--muted);}
+:is(#view-escenarios, #view-datos) .opcion[aria-pressed="true"] {background: var(--ink); border-color: var(--ink); color: #fff;}
+:is(#view-escenarios, #view-datos) .etiqueta {display: inline-block; padding: 1px 7px; border: 1px solid var(--control); border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.02em; color: var(--muted); white-space: nowrap;}
+:is(#view-escenarios, #view-datos) .tabla-caja {overflow-x: auto;}
+:is(#view-escenarios, #view-datos) .tabla {width: 100%; border-collapse: collapse;}
+:is(#view-escenarios, #view-datos) .tabla th {padding: 8px 12px; font-size: 12px; font-weight: 600; color: var(--faint); text-align: left; border-bottom: 1px solid var(--edge);}
+:is(#view-escenarios, #view-datos) .tabla td,
+:is(#view-escenarios, #view-datos) .tabla tbody th {padding: 11px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; text-align: left; font-weight: 400;}
+:is(#view-escenarios, #view-datos) .tabla tbody th {font-weight: 600; color: var(--ink); font-size: 14px;}
+:is(#view-escenarios, #view-datos) .tabla .n {text-align: right; white-space: nowrap;}
+:is(#view-escenarios, #view-datos) .tabla tbody tr:hover {background: var(--raised);}
+:is(#view-escenarios, #view-datos) .tabla a {text-decoration: none;}
+:is(#view-escenarios, #view-datos) .tabla a:hover {text-decoration: underline;}
+:is(#view-escenarios, #view-datos) .leyenda {display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted);}
+:is(#view-escenarios, #view-datos) .leyenda i {display: inline-block; width: 14px; height: 3px; margin-right: 6px; vertical-align: middle; border-radius: 2px; background: var(--c, var(--chart-1));}
+:is(#view-escenarios, #view-datos) .leyenda i.punto {width: 9px; height: 9px; border-radius: 50%;}
+:is(#view-escenarios, #view-datos) .leyenda i.raya {background: repeating-linear-gradient(90deg, var(--c) 0 4px, transparent 4px 7px);}
+:is(#view-escenarios, #view-datos) .mapa svg {width: 100%; height: auto;}
+:is(#view-escenarios, #view-datos) .mapa path {stroke: #fff; stroke-width: 0.25; transition: fill 300ms var(--ease-out);}
+:is(#view-escenarios, #view-datos) .mapa path:hover {stroke: var(--ink); stroke-width: 0.6;}
+:is(#view-escenarios, #view-datos) .aviso {padding: 12px 16px; border: 1px solid #f0d9a8; background: var(--aviso-bg); color: var(--aviso); border-radius: var(--radius-card);}
+:is(#view-escenarios, #view-datos) .aviso ul {margin: 8px 0 0; padding-left: 20px;}
+:is(#view-escenarios, #view-datos) .kpi-valor {font-family: var(--cifra); font-size: var(--fs-kpi); font-weight: 500; line-height: 1.1; color: var(--ink); font-variant-numeric: lining-nums tabular-nums;}
+:is(#view-escenarios, #view-datos) .paso-num .kpi-valor {font-size: 44px;}
+:is(#view-escenarios, #view-datos) .kpi .kpi-valor {font-size: 24px;}
+:is(#view-escenarios, #view-datos) .detalle-cifra .kpi-valor {font-size: 30px;}
+:is(#view-escenarios, #view-datos) .detalle .boton {justify-self: start;}
+:is(#view-escenarios, #view-datos) #alertas > .boton {justify-self: start;}
+:is(#view-escenarios, #view-datos) .kpi-tira {display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); border: 1px solid var(--edge); border-radius: var(--radius-card); margin-bottom: var(--gap);}
+:is(#view-escenarios, #view-datos) .kpi-tira-5 .kpi-valor {font-size: 22px;}
+:is(#view-escenarios, #view-datos) .ficha-rejilla .carta h2,
+:is(#view-escenarios, #view-datos) .municipal h2,
+:is(#view-escenarios, #view-datos) .medida-rejilla h2 {font-size: 16px; font-weight: 600;}
+:is(#view-escenarios, #view-datos) .municipal-rejilla {display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--gap); align-items: start;}
+:is(#view-escenarios, #view-datos) .municipal-mapa {display: grid; gap: 10px; margin: 0;}
+:is(#view-escenarios, #view-datos) .tabla .n-cab {text-align: right;}
+:is(#view-escenarios, #view-datos) .medida-rejilla .carta {display: grid; gap: 14px;}
+:is(#view-escenarios, #view-datos) .mueve-cifra .kpi-valor {font-size: 24px;}
+:is(#view-escenarios, #view-datos) .zonas .carta {display: grid; gap: 8px; align-content: start;}
+:is(#view-escenarios, #view-datos) .leyenda i.punto.hueco {background: #fff; border: 2px solid var(--c);}
+:is(#view-escenarios, #view-datos) .peticion details p {margin-top: 6px;}
+:is(#view-escenarios, #view-datos) .sin-partir {white-space: nowrap;}
+:is(#view-escenarios, #view-datos) .esc {display: grid; grid-template-columns: minmax(300px, 4fr) minmax(0, 8fr); gap: var(--gap); align-items: start;}
+:is(#view-escenarios, #view-datos) .esc-controles {position: sticky; top: calc(var(--barra) + 16px); display: grid; gap: 12px; max-height: calc(100svh - var(--barra) - 32px); overflow: auto; padding: 16px; background: var(--raised); border-radius: var(--radius-card);}
+:is(#view-escenarios, #view-datos) .esc-titulo {font-size: 15px; font-weight: 600;}
+:is(#view-escenarios, #view-datos) .esc-controles .esc-titulo + .opciones {margin-top: -4px;}
+:is(#view-escenarios, #view-datos) .parametro {display: grid; gap: 6px; padding: 10px 12px; background: var(--sheet); border: 1px solid var(--edge); border-radius: var(--radius-control);}
+:is(#view-escenarios, #view-datos) .parametro.cambiado {border-color: var(--accent); background: #f3f7fb;}
+:is(#view-escenarios, #view-datos) .parametro-cab {display: flex; align-items: baseline; justify-content: space-between; gap: 8px;}
+:is(#view-escenarios, #view-datos) .parametro-nombre {font-size: 13px; font-weight: 600;}
+:is(#view-escenarios, #view-datos) .pasos-control {display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; gap: 8px;}
+:is(#view-escenarios, #view-datos) .paso-boton {height: 36px; border: 1px solid var(--control); border-radius: var(--radius-control); background: var(--sheet); font-size: 18px; font-weight: 600; cursor: pointer;}
+:is(#view-escenarios, #view-datos) .paso-boton:hover:not([aria-disabled="true"]) {background: var(--raised); border-color: var(--muted);}
+:is(#view-escenarios, #view-datos) .paso-boton[aria-disabled="true"] {opacity: 0.4; cursor: default;}
+:is(#view-escenarios, #view-datos) .datos-tabla .tabla-caja {max-height: 320px; overflow: auto;}
+:is(#view-escenarios, #view-datos) .paso-valor {text-align: center; font-weight: 600; font-variant-numeric: tabular-nums;}
+:is(#view-escenarios, #view-datos) .esc-acciones {display: flex; flex-wrap: wrap; gap: 8px;}
+:is(#view-escenarios, #view-datos) .esc-resultados {display: grid; gap: 16px; min-width: 0;}
+:is(#view-escenarios, #view-datos) .esc-cab {display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;}
+:is(#view-escenarios, #view-datos) .frase-esc {font-size: 16px; max-width: 70ch;}
+:is(#view-escenarios, #view-datos) .esc-resultados .kpi-tira {margin-bottom: 0;}
+:is(#view-escenarios, #view-datos) .graficos-esc {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap);}
+:is(#view-escenarios, #view-datos) .graficos-esc .carta {display: grid; gap: 10px; align-content: start;}
+:is(#view-escenarios, #view-datos) .validacion {max-width: 80ch;}
+:is(#view-escenarios, #view-datos) .sec-primera {margin-top: 0;}
+:is(#view-escenarios, #view-datos) .peticiones {display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: var(--gap);}
+:is(#view-escenarios, #view-datos) .peticion {display: grid; gap: 8px; align-content: start;}
+:is(#view-escenarios, #view-datos) .peticion p {color: var(--muted);}
+:is(#view-escenarios, #view-datos) .peticion strong {color: var(--ink);}
+:is(#view-escenarios, #view-datos) .descargas {display: grid; gap: 10px; justify-items: start;}
+:is(#view-escenarios, #view-datos) .lista-archivos {display: flex; flex-wrap: wrap; gap: 8px 16px;}
+:is(#view-escenarios, #view-datos) .guia {display: grid; gap: 16px; max-width: 980px;}
+:is(#view-escenarios, #view-datos) .pasos-guia {display: grid; gap: 8px; padding-left: 20px;}
+:is(#view-escenarios, #view-datos) .lista-def {display: grid; gap: 10px; max-width: 86ch;}
+:is(#view-escenarios, #view-datos) .lista-def strong {color: var(--ink);}
+:is(#view-escenarios, #view-datos) .tipos .etiqueta {justify-self: start;}
+@media (max-width: 1199px) {
+  :is(#view-escenarios, #view-datos) .esc {grid-template-columns: minmax(0, 1fr);}
+  :is(#view-escenarios, #view-datos) .esc-controles {position: static; max-height: none;}
+  :is(#view-escenarios, #view-datos) .esc-controles {grid-template-columns: repeat(2, minmax(0, 1fr));}
+  :is(#view-escenarios, #view-datos) .esc-controles > :not(.parametro) {grid-column: 1 / -1;}
+}
+@media (max-width: 899px) {
+  :is(#view-escenarios, #view-datos) .ficha-rejilla,
+:is(#view-escenarios, #view-datos) .municipal-rejilla,
+:is(#view-escenarios, #view-datos) .medida-rejilla,
+:is(#view-escenarios, #view-datos) .graficos-esc {grid-template-columns: minmax(0, 1fr);}
+}
+@media (max-width: 699px) {
+  :is(#view-escenarios, #view-datos) .tabla-apilada thead {display: none;}
+  :is(#view-escenarios, #view-datos) .tabla-apilada tr {display: grid; gap: 2px; padding: 10px 0; border-bottom: 1px solid var(--rule);}
+  :is(#view-escenarios, #view-datos) .tabla-apilada td,
+:is(#view-escenarios, #view-datos) .tabla-apilada tbody th {display: block; padding: 0; border: 0; text-align: left; white-space: normal;}
+  :is(#view-escenarios, #view-datos) .tabla-apilada td[data-col]::before {content: attr(data-col) ": "; font-weight: 600; color: var(--muted);}
+  :is(#view-escenarios, #view-datos) .esc-controles {grid-template-columns: minmax(0, 1fr);}
+  :is(#view-escenarios, #view-datos) .kpi-tira {grid-template-columns: repeat(2, minmax(0, 1fr));}
+  :is(#view-escenarios, #view-datos) .peticiones {grid-template-columns: minmax(0, 1fr);}
+}

@@ -1,4 +1,0 @@
-Manrope (variable, ejes de peso 200-800) - The Manrope Project Authors.
-Licencia: SIL Open Font License 1.1 (https://openfontlicense.org).
-Se autoalojan aqui para cumplir la CSP (font-src 'self') sin cargar nada de Google Fonts.
-PENDIENTE: al redistribuir, incluir tambien el texto original de la licencia (OFL.txt de la descarga oficial de Manrope).

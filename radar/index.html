@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/radar.css">
   <link rel="stylesheet" href="../shared/marco.css">
   <link rel="stylesheet" href="../shared/global.css">
+  <link rel="stylesheet" href="css/escenarios-datos.css">
   <link rel="stylesheet" href="css/integracion.css">
   <script src="../shared/marco.js" defer></script>
   <!-- en el proyecto unificado la intro no se reproduce sola (el botón del raíl la repite); esto decide antes de pintar para que no parpadee -->
@@ -89,8 +90,8 @@
       <a href="#indicadores" data-view="indicadores" title="Indicadores"><svg class="ico"><use href="#i-trend"/></svg><span class="label">Indicadores</span></a>
       <span class="sep-line" aria-hidden="true"></span>
       <a class="ext" href="../analisis/#medidas" title="Medidas, en el Análisis" data-nuevo><svg class="ico"><use href="#i-lightning"/></svg><span class="label">Medidas en marcha</span><span class="tag" aria-hidden="true">↗</span><span class="solo-lectores"> (abre el Radar publicado)</span></a>
-      <a class="ext" href="https://vizcaya-vivienda.vercel.app/#escenarios" rel="noopener" title="Escenarios (Radar publicado)" data-nuevo><svg class="ico"><use href="#i-ladder"/></svg><span class="label">Escenarios</span><span class="tag" aria-hidden="true">↗</span><span class="solo-lectores"> (abre el Radar publicado)</span></a>
-      <a class="ext" href="https://vizcaya-vivienda.vercel.app/#datos" rel="noopener" title="Datos (Radar publicado)" data-nuevo><svg class="ico"><use href="#i-database"/></svg><span class="label">Datos</span><span class="tag" aria-hidden="true">↗</span><span class="solo-lectores"> (abre el Radar publicado)</span></a>
+      <a href="#escenarios" data-view="escenarios" title="Escenarios"><svg class="ico"><use href="#i-ladder"/></svg><span class="label">Escenarios</span><span class="tag" aria-hidden="true">↗</span><span class="solo-lectores"> (abre el Radar publicado)</span></a>
+      <a href="#datos" data-view="datos" title="Datos"><svg class="ico"><use href="#i-database"/></svg><span class="label">Datos</span><span class="tag" aria-hidden="true">↗</span><span class="solo-lectores"> (abre el Radar publicado)</span></a>
       <span class="sep-line" aria-hidden="true"></span>
       <a class="ext" href="../analisis/#metodo" title="Método, en el Análisis" data-nuevo><svg class="ico"><use href="#i-search"/></svg><span class="label">Metodología</span><span class="tag" aria-hidden="true">↗</span><span class="solo-lectores"> (abre el Radar publicado)</span></a>
       <span data-enlaces class="enlaces"></span>
@@ -116,6 +117,8 @@
 
       <section class="view" id="view-situacion" aria-labelledby="titulo" hidden><div data-cuerpo></div></section>
       <section class="view" id="view-indicadores" aria-labelledby="titulo" hidden><div data-cuerpo></div></section>
+      <section class="view" id="view-escenarios" aria-labelledby="titulo" hidden><div data-cuerpo></div></section>
+      <section class="view" id="view-datos" aria-labelledby="titulo" hidden><div data-cuerpo></div></section>
       <noscript><p class="aviso">El radar necesita JavaScript para dibujar sus datos.</p></noscript>
     </main>
 
