@@ -2,7 +2,12 @@
 
 Una sola web con tres secciones que funcionan de forma independiente: **Radar**, **Análisis** y **Resumen**. Se elige la sección desde un selector en la cabecera (y desde un acordeón en el pie); solo una está activa a la vez. Proyecto nuevo, desde cero, pensado con Safari y las guías de Apple desde el principio.
 
-**Estado:** marco, portal y selector de secciones funcionando en local. **Análisis ya migrado** (las seis vistas, con la estética Astara y los arreglos de Safari; ver `docs/MIGRACION_ANALISIS.md`). Radar y Resumen siguen como pantallas «en construcción» que enlazan a las versiones publicadas. Nada está subido a GitHub.
+**Estado (2026-11-17):** los tres productos ya viven aquí, enlazados entre sí y con la portada.
+- **Portada** (`site/index.html`): una sola pantalla; hero claro con la forma de papel, titular y las tres entradas.
+- **Análisis** (`site/analisis/`): las seis vistas. Se abre directamente en Situación (sin hero). Cifras mayores, Situación en una pantalla, controles de Acceso en segmentos y plano de Medidas más grande.
+- **Radar** (`site/radar/`): la app del repo `radar-vivienda-bizkaia`, con la cabecera común y adaptada a móvil. «Escenarios» y «Datos» siguen enlazando al Radar antiguo publicado aparte (no existen todavía aquí).
+- **Resumen** (`site/resumen/`): la presentación de nueve diapositivas. En ordenador, modo Leer con escala contenida y modo Presentar con escala grande; en móvil, lectura vertical.
+- Pruebas y documentación heredadas de los otros repos: `qa/` y `docs/historico-*` (ver sus `LEEME`). No se han vuelto a ejecutar contra esta estructura.
 
 ## Verlo en local
 

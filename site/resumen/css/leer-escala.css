@@ -1,0 +1,70 @@
+/* =====================================================================================================================
+   Modo LEER en pantalla de ordenador: escala de texto más contenida (2026-11-17).
+   La hoja presentacion.css termina con un bloque «Escala para proyección» pensado para un proyector, con titulares de 80 a 136 px y cifras de hasta 150 px. Para leer
+   en pantalla era demasiado: los titulares comían la diapositiva y en «Siete Bizkaias» la lista no cabía. Aquí se reduce SOLO en Leer; el modo Presentar conserva
+   la escala grande. Mismos textos, cifras y cálculos. En móvil manda lectura-vertical.css.
+   ===================================================================================================================== */
+body[data-modo="leer"]:not([data-disposicion]) {
+  --leer-h1: clamp(32px, 3.1vw, 54px);
+  --leer-lead: clamp(16px, 1.15vw, 21px);
+}
+
+/* 1 · Gancho y 9 · Cierre: los dos titulares grandes */
+body[data-modo="leer"]:not([data-disposicion]) .gancho h1 { font-size: clamp(44px, 5vw, 84px); }
+body[data-modo="leer"]:not([data-disposicion]) .gancho .lead,
+body[data-modo="leer"]:not([data-disposicion]) .cierre .lead { font-size: var(--leer-lead); }
+body[data-modo="leer"]:not([data-disposicion]) .cierre-cuerpo h1 { font-size: clamp(40px, 4.6vw, 78px); }
+body[data-modo="leer"]:not([data-disposicion]) .pie-arriba h2 { font-size: clamp(16px, 1.1vw, 20px); }
+body[data-modo="leer"]:not([data-disposicion]) .pie-dir p { font-size: clamp(14px, .95vw, 17px); }
+
+/* 2 · Las cuatro cifras */
+body[data-modo="leer"]:not([data-disposicion]) .cifra .num { font-size: clamp(24px, 2.1vw, 38px); }
+body[data-modo="leer"]:not([data-disposicion]) .cifra .titular { font-size: clamp(15px, 1.1vw, 20px); }
+body[data-modo="leer"]:not([data-disposicion]) .cifra .meta { font-size: clamp(13px, .85vw, 15px); }
+body[data-modo="leer"]:not([data-disposicion]) .cifra[aria-current="step"] .num { font-size: clamp(38px, 3.6vw, 64px); }
+body[data-modo="leer"]:not([data-disposicion]) .cifra[aria-current="step"] .titular { font-size: clamp(17px, 1.4vw, 25px); }
+
+/* 3 · Calculadora */
+body[data-modo="leer"]:not([data-disposicion]) .controles-calc h1 { font-size: clamp(26px, 2.3vw, 40px); }
+body[data-modo="leer"]:not([data-disposicion]) .hogar span { font-size: clamp(16px, 1.3vw, 23px); }
+body[data-modo="leer"]:not([data-disposicion]) .disco .anos { font-size: clamp(36px, 3.2vw, 60px); }
+body[data-modo="leer"]:not([data-disposicion]) .disco .anos-txt { font-size: clamp(16px, 1.35vw, 24px); }
+body[data-modo="leer"]:not([data-disposicion]) .disco .cuota { font-size: clamp(13px, 1.05vw, 18px); }
+body[data-modo="leer"]:not([data-disposicion]) .disco { width: min(100%, 48vh); }
+
+/* 4 · Siete Bizkaias: la lista entera cabe a la vista */
+body[data-modo="leer"]:not([data-disposicion]) .siete-cab h1 { font-size: var(--leer-h1); }
+body[data-modo="leer"]:not([data-disposicion]) .siete-cab .sub { font-size: clamp(14px, 1.05vw, 19px); }
+body[data-modo="leer"]:not([data-disposicion]) .tipo { padding: clamp(5px, .8vh, 10px) clamp(12px, 1vw, 18px); }
+body[data-modo="leer"]:not([data-disposicion]) .tipo .cuantos { font-size: clamp(24px, 2.2vw, 38px); }
+body[data-modo="leer"]:not([data-disposicion]) .tipo-nombre { font-size: clamp(14px, 1.1vw, 19px); }
+body[data-modo="leer"]:not([data-disposicion]) .tipo .pob { font-size: clamp(11px, .8vw, 14px); }
+body[data-modo="leer"]:not([data-disposicion]) .tipo .prob { font-size: clamp(12px, .9vw, 15px); }
+
+/* 5 · Lo que viene */
+body[data-modo="leer"]:not([data-disposicion]) .viene-texto h1,
+body[data-modo="leer"]:not([data-disposicion]) .hacer h1,
+body[data-modo="leer"]:not([data-disposicion]) .conclusiones h1,
+body[data-modo="leer"]:not([data-disposicion]) .bm30-cab h1 { font-size: var(--leer-h1); }
+body[data-modo="leer"]:not([data-disposicion]) .frase { font-size: clamp(22px, 2.2vw, 38px); }
+body[data-modo="leer"]:not([data-disposicion]) .paso { font-size: clamp(14px, 1vw, 18px); }
+body[data-modo="leer"]:not([data-disposicion]) .nota { font-size: clamp(12px, .85vw, 15px); }
+body[data-modo="leer"]:not([data-disposicion]) .loseta img { max-height: 46vh; }
+
+/* 6 · Qué se puede hacer */
+body[data-modo="leer"]:not([data-disposicion]) .hacer .sub,
+body[data-modo="leer"]:not([data-disposicion]) .bm30-cab p { font-size: clamp(15px, 1.2vw, 22px); }
+body[data-modo="leer"]:not([data-disposicion]) .fila { font-size: clamp(15px, 1.25vw, 22px); padding-block: clamp(8px, 1.3vh, 16px); }
+body[data-modo="leer"]:not([data-disposicion]) .fila.cab { font-size: clamp(12px, .85vw, 15px); }
+body[data-modo="leer"]:not([data-disposicion]) .hacer .nota { font-size: clamp(12px, .95vw, 17px); }
+
+/* 7 · Diez conclusiones */
+body[data-modo="leer"]:not([data-disposicion]) .grupo { padding: clamp(16px, 1.6vw, 30px); }
+body[data-modo="leer"]:not([data-disposicion]) .grupo h2 { font-size: clamp(20px, 1.6vw, 28px); }
+body[data-modo="leer"]:not([data-disposicion]) .filas li { font-size: clamp(14px, 1.1vw, 19px); padding-block: clamp(6px, .9vh, 12px); }
+
+/* 8 · BM30 */
+body[data-modo="leer"]:not([data-disposicion]) .carta { min-height: clamp(220px, 30vh, 320px); padding: clamp(20px, 1.8vw, 34px); }
+body[data-modo="leer"]:not([data-disposicion]) .carta h2 { font-size: clamp(22px, 1.9vw, 34px); }
+body[data-modo="leer"]:not([data-disposicion]) .carta-num { font-size: clamp(52px, 5vw, 88px); }
+body[data-modo="leer"]:not([data-disposicion]) .carta-txt { font-size: clamp(14px, 1.05vw, 19px); }

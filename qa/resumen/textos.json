@@ -1,0 +1,249 @@
+{
+  "fase2": {
+    "siete": [
+      "Siete Bizkaias",
+      "Cada tipo tiene su problema. Bilbao y las ciudades reúnen al 74 % de la población.",
+      "1",
+      "Bilbao",
+      "municipio · 346.933 habitantes",
+      "Alquiler caro para sus ingresos",
+      "11",
+      "Ciudades con ingresos bajo la media",
+      "municipios · 358.998 habitantes",
+      "Muchas viviendas turísticas, o muchas inscritas hace poco · 5 de 11",
+      "4",
+      "Ciudades con ingresos sobre la media",
+      "municipios · 147.740 habitantes",
+      "Los hogares crecen más que las viviendas · 3 de 4",
+      "5",
+      "Municipios en crecimiento",
+      "municipios · 66.425 habitantes",
+      "Los hogares crecen más que las viviendas · 4 de 5",
+      "9",
+      "Costa turística",
+      "municipios · 56.027 habitantes",
+      "Muchas viviendas turísticas, o muchas inscritas hace poco · 9 de 9",
+      "20",
+      "Pueblos medianos",
+      "municipios de 3.000 a 10.000 habitantes · 116.827 habitantes",
+      "Los hogares crecen más que las viviendas · 6 de 20",
+      "63",
+      "Pueblos pequeños",
+      "municipios de menos de 3.000 habitantes · 62.783 habitantes",
+      "Muchas viviendas vacías o de segunda residencia · 53 de 63"
+    ],
+    "viene": {
+      "bloques": [
+        "Vivienda para lo que viene",
+        "Con 2.679 viviendas nuevas al año, en 2035 faltarán 12.700 más que hoy y la entrada llevará 17,0 a 17,8 años.",
+        "2.679 el ritmo de hoy",
+        "3.900 para no empeorar",
+        "4.800 lo que permiten los planes",
+        "Aproximación Modelo del proyecto, hogar de ingresos medios. Horquilla: los estudios no coinciden.",
+        "Torres de Bolueta, Bilbao"
+      ],
+      "alts": [
+        "Torres de viviendas en Bolueta, Bilbao"
+      ]
+    },
+    "hacer": [
+      "Qué se puede hacer",
+      "34 medidas en seis líneas. 30 se pueden aplicar ya, sin cambiar ninguna ley.",
+      "Línea",
+      "Medidas",
+      "Rápidas",
+      "Probadas",
+      "BM30 puede",
+      "Más vivienda",
+      "11",
+      "2",
+      "5",
+      "Impulsar 1, facilitar 9",
+      "Usar las viviendas que ya existen",
+      "9",
+      "5",
+      "5",
+      "Facilitar 8",
+      "Alquiler asequible y protección",
+      "5",
+      "4",
+      "3",
+      "Facilitar 2",
+      "Acceso a la compra",
+      "5",
+      "4",
+      "0",
+      "Depende de otros",
+      "Vivienda turística",
+      "3",
+      "3",
+      "1",
+      "Impulsar 1, facilitar 2",
+      "Vigilancia de barrios",
+      "1",
+      "0",
+      "0",
+      "Impulsar 1",
+      "Rápidas: se aplican a corto plazo. Probadas: con evidencia media o mejor."
+    ],
+    "conclusiones": [
+      "Diez conclusiones",
+      "El diagnóstico",
+      "El alquiler, el problema más grave",
+      "34 de 35 municipios",
+      "Para comprar, la barrera es la entrada",
+      "10,8 a 16,9 años",
+      "El precio vuelve a acelerar",
+      "+11,1 % en 2025",
+      "Los hogares pequeños empujan la demanda",
+      "43.400 hogares",
+      "Qué hacer",
+      "Al ritmo actual faltará vivienda",
+      "12.700 en 2035",
+      "Los planes municipales dan margen",
+      "72.016 viviendas",
+      "Las turísticas, en pocos barrios",
+      "38 barrios",
+      "En los pueblos, el problema es el uso",
+      "53 de 63 pueblos",
+      "Muchas medidas rápidas, pocas con evidencia fuerte",
+      "3 de 34 medidas",
+      "Casi todo se puede hacer ya",
+      "30 de 34 medidas"
+    ],
+    "bm30": [
+      "Qué puede hacer BM30",
+      "No decide sobre vivienda, pero reúne a casi todos los que deciden.",
+      "Impulsar",
+      "3",
+      "La alerta de viviendas turísticas, la vigilancia de barrios y la vivienda para trabajadores.",
+      "Facilitar",
+      "21",
+      "Sobre todo, construir más y poner en uso las viviendas que ya existen.",
+      "Pedir",
+      "10",
+      "Ayudas, impuestos y vivienda pública: los deciden otras instituciones."
+    ],
+    "cierre": [
+      "Vivienda cerca del empleo",
+      "El análisis municipio a municipio y el radar que lo sigue.",
+      "Ver el análisis"
+    ],
+    "pie": {
+      "titulo": "Sigue el dato",
+      "direcciones": [
+        "vizcaya-vivienda-analisis.vercel.app",
+        "vizcaya-vivienda.vercel.app"
+      ],
+      "copiar": "Copiar",
+      "territorio": "Bizkaia",
+      "nota": "Solo datos agregados, descargados en octubre de 2026.",
+      "enlaces": [
+        "Fuentes",
+        "Créditos de las imágenes"
+      ]
+    },
+    "fuentes": {
+      "titulo": "Fuentes",
+      "lista": [
+        "Eustat · Viviendas por tipo (2010-2024) · descargado el 20/10/2026",
+        "Eustat · Población a 1 de enero (2001-2025) · descargado el 20/10/2026",
+        "Eustat · Renta familiar por tramos de ingresos (2013-2024) · descargado el 20/10/2026",
+        "Gobierno Vasco · Estadística del Mercado de Alquiler (EMAL, 2016-2025) · descargado el 20/10/2026",
+        "Open Data Euskadi · Viviendas de uso turístico (REATE) · descargado el 20/10/2026",
+        "Gobierno Vasco y Colegio de Registradores · Precio medio de las compraventas de vivienda · descargado el 20/10/2026",
+        "Ministerio de Vivienda · Compraventas de vivienda por municipio · descargado el 20/10/2026",
+        "INE · Estadística de Hipotecas: tipo de interés medio (viviendas) · descargado el 20/10/2026",
+        "Observatorio Vasco de la Vivienda · Personas apuntadas en Etxebide para una vivienda protegida (1/1/2026) · descargado el 20/10/2026",
+        "GeoEuskadi · Límites municipales y secciones censales · descargado el 20/10/2026",
+        "Eustat · Proyecciones de población por comarca (2026-2045) · descargado el 28/10/2026"
+      ]
+    },
+    "credito_bolueta": "Torres de Bolueta, Bilbao: Zarateman, CC0, Wikimedia Commons (licencia)"
+  },
+  "gancho": {
+    "titular": "Falta vivienda asequible",
+    "lead": "El alquiler expulsa a los ingresos bajos y reunir la entrada frena a los medios.",
+    "accion": "Calcula tu entrada"
+  },
+  "cifras": {
+    "rotulos": {
+      "bilbao": "Bilbao 55,8 %",
+      "mundaka": "Mundaka 47,1 por 1.000"
+    },
+    "pasos": [
+      {
+        "num": "34 de 35",
+        "titular": "municipios: un alquiler nuevo pasa del 30 % de unos ingresos bajos",
+        "meta": "De los 35 municipios con dato de alquiler. Cálculo propio EMAL y Eustat, 2024",
+        "etiqueta": "Cálculo propio",
+        "foto": null
+      },
+      {
+        "num": "55,8 %",
+        "titular": "En Bilbao, más de la mitad de unos ingresos bajos",
+        "meta": "Ingresos medios: 30,4 %. Cálculo propio EMAL y Eustat",
+        "etiqueta": "Cálculo propio",
+        "foto": {
+          "pie": "Bilbao desde Artxanda",
+          "alt": "Bilbao visto desde el monte Artxanda"
+        }
+      },
+      {
+        "num": "47,1",
+        "titular": "viviendas turísticas por cada 1.000 en Mundaka",
+        "meta": "Bizkaia: 4,8. Dato oficial Registro vasco y Eustat",
+        "etiqueta": "Dato oficial",
+        "foto": {
+          "pie": "Puerto de Mundaka",
+          "alt": "Barcas en el puerto de Mundaka, con las casas detrás"
+        }
+      },
+      {
+        "num": "53 de 63",
+        "titular": "pueblos pequeños: una casa de cada cinco, vacía o secundaria",
+        "meta": "Dato oficial Eustat, 2024",
+        "etiqueta": "Dato oficial",
+        "foto": {
+          "pie": "Elantxobe",
+          "alt": "Elantxobe, casas en la ladera sobre el puerto"
+        }
+      }
+    ],
+    "creditos": {
+      "titulo": "Créditos de las imágenes",
+      "lista": [
+        "Bilbao desde Artxanda: Paul Arps from The Netherlands, CC BY 2.0, Wikimedia Commons (licencia)",
+        "Puerto de Mundaka: Jules Verne Times Two, CC BY-SA 4.0, Wikimedia Commons (licencia)",
+        "Elantxobe: Ander Abadia Zallo, CC BY-SA 4.0, Wikimedia Commons (licencia)"
+      ],
+      "nota": "Fotos de Wikimedia Commons, con licencia abierta. Algunas están recortadas; las recortadas se publican con la misma licencia que el original."
+    }
+  },
+  "calculadora": {
+    "titular": "¿Cuántos años para la entrada?",
+    "hogares": [
+      "Ingresos bajos",
+      "Ingresos medios",
+      "Ingresos altos",
+      "Un hogar de 25 a 29 años",
+      "Dos salarios mínimos"
+    ],
+    "etiqueta_precio": "Precio de la vivienda, en euros",
+    "ejemplos": [
+      "Media de Bizkaia",
+      "Un piso en Abando"
+    ],
+    "anos_inicial": "10,8 a 16,9",
+    "anos_texto": "años ahorrando la entrada",
+    "cuota_antes": "Después, la cuota:",
+    "cuota_inicial": "del 29,0 al 32,6 %",
+    "cuota_despues": "de los ingresos",
+    "como_boton": "Cómo se calcula",
+    "como_titulo": "Cómo se calcula",
+    "como_parrafos": [
+      "El banco presta el 80 % del precio; el resto, con impuestos y gastos (del 30 al 35 % del precio), se ahorra. Ahorro: del 15 al 20 % de los ingresos al año. Hipoteca a 25 o 30 años al 2,92 % (media de 2026). Ingresos de 2024, después de impuestos.",
+      "Cálculo propio con Registradores, Eustat e INE."
+    ]
+  }
+}

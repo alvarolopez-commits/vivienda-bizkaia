@@ -1,0 +1,23 @@
+{
+  "nota": "sha256 de los ficheros de presentacion/original (copia byte a byte de web-resumen de DATA/vizcaya-vivienda-main, idéntica a lo que sirve https://vizcaya-vivienda-resumen.vercel.app). Generado el 13-11-2026.",
+  "ficheros": {
+    "data/escenario_base.json": "083aec94c5b5de21b2f291cca17eef8aacaaddc0224b9dcc8d8bb9b58607840e",
+    "data/municipios.geojson": "f13a46a0340367844363b7c5f021d7276f29561fca97185cae4a0aa2281257a0",
+    "data/resumen.json": "d187e606d20204fd6523d7c76a03929fe79622117508397205bbb0e17f608bb9",
+    "fonts/montserrat-latin.woff2": "6438d7b8ea9c7c3992d5e2fd2afdb1ff948570a3ef0bedae76247b51632960ba",
+    "fonts/OFL-Montserrat.txt": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
+    "img/bilbao.jpg": "71eef2ff69cc65d5b0e40200fbe4330098327b9aab99b70614c4b76092599074",
+    "img/bolueta.jpg": "23f21a0616b0062567813d07ca798cec8b597794bd8d597f1abadb6c2b4d2827",
+    "img/elantxobe.jpg": "5da780597422f3806b361b169bb207c0dc670567b0541bcf595db1e0a6804ecb",
+    "img/mundaka.jpg": "58b5a033786c55a7c0fad69797c91721a5522eea9e4277986d0fb16b8642f090",
+    "js/calculadora.js": "cbd4fc552116e18c36badc79e5b0ce94ef59fea8c504c3998f86103409f393c2",
+    "js/comun.js": "6829de5e6c137ac67a0fa70dbed7940aa958d540a360140a7e2f9ac8db8a54d6",
+    "js/mapa.js": "4d21147b95456f1dc981e199e50a19776bba37eb99c13db92eedf991649dd999",
+    "js/modelo/calculo-acceso.js": "6fa9a01ce433b9bf4e3d95f3da3c12874bf72083db2e2807ff8ebf0ccdeffba5",
+    "js/modelo/escenarios.js": "bbe6e3855d86dc58b888a0ce7b86e0b82ddc9a74d1e123403437d43e98d83285",
+    "js/territorio.js": "d6fb251a70a92d3567673ada96e022c48b44141df0b552960b7fe48f149ac4e8",
+    "vendor/gsap/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+    "vendor/three/LICENSE": "852e0e8699169bf9f6fdc6bda3e682d078dcbc738b5d33e74df594721bff271d",
+    "vendor/three/three.module.min.js": "3e690ac7d180b0aadf0891bea39eec643e29e2d3e75c99b18689518665f69ba6"
+  }
+}
