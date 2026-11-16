@@ -146,7 +146,8 @@
       h("img", { src: raiz + "shared/img/logo-vivienda-bizkaia.png", alt: "Vivienda Bizkaia, inicio", width: "800", height: "212" })
     ]);
     if (actual === "inicio") marca.setAttribute("aria-current", "page");
-    return h("header", { class: "gcab" }, [h("div", { class: "gcab-in" }, [marca, selector()])]);
+    // en la home los tres productos ya están en pantalla (son la propia página): la cabecera lleva solo la marca
+    return h("header", { class: "gcab" }, [h("div", { class: "gcab-in" }, actual === "inicio" ? [marca] : [marca, selector()])]);
   }
 
   // ---- Pie sencillo: la navegación entre productos es la de la cabecera ----

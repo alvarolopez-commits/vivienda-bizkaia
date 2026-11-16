@@ -6,7 +6,7 @@
   <title>Vivienda en Bizkaia</title>
   <meta name="description" content="El acceso a la vivienda en los municipios de Bizkaia: análisis en profundidad, resumen visual y radar de indicadores. Con datos oficiales y su fuente.">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#f3f6fa">
+  <meta name="theme-color" content="#f7f8fb">
   <link rel="icon" href="shared/icons/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="shared/icons/apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
@@ -27,78 +27,54 @@
 <body data-seccion="inicio" data-raiz="./">
   <a class="saltar" href="#contenido">Saltar al contenido</a>
 
+  <!-- Home de una sola pantalla: el titular aprobado y los tres productos para elegir. Flow como atmósfera y el contorno real de los 113 municipios. -->
   <main id="contenido" tabindex="-1">
-    <!-- Hero editorial: Flow como atmósfera y la geometría real de los 113 municipios como pieza protagonista; sin cifras de adorno -->
     <section class="hx" aria-labelledby="hx-titulo">
       <div class="hx-card">
         <div class="hx-fondo" aria-hidden="true"><img src="shared/img/flow-3.webp" alt="" width="1920" height="1320" fetchpriority="high" decoding="async"></div>
         <svg class="hx-atlas" aria-hidden="true" focusable="false" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet"></svg>
-        <div class="hx-texto">
-          <p class="hx-eyebrow">Vivienda Bizkaia</p>
-          <h1 id="hx-titulo">El acceso a la vivienda en los <span class="hx-n" data-municipios>113</span> municipios de Bizkaia</h1>
-          <p class="hx-sub">Dónde falla, a quién afecta, qué medidas hay y quién decide cada una. Con datos oficiales y su fuente.</p>
-          <div class="hx-cta">
-            <a class="btn-p" href="analisis/">Explorar el análisis <span aria-hidden="true">→</span></a>
-            <a class="btn-s" href="#tres">Ver las tres experiencias <span aria-hidden="true">↓</span></a>
-          </div>
+
+        <h1 id="hx-titulo">El acceso a la vivienda en los <span class="hx-n" data-municipios>113</span> municipios de Bizkaia</h1>
+
+        <div class="exp-rejilla">
+          <article class="exp exp--analisis">
+            <div class="exp-vista exp-vista--ventana">
+              <img src="shared/img/preview-analisis.webp" width="1344" height="621" decoding="async"
+                   alt="Captura real del Análisis: mapa de Situación con Bilbao seleccionado y su ficha.">
+            </div>
+            <div class="exp-cuerpo">
+              <p class="exp-k">Explorar en profundidad</p>
+              <h2>Análisis</h2>
+              <a class="exp-cta" href="analisis/">Entrar al análisis <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="exp exp--resumen">
+            <div class="exp-vista exp-vista--diapositiva">
+              <img src="shared/img/preview-resumen.webp" width="1440" height="740" decoding="async"
+                   alt="Captura real de la primera diapositiva del Resumen: «Falta vivienda asequible», con el mapa de Bizkaia por municipios.">
+              <span class="exp-sello">9 diapositivas</span>
+            </div>
+            <div class="exp-cuerpo">
+              <p class="exp-k">Comprender lo esencial</p>
+              <h2>Resumen</h2>
+              <a class="exp-cta" href="resumen/">Abrir el resumen <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="exp exp--radar">
+            <div class="exp-vista exp-vista--panel">
+              <img src="shared/img/preview-radar.webp" width="1304" height="454" decoding="async"
+                   alt="Captura real del Radar: 6 de 12 indicadores clave empeoran frente a su periodo anterior, con la barra de estado de los doce indicadores.">
+              <span class="exp-sello">Prototipo</span>
+            </div>
+            <div class="exp-cuerpo">
+              <p class="exp-k">Seguir los cambios</p>
+              <h2>Radar</h2>
+              <a class="exp-cta" href="radar/">Abrir el radar <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
         </div>
-      </div>
-    </section>
-
-    <!-- Tres maneras de explorar: tres accesos con identidad funcional distinta y vistas previas reales (capturas de lo ya publicado) -->
-    <section class="tres" id="tres" aria-labelledby="tres-titulo" tabindex="-1">
-      <div class="tres-cab">
-        <p class="eyebrow">Una plataforma, tres entradas</p>
-        <h2 id="tres-titulo">Tres maneras de explorar la misma información</h2>
-        <p class="tres-sub">Cada una funciona por su cuenta. Puedes cambiar de una a otra desde la cabecera en cualquier momento.</p>
-      </div>
-
-      <div class="exp-rejilla">
-        <article class="exp exp--analisis">
-          <div class="exp-vista exp-vista--ventana">
-            <img src="shared/img/preview-analisis.webp" width="1344" height="621" loading="lazy" decoding="async"
-                 alt="Captura real del Análisis: mapa de Situación con Bilbao seleccionado y su ficha, con el 55,8 % de ingresos bajos que se lleva un alquiler nuevo.">
-          </div>
-          <div class="exp-cuerpo">
-            <p class="exp-k">Explorar en profundidad</p>
-            <h3>Análisis</h3>
-            <p class="exp-t">El acceso a la vivienda en los municipios de Bizkaia: dónde falla, a quién afecta, qué medidas hay y quién decide cada una. Con datos oficiales y su fuente.</p>
-            <ul class="exp-chips" aria-label="Vistas del Análisis">
-              <li>Situación</li><li>Municipios</li><li>Acceso</li><li>Medidas</li><li>Normas</li><li>Método</li>
-            </ul>
-            <a class="exp-cta" href="analisis/">Entrar al análisis <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="exp exp--resumen">
-          <div class="exp-vista exp-vista--diapositiva">
-            <img src="shared/img/preview-resumen.webp" width="1440" height="740" loading="lazy" decoding="async"
-                 alt="Captura real de la primera diapositiva del Resumen: «Falta vivienda asequible», con el mapa de Bizkaia por municipios.">
-            <span class="exp-sello">9 diapositivas</span>
-          </div>
-          <div class="exp-cuerpo">
-            <p class="exp-k">Comprender lo esencial</p>
-            <h3>Resumen</h3>
-            <p class="exp-t">Resumen del acceso a la vivienda en Bizkaia: qué pasa con el alquiler y la compra, en qué municipios, cuánta vivienda hace falta y qué se puede hacer.</p>
-            <p class="exp-estado">En integración · versión publicada</p>
-            <a class="exp-cta" href="resumen/">Abrir el resumen <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="exp exp--radar">
-          <div class="exp-vista exp-vista--panel">
-            <img src="shared/img/preview-radar.webp" width="1304" height="454" loading="lazy" decoding="async"
-                 alt="Captura real del Radar: 6 de 12 indicadores clave empeoran frente a su periodo anterior, con la barra de estado de los doce indicadores.">
-            <span class="exp-sello">Prototipo</span>
-          </div>
-          <div class="exp-cuerpo">
-            <p class="exp-k">Seguir los cambios</p>
-            <h3>Radar</h3>
-            <p class="exp-t">Radar de vivienda: cómo está cada indicador, si las medidas en marcha funcionan y qué puede pasar hasta 2040. Datos oficiales con su fuente y su fecha.</p>
-            <p class="exp-estado">En integración · prototipo disponible</p>
-            <a class="exp-cta" href="radar/">Abrir el radar <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
       </div>
     </section>
   </main>
