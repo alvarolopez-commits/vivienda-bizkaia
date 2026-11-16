@@ -3,6 +3,8 @@
 // navegación (rutas.js, copia). Solo Situación e Indicadores están hechas; Medidas, Escenarios, Datos y Metodología llevan al
 // Radar publicado.
 import { OPTIONAL, REQUIRED, checkTerritoryFiles, isDataFile } from "./contrato.js";
+import { renderDatos } from "./datos.js";
+import { renderEscenarios } from "./escenarios.js";
 import { renderIndicadores } from "./indicadores.js";
 import { aplicarPaletaPCI } from "./colores.js";
 import { playIntro } from "./intro.js";
@@ -23,8 +25,8 @@ const RADAR = "https://vizcaya-vivienda.vercel.app/";
 // Dentro del proyecto unificado: lo que ya vive en el Análisis nuevo se abre ahí; lo que aún no existe sigue yendo al Radar publicado.
 const ANALISIS = new URL("../analisis/", location.href).href;
 const EN_ANALISIS = { medidas: `${ANALISIS}#medidas`, metodologia: `${ANALISIS}#metodo` };
-const NAMES = { situacion: "Situación", indicadores: "Indicadores" };
-const RENDER = { situacion: renderSituacion, indicadores: renderIndicadores };
+const NAMES = { situacion: "Situación", indicadores: "Indicadores", escenarios: "Escenarios", datos: "Datos" };
+const RENDER = { situacion: renderSituacion, indicadores: renderIndicadores, escenarios: renderEscenarios, datos: renderDatos };
 const LOCAL = Object.keys(RENDER);
 
 const load = async (name) => {
@@ -55,6 +57,7 @@ function makeStore(f) {
   t.enlaces = (t.enlaces ?? []).map((e) => (/vivienda-bizkaia-analisis/.test(e.url) ? { ...e, url: ANALISIS } : e));
   return {
     territorio: t, catalogo: f.catalogo, alertas: f.alertas, medidas: f.medidas, datos: f.datos, geo: f.geo,
+    escenarios: f.escenario_base, dondeCaben: f.donde_caben,   // los usan Escenarios y Datos (módulos opcionales del territorio)
     ind: Object.fromEntries(f.catalogo.indicadores.map((i) => [i.id, i])),
     dims: Object.fromEntries(f.catalogo.dimensiones.map((d) => [d.id, d])),
     calendar: Object.fromEntries(f.datos.calendario.map((c) => [c.id, c])),
@@ -132,7 +135,7 @@ async function init() {
     filters.replaceChildren(...(views[view]?.bar?.(sub) ?? []));
     document.querySelector(".bar").hidden = !filters.children.length; // Situación no tiene filtros globales: el tipo de alerta está junto al mapa
     if (!head.sinAviso) scope.append(el("span", { class: "chip", "data-nuevo": "" }, [el("b", { text: "Prototipo" }), " de diseño"]));
-    document.title = `${title} · ${store.territorio.producto} · ${store.territorio.nombre} (prototipo)`;
+    document.title = `${title} · ${store.territorio.producto} · ${store.territorio.nombre}`;
     if (current !== `${view}/${sub ?? ""}`) {
       const keep = view === "situacion" && sub === "alertas";
       if (!keep) window.scrollTo(0, 0);
