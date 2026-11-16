@@ -207,3 +207,15 @@ body { background: var(--ambiente), var(--bg); }   /* sin background-attachment:
 }
 .ind-cab { display: flex; align-items: flex-start; gap: 10px; min-width: 0; }
 .ind-cab .info-b { margin-top: 1px; }
+
+/* ---------- Situación en una sola pantalla (escritorio, 2026-11-17) ----------
+   Antes la cabecera (título y problemas), el mapa con la lista, las fuentes y la fecha sumaban más que la ventana y había que bajar. Ahora cabecera y notas
+   son más bajas y el mapa se calcula con lo que queda (mínimo 440 px). El pie de página sigue debajo. Mismos textos y datos. */
+@media (min-width: 1100px) {
+  .atlas-cab { padding-block: 16px 10px; gap: var(--s3) var(--s6); }
+  .atlas-titulo h1 { font-size: clamp(1.5rem, 1rem + 1.3vw, 2rem); }
+  .escenario { height: max(440px, calc(100dvh - var(--banda) - 184px)); }
+  .fuentes-pie { padding: 8px 0 0; }
+  .fuentes-pie .source-line { font-size: .75rem; line-height: 1.4; }
+  .fecha { padding-block: 4px 16px; font-size: .75rem; }
+}

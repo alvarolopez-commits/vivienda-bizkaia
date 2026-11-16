@@ -92,3 +92,10 @@
   .v-acceso .esc-fila { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .v-acceso .esc-fila.cab { display: none; }
 }
+
+/* ---------- «Lo que eliges»: segmentos de igual ancho dentro de una pista visible (2026-11-17) ----------
+   Las opciones sin elegir eran texto suelto y, con tres o más, saltaban de línea y se descolocaban. Ahora cada grupo es una pista con borde y las opciones se reparten
+   el ancho a partes iguales; la elegida sigue siendo la píldora oscura. Mismos textos y mismos valores. */
+.v-acceso .x-controles .x-botones, .v-acceso .alcance-controles .x-botones { display: flex; flex-wrap: nowrap; gap: 2px; padding: 3px; border: 1px solid var(--line-2, var(--line)); border-radius: 16px; background: var(--panel); }
+.v-acceso .x-controles .opcion, .v-acceso .alcance-controles .opcion { flex: 1 1 0; min-width: 0; display: flex; align-items: center; justify-content: center; min-height: 42px; padding: 4px 6px; border-radius: 13px; text-align: center; white-space: normal; line-height: 1.15; font-size: .8125rem; }
+@media (hover: hover) and (pointer: fine) { .v-acceso .x-controles .opcion:not([aria-pressed="true"]):hover { background: rgba(255, 255, 255, .85); } }
