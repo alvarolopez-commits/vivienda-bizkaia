@@ -44,6 +44,7 @@ function marcarNavegacion(nombre) {
   });
   document.getElementById("vista-activa").textContent = NOMBRES[nombre];
   document.title = TITULOS[nombre];
+  document.querySelector('.vistas a[aria-current="page"]')?.scrollIntoView({ inline: "center", block: "nearest" }); // en la barra de dos filas (< 1280 px) la pestaña activa se centra
 }
 
 async function ir() {
