@@ -203,5 +203,3 @@
 }
 @media (max-width: 760px) { .v-normas .comp-celda i { flex: none; } }
 
-/* con el cambiador de producto siempre en la barra, en pantallas muy estrechas el nombre de la vista cede su sitio (sigue en el titular de la página) */
-@media (max-width: 380px) { .vista-activa { display: none; } }

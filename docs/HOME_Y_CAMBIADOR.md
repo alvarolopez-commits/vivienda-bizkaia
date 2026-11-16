@@ -3,8 +3,10 @@
 Parte de `main` · `86aeae3`. Rama local, **sin subir ni publicar**. Auditoría de partida: [`AUDITORIA_HOME.md`](AUDITORIA_HOME.md).
 
 ## Qué hay ahora
+- **Pie sin acordeón:** el acordeón de productos del pie se ha eliminado; el pie es solo una nota. La cabecera es el único selector entre productos.
 - **Cambiador de producto global** (`site/shared/marco.js` + `global.css`): el mismo componente en home, Análisis, Resumen y Radar, con el orden **Análisis · Resumen · Radar**.
-  - Escritorio y tableta: cápsula siempre visible con el producto activo marcado (`aria-current="page"`).
+  - Escritorio y tableta: segmented control de cristal moderado con un indicador que se desliza entre productos (también entre páginas: parte de la posición del producto anterior) y `aria-current="page"`. El producto activo se deduce de la ruta real.
+  - Entre productos la cabecera se queda quieta (transición de documento a documento donde el navegador la soporta); la navegación sigue siendo la normal.
   - Móvil (≤ 760 px): botón `Análisis ▾` siempre en la barra que despliega un selector ligero con las tres opciones y una frase de cada una. No está detrás del menú de vistas.
   - Enlaces reales; Escape cierra y devuelve el foco al botón; flechas arriba/abajo recorren las opciones; un clic fuera, elegir una opción o navegar lo cierra; botón y opciones de ≥ 44 px; se mantiene dentro de la pantalla desde 320 px.
 - **Cabecera del marco** (home, Resumen, Radar): logo aprobado a la izquierda (en móvil, el isotipo: silueta de Bizkaia con corchetes) + cambiador. Sticky.
@@ -15,7 +17,7 @@ Parte de `main` · `86aeae3`. Rama local, **sin subir ni publicar**. Auditoría 
 ## Decisiones visuales
 1. **Una sola cabecera por página.** En el Análisis el cambiador comparte fila con la navegación local (logo · vistas · cambiador) en vez de apilar dos barras: ahorra altura en móvil y evita que los `top` sticky de las seis vistas (basados en `--banda`) cambien.
 2. **Dos niveles de jerarquía visual:** el cambiador global es azul marino `#102E50` (lo de «dónde estoy en la plataforma»); la píldora de vistas del Análisis conserva su azul noche de Astara (lo de «dónde estoy en el producto»).
-3. **Paleta del marco** `#102E50` / `#11B9B6` con variantes; el turquesa solo como acento, nunca como texto sobre claro (4,5:1 no se alcanza: se usa `#0A7673` para texto). Contrastes medidos: marino sobre blanco 13,7:1; texto secundario 7,1:1; turquesa sobre marino 5,7:1; marino sobre turquesa (botón) 5,7:1.
+3. **Paleta del marco: la azul de siempre** — marino `#102E50`, azul de acento `#1A4D7A` e hielo `#8BCDFF` (se sustituyó el turquesa por petición de Alvaro; el único turquesa que queda es el de los corchetes del logo aprobado). Se cambia en las variables de `global.css`, `marco.css` y `home.css`.
 4. **Los tres accesos se leen como tres productos**: marco de ventana (Análisis, con las seis vistas como chips), de diapositiva (Resumen, «9 diapositivas») y de panel (Radar, «Prototipo»). Análisis es más ancho. Estados reales: Resumen y Radar dicen «En integración».
 5. **La tarjeta entera es clicable** (enlace estirado); el foco de teclado se dibuja alrededor de la tarjeta; el hover solo con puntero fino.
 6. **Sin movimiento obligatorio**: no hay parallax ni vídeo; las transiciones son de 180–350 ms y se anulan con «Reducir movimiento». «Aumentar contraste» sustituye el velo del hero por uno sólido y la barra por un fondo opaco.

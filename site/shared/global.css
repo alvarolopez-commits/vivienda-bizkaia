@@ -1,22 +1,31 @@
-/* Componentes globales de «Vivienda en Bizkaia»: cabecera del marco, cambiador de producto y pie.
-   Se cargan en TODAS las páginas (home, Análisis, Resumen y Radar). Las variables van acotadas a estos componentes (no a :root) para no pisar
-   los tokens de cada subapp. Paleta de la marca aprobada: azul marino #102E50 y turquesa #11B9B6.
-   Reglas de plataforma (docs/PRINCIPIOS_UX.md): enlaces reales, 44 px táctiles, hover solo con puntero fino, safe areas, Aumentar contraste,
-   movimiento reducido, sin lookbehind ni funciones que Safari < 16.4 no entienda. */
+/* Navegación global de «Vivienda en Bizkaia»: cabecera del marco, selector de producto (Análisis · Resumen · Radar) y pie.
+   Se carga en TODAS las páginas (home, Análisis, Resumen y Radar). Las variables van acotadas a estos componentes (no a :root) para no pisar los
+   tokens de cada subapp. Paleta: azul marino #102E50, azul de acento #1A4D7A y hielo #8BCDFF (la paleta azul de siempre).
+   Escritorio: segmented control con acabado «liquid glass» moderado y un indicador que se desliza entre productos.
+   Móvil (≤ 760 px): botón «producto ▾» que despliega un menú flotante. Reglas de plataforma: enlaces reales, 44 px táctiles, hover solo con
+   puntero fino, safe areas, Aumentar contraste y Reducir movimiento. Sin lookbehind ni funciones que Safari < 16.4 no entienda. */
 
 .gcab, .gsw, .pie {
-  --v-navy: #102e50; --v-navy-900: #0a1f36; --v-teal: #11b9b6; --v-teal-700: #0a7673;
+  --v-navy: #102e50; --v-navy-900: #0a1f36; --v-hielo: #8bcdff; --v-azul: #1a4d7a;
   --v-canvas: #f3f6fa; --v-paper: #ffffff; --v-ink: #0c2036; --v-ink-2: #455a70; --v-line: #d8e1ea; --v-plata: #b9c8d8;
+  --v-ease: cubic-bezier(.2, .8, .2, 1);
   --v-font: "Geist", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   --v-font-display: "Montserrat", "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
   font-family: var(--v-font);
 }
 
+/* Navegación entre productos sin «salto» blanco: la cabecera es la misma pieza en las cuatro páginas y se queda quieta mientras cambia el contenido
+   (transición de documento a documento; los navegadores que no la soportan hacen la navegación normal). */
+@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }
+.gcab { view-transition-name: cabecera-global; }
+::view-transition-old(cabecera-global), ::view-transition-new(cabecera-global) { animation: none; mix-blend-mode: normal; }
+::view-transition-group(root) { animation-duration: .2s; }
+
 /* ---------- Cabecera del marco (home, Resumen, Radar) ---------- */
 .gcab {
-  position: sticky; top: 0; z-index: 50; padding-top: env(safe-area-inset-top, 0px);
-  background: rgba(243, 246, 250, .86); -webkit-backdrop-filter: saturate(1.4) blur(16px); backdrop-filter: saturate(1.4) blur(16px);
-  border-bottom: 1px solid var(--v-line);
+  position: sticky; top: 0; z-index: 80; padding-top: env(safe-area-inset-top, 0px);
+  background: rgba(243, 246, 250, .82); -webkit-backdrop-filter: saturate(1.5) blur(18px); backdrop-filter: saturate(1.5) blur(18px);
+  border-bottom: 1px solid rgba(16, 46, 80, .09); box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset;
 }
 .gcab-in {
   display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; max-width: 1520px; margin-inline: auto;
@@ -25,80 +34,95 @@
 .gmarca { display: inline-flex; align-items: center; min-height: 44px; border-radius: 10px; }
 .gmarca img { display: block; height: 40px; width: auto; max-width: none; }
 
-/* ---------- Cambiador de producto ---------- */
+/* ---------- Selector de producto: escritorio y tableta ---------- */
 .gsw { display: inline-flex; align-items: center; }
-.gsw-cap ul { display: inline-flex; gap: 2px; margin: 0; padding: 3px; list-style: none; background: rgba(16, 46, 80, .06); border: 1px solid var(--v-line); border-radius: 999px; }
-.gsw-cap a {
-  display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 20px; border-radius: 999px;
-  color: var(--v-ink-2); font: 500 .9375rem/1 var(--v-font); text-decoration: none; white-space: nowrap;
-  transition: color .18s ease, background-color .18s ease;
+.gsw-cap ul {
+  position: relative; display: inline-flex; margin: 0; padding: 4px; list-style: none; border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .72), rgba(255, 255, 255, .4)), rgba(16, 46, 80, .05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .95), inset 0 -1px 0 rgba(16, 46, 80, .05), 0 0 0 1px rgba(16, 46, 80, .1), 0 8px 20px -14px rgba(16, 46, 80, .5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5); backdrop-filter: blur(14px) saturate(1.5);
 }
-.gsw-cap a[aria-current="page"] { background: var(--v-navy); color: #fff; font-weight: 600; box-shadow: 0 6px 14px -8px rgba(16, 46, 80, .7); }
+/* indicador deslizante: la posición la pone marco.js; entre páginas parte de la del producto anterior */
+.gsw-thumb {
+  position: absolute; z-index: 0; top: 4px; bottom: 4px; left: 0; width: 0; border-radius: 999px; background: var(--v-navy); opacity: 0; pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), 0 8px 18px -10px rgba(16, 46, 80, .8);
+}
+.gsw-thumb.listo { opacity: 1; }
+.gsw-thumb.anima { transition: transform .34s var(--v-ease), width .34s var(--v-ease); }
+.gsw-cap li { position: relative; z-index: 1; display: flex; }
+.gsw-cap a {
+  display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 22px; border-radius: 999px;
+  color: var(--v-ink-2); font: 500 .9375rem/1 var(--v-font); text-decoration: none; white-space: nowrap; letter-spacing: -.005em;
+  transition: color .25s var(--v-ease), background-color .2s ease;
+}
+.gsw-cap a[aria-current="page"] { color: #fff; font-weight: 600; }
+.gsw-cap.sin-thumb a[aria-current="page"] { background: var(--v-navy); }   /* sin JS: el producto activo se marca con su propio fondo */
+
+/* ---------- Selector de producto: móvil ---------- */
 .gsw-mov { display: none; position: relative; }
 .gsw-btn {
   display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px 0 18px; border: 0; border-radius: 999px; cursor: pointer;
-  background: var(--v-navy); color: #fff; font: 600 .9375rem/1 var(--v-font); box-shadow: 0 6px 14px -8px rgba(16, 46, 80, .7);
+  background: var(--v-navy); color: #fff; font: 600 .9375rem/1 var(--v-font);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 8px 18px -10px rgba(16, 46, 80, .8);
 }
-.gsw-btn .chev, .pie-sec summary .chev { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s ease; }
+.gsw-btn .chev { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s var(--v-ease); }
 .gsw-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+/* menú flotante: siempre en el DOM (sin hidden) para poder animarlo; cerrado es invisible y no se puede enfocar */
 .gsw-panel {
-  position: absolute; top: calc(100% + 8px); right: 0; z-index: 45; width: min(320px, calc(100vw - 24px)); padding: 10px;
-  background: var(--v-paper); border: 1px solid var(--v-line); border-radius: 22px; box-shadow: 0 28px 56px -24px rgba(16, 46, 80, .55);
+  position: absolute; top: calc(100% + 8px); right: 0; z-index: 85; width: min(300px, calc(100vw - 24px)); padding: 8px;
+  background: #fff; border-radius: 22px; transform-origin: top right;   /* sólido: es un panel de lectura, no un control (el cristal queda para la barra y el selector) */
+  box-shadow: 0 0 0 1px rgba(16, 46, 80, .1), 0 30px 60px -26px rgba(16, 46, 80, .6), inset 0 1px 0 #fff;
+  visibility: hidden; opacity: 0; transform: translateY(-6px) scale(.97);
+  transition: opacity .18s ease, transform .22s var(--v-ease), visibility 0s linear .22s;
 }
-.gsw-panel[hidden] { display: none; }
-.gsw-panel-t { margin: 4px 10px 8px; color: var(--v-ink-2); font: 600 .75rem/1.2 var(--v-font); letter-spacing: .08em; text-transform: uppercase; }
-.gsw-panel ul { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
-.gsw-panel a { display: block; min-height: 44px; padding: 11px 14px; border-radius: 14px; color: var(--v-ink); text-decoration: none; }
-.gsw-panel a b { display: block; font: 600 1rem/1.25 var(--v-font-display); }
-.gsw-panel a span { display: block; color: var(--v-ink-2); font-size: .875rem; line-height: 1.35; }
+.gsw-panel.abierto { visibility: visible; opacity: 1; transform: none; transition: opacity .18s ease, transform .22s var(--v-ease), visibility 0s; }
+.gsw-panel ul { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.gsw-panel a { display: block; min-height: 52px; padding: 10px 14px; border-radius: 16px; color: var(--v-ink); text-decoration: none; }
+.gsw-panel a b { display: flex; align-items: center; gap: 8px; font: 600 1rem/1.25 var(--v-font-display); }
+.gsw-panel a span { display: block; color: var(--v-ink-2); font-size: .8125rem; line-height: 1.35; }
 .gsw-panel a[aria-current="page"] { background: var(--v-navy); }
 .gsw-panel a[aria-current="page"] b { color: #fff; }
+.gsw-panel a[aria-current="page"] b::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--v-hielo); }
 .gsw-panel a[aria-current="page"] span { color: var(--v-plata); }
-.gsw-panel a[aria-current="page"] b::after { content: "·  estás aquí"; margin-left: 8px; color: var(--v-teal); font: 500 .8125rem/1 var(--v-font); }
 
-.gcab :focus-visible, .gsw :focus-visible { outline: 3px solid var(--v-teal-700); outline-offset: 3px; }
-.gsw-btn:focus-visible, .gsw-cap a[aria-current="page"]:focus-visible { outline-color: var(--v-teal); outline-offset: 3px; }
+.gcab :focus-visible, .gsw :focus-visible { outline: 3px solid var(--v-azul); outline-offset: 3px; }
+.gsw-btn:focus-visible, .gsw-panel a[aria-current="page"]:focus-visible { outline-color: var(--v-hielo); }
+.gsw-cap a[aria-current="page"]:focus-visible { outline-color: var(--v-hielo); outline-offset: -3px; }
 
 @media (hover: hover) and (pointer: fine) {
-  .gsw-cap a:hover:not([aria-current="page"]) { background: rgba(255, 255, 255, .85); color: var(--v-navy); }
+  .gsw-cap a:hover:not([aria-current="page"]) { background: rgba(16, 46, 80, .06); color: var(--v-navy); }
   .gsw-btn:hover { background: var(--v-navy-900); }
-  .gsw-panel a:hover:not([aria-current="page"]) { background: var(--v-canvas); }
+  .gsw-panel a:hover:not([aria-current="page"]) { background: rgba(16, 46, 80, .06); }
 }
 @media (pointer: coarse) { .gsw-cap a { min-height: 44px; } }
 
-/* móvil: el cambiador es un botón siempre visible en la barra; el logo pasa a isotipo (silueta + corchetes) */
+/* móvil: el selector es un botón «producto ▾» siempre visible; el logo pasa a isotipo cuando no cabe el rótulo */
 @media (max-width: 760px) {
   .gsw-cap { display: none; }
   .gsw-mov { display: block; }
-  .gmarca img { width: 48px; height: 40px; object-fit: cover; object-position: left center; }
   .gcab-in { min-height: 60px; }
 }
+@media (max-width: 349px) { .gmarca img { width: 48px; height: 40px; object-fit: cover; object-position: left center; } }
 
-/* ---------- Pie con acordeón de productos ---------- */
-.pie { margin-top: 64px; padding: 0 0 max(24px, env(safe-area-inset-bottom, 0px)); background: var(--v-navy); color: #dfe8f2; }
+/* ---------- Pie: sencillo, sin navegación entre productos (eso lo hace la cabecera) ---------- */
+.pie { margin-top: 64px; padding: 28px 0 max(28px, env(safe-area-inset-bottom, 0px)); background: var(--v-navy); color: var(--v-plata); }
 .pie-in { max-width: 1520px; margin-inline: auto; padding-inline: max(clamp(16px, 4vw, 56px), env(safe-area-inset-left, 0px)) max(clamp(16px, 4vw, 56px), env(safe-area-inset-right, 0px)); }
-.pie-sec { border-bottom: 1px solid rgba(255, 255, 255, .16); }
-.pie-sec summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; cursor: pointer; list-style: none; color: #fff; font: 600 1rem/1.3 var(--v-font); }
-.pie-sec summary::-webkit-details-marker { display: none; }
-.pie-sec summary small { display: block; color: var(--v-plata); font-weight: 400; font-size: .875rem; }
-.pie-sec[open] summary .chev { transform: rotate(180deg); }
-.pie :focus-visible { outline: 3px solid var(--v-teal); outline-offset: 3px; border-radius: 8px; }
-.pie-lista { display: grid; gap: 8px; margin: 0 0 20px; padding: 0; list-style: none; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-.pie-lista a { display: block; min-height: 44px; padding: 14px 16px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, .2); color: #fff; text-decoration: none; }
-.pie-lista a b { display: block; font-weight: 600; }
-.pie-lista a span { color: var(--v-plata); font-size: .875rem; }
-.pie-lista a[aria-current="page"] { background: rgba(17, 185, 182, .16); border-color: var(--v-teal); }
-.pie-nota { margin: 16px 0 0; color: var(--v-plata); font-size: .875rem; }
-@media (hover: hover) and (pointer: fine) { .pie-lista a:hover { background: rgba(255, 255, 255, .08); } }
+.pie-nota { margin: 0; font-size: .875rem; line-height: 1.5; }
+.pie-nota b { color: #fff; font-weight: 600; }
 
-/* ---------- Ajustes de accesibilidad ---------- */
-@media (prefers-reduced-motion: reduce) { .gsw *, .gcab *, .pie * { transition-duration: .01ms !important; } }
+/* ---------- Accesibilidad ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .gsw-thumb.anima, .gsw-panel, .gsw-panel.abierto, .gsw-cap a, .gsw-btn .chev { transition-duration: .01ms !important; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .gcab, .gsw-cap ul, .gsw-panel { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .gsw-panel { background: #fff; }
+}
 @media (prefers-contrast: more) {
   .gcab { background: var(--v-canvas); -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: var(--v-ink); }
-  .gsw-cap ul { background: #dbe3ec; border-color: var(--v-ink); }
+  .gsw-cap ul { background: #dbe3ec; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: 0 0 0 1px var(--v-ink); }
   .gsw-cap a { color: var(--v-ink); }
-  .gsw-cap a[aria-current="page"] { outline: 2px solid var(--v-ink); }
-  .gsw-panel { border-color: var(--v-ink); }
-  .pie-lista a { border-color: #fff; }
+  .gsw-cap a[aria-current="page"] { color: #fff; }
+  .gsw-panel { background: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: 0 0 0 1px var(--v-ink); }
 }
 @media print { .gcab, .pie { display: none; } }

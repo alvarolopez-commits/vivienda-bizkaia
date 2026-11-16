@@ -8,15 +8,15 @@
 .con-inicio .banda, .con-inicio.en-analisis .banda { position: sticky; inset: auto; top: env(safe-area-inset-top, 0px); transform: none; visibility: visible; transition: none; }
 .con-inicio:not(.en-analisis) :is(.vistas, .vista-activa, .menu-boton, .li-copiar) { display: none; }
 .con-inicio .hero { padding-top: var(--s3); }
+/* la cabecera es la pieza global: por encima de mapas, hojas y paneles (menos los diálogos y las notas de información) y estable en las transiciones entre productos */
+.banda { z-index: 80; view-transition-name: cabecera-global; }
 
 .otros-productos { margin: 0; padding: 0; list-style: none; gap: var(--s3); }
 .gsw-host { display: inline-flex; }
 
 /* tableta y móvil: «Copiar enlace» se va al menú de vistas; el cambiador sigue en la barra */
 @media (max-width: 1099px) { .li-copiar { display: none; } }
-@media (max-width: 760px) {
-  .vista-activa { display: none; }
-  .marca img { width: 48px; height: 40px; object-fit: cover; object-position: left center; }   /* isotipo (silueta y corchetes) */
-}
+@media (max-width: 760px) { .vista-activa { display: none !important; } }   /* en móvil la barra lleva el producto activo, no el nombre de la vista */
+@media (max-width: 469px) { .marca img { width: 48px; height: 40px; object-fit: cover; object-position: left center; } }   /* isotipo cuando no cabe el rótulo */
 .menu-copiar { justify-self: start; }
 @media print { .pie { display: none; } }
