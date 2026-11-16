@@ -150,13 +150,12 @@
     return h("header", { class: "gcab" }, [h("div", { class: "gcab-in" }, actual === "inicio" ? [marca] : [marca, selector()])]);
   }
 
-  // ---- Pie sencillo: la navegación entre productos es la de la cabecera ----
+  // ---- Pie sencillo: solo la marca (la navegación entre productos es la de la cabecera) ----
   function pie() {
     var marca = h("a", { class: "pie-marca", href: raiz, title: "Ir al inicio de Vivienda en Bizkaia" }, [
       h("img", { src: raiz + "shared/img/logo-vivienda-bizkaia-blanco.png", alt: "Vivienda Bizkaia, inicio", width: "800", height: "212", loading: "lazy" })
     ]);
-    return h("footer", { class: "pie" }, [h("div", { class: "pie-in" }, [marca,
-      h("p", { class: "pie-nota" }, ["Versión de trabajo. Los datos y textos son los de las webs publicadas."])])]);
+    return h("footer", { class: "pie" }, [h("div", { class: "pie-in" }, [marca])]);
   }
 
   // ---- Montaje ----
