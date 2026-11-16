@@ -197,7 +197,6 @@ body { background: var(--ambiente), var(--bg); }   /* sin background-attachment:
   #tipo { max-width: none; width: 100%; }
 }
 @media (max-width: 380px) {
-  .otros-productos { display: none; }
   .banda { gap: 8px; }
   .marca { font-size: .875rem; }
   .vista-activa, .menu-boton { font-size: .875rem; }

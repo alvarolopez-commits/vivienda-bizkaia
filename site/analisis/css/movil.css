@@ -12,8 +12,6 @@
   .vista-activa { justify-self: center; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .menu-boton { min-height: 44px; padding: 8px 6px; }
 }
-/* en móvil el selector de secciones y «Copiar enlace» viven en el menú */
-@media (max-width: 760px) { .otros-productos { display: none; } }
 .menu-copiar { justify-self: start; min-height: 44px; }
 
 /* =====================================================================================================================
@@ -204,3 +202,6 @@
   .matrix-table tbody th.row-name { font-size: .8125rem; }
 }
 @media (max-width: 760px) { .v-normas .comp-celda i { flex: none; } }
+
+/* con el cambiador de producto siempre en la barra, en pantallas muy estrechas el nombre de la vista cede su sitio (sigue en el titular de la página) */
+@media (max-width: 380px) { .vista-activa { display: none; } }

@@ -1,0 +1,149 @@
+✔ 320×700 · home: sin scroll horizontal
+✔ 320×700 · home: cambiador visible arriba y con scroll
+✔ 320×700 · analisis-hero: sin scroll horizontal
+✔ 320×700 · analisis-hero: cambiador visible arriba y con scroll
+✔ 320×700 · situacion: sin scroll horizontal
+✔ 320×700 · situacion: cambiador visible arriba y con scroll
+✔ 320×700 · radar: sin scroll horizontal
+✔ 320×700 · radar: cambiador visible arriba y con scroll
+✔ 320×700 · resumen: sin scroll horizontal
+✔ 320×700 · resumen: cambiador visible arriba y con scroll
+✔ 375×812 · home: sin scroll horizontal
+✔ 375×812 · home: cambiador visible arriba y con scroll
+✔ 375×812 · analisis-hero: sin scroll horizontal
+✔ 375×812 · analisis-hero: cambiador visible arriba y con scroll
+✔ 375×812 · situacion: sin scroll horizontal
+✔ 375×812 · situacion: cambiador visible arriba y con scroll
+✔ 375×812 · radar: sin scroll horizontal
+✔ 375×812 · radar: cambiador visible arriba y con scroll
+✔ 375×812 · resumen: sin scroll horizontal
+✔ 375×812 · resumen: cambiador visible arriba y con scroll
+✔ 390×844 · home: sin scroll horizontal
+✔ 390×844 · home: cambiador visible arriba y con scroll
+✔ 390×844 · analisis-hero: sin scroll horizontal
+✔ 390×844 · analisis-hero: cambiador visible arriba y con scroll
+✔ 390×844 · situacion: sin scroll horizontal
+✔ 390×844 · situacion: cambiador visible arriba y con scroll
+✔ 390×844 · ficha-municipio: sin scroll horizontal
+✔ 390×844 · ficha-municipio: cambiador visible arriba y con scroll
+✔ 390×844 · acceso: sin scroll horizontal
+✔ 390×844 · acceso: cambiador visible arriba y con scroll
+✔ 390×844 · medidas: sin scroll horizontal
+✔ 390×844 · medidas: cambiador visible arriba y con scroll
+✔ 390×844 · normas: sin scroll horizontal
+✔ 390×844 · normas: cambiador visible arriba y con scroll
+✔ 390×844 · metodo: sin scroll horizontal
+✔ 390×844 · metodo: cambiador visible arriba y con scroll
+✔ 390×844 · radar: sin scroll horizontal
+✔ 390×844 · radar: cambiador visible arriba y con scroll
+✔ 390×844 · resumen: sin scroll horizontal
+✔ 390×844 · resumen: cambiador visible arriba y con scroll
+✔ 768×1024 · home: sin scroll horizontal
+✔ 768×1024 · home: cambiador visible arriba y con scroll
+✔ 768×1024 · analisis-hero: sin scroll horizontal
+✔ 768×1024 · analisis-hero: cambiador visible arriba y con scroll
+✔ 768×1024 · situacion: sin scroll horizontal
+✔ 768×1024 · situacion: cambiador visible arriba y con scroll
+✔ 768×1024 · ficha-municipio: sin scroll horizontal
+✔ 768×1024 · ficha-municipio: cambiador visible arriba y con scroll
+✔ 768×1024 · acceso: sin scroll horizontal
+✔ 768×1024 · acceso: cambiador visible arriba y con scroll
+✔ 768×1024 · medidas: sin scroll horizontal
+✔ 768×1024 · medidas: cambiador visible arriba y con scroll
+✔ 768×1024 · normas: sin scroll horizontal
+✔ 768×1024 · normas: cambiador visible arriba y con scroll
+✔ 768×1024 · metodo: sin scroll horizontal
+✔ 768×1024 · metodo: cambiador visible arriba y con scroll
+✔ 768×1024 · radar: sin scroll horizontal
+✔ 768×1024 · radar: cambiador visible arriba y con scroll
+✔ 768×1024 · resumen: sin scroll horizontal
+✔ 768×1024 · resumen: cambiador visible arriba y con scroll
+✔ 1280×800 · home: sin scroll horizontal
+✔ 1280×800 · home: cambiador visible arriba y con scroll
+✔ 1280×800 · analisis-hero: sin scroll horizontal
+✔ 1280×800 · analisis-hero: cambiador visible arriba y con scroll
+✔ 1280×800 · situacion: sin scroll horizontal
+✔ 1280×800 · situacion: cambiador visible arriba y con scroll
+✔ 1280×800 · ficha-municipio: sin scroll horizontal
+✔ 1280×800 · ficha-municipio: cambiador visible arriba y con scroll
+✔ 1280×800 · acceso: sin scroll horizontal
+✔ 1280×800 · acceso: cambiador visible arriba y con scroll
+✔ 1280×800 · medidas: sin scroll horizontal
+✔ 1280×800 · medidas: cambiador visible arriba y con scroll
+✔ 1280×800 · normas: sin scroll horizontal
+✔ 1280×800 · normas: cambiador visible arriba y con scroll
+✔ 1280×800 · metodo: sin scroll horizontal
+✔ 1280×800 · metodo: cambiador visible arriba y con scroll
+✔ 1280×800 · radar: sin scroll horizontal
+✔ 1280×800 · radar: cambiador visible arriba y con scroll
+✔ 1280×800 · resumen: sin scroll horizontal
+✔ 1280×800 · resumen: cambiador visible arriba y con scroll
+✔ 1440×900 · home: sin scroll horizontal
+✔ 1440×900 · home: cambiador visible arriba y con scroll
+✔ 1440×900 · analisis-hero: sin scroll horizontal
+✔ 1440×900 · analisis-hero: cambiador visible arriba y con scroll
+✔ 1440×900 · situacion: sin scroll horizontal
+✔ 1440×900 · situacion: cambiador visible arriba y con scroll
+✔ 1440×900 · ficha-municipio: sin scroll horizontal
+✔ 1440×900 · ficha-municipio: cambiador visible arriba y con scroll
+✔ 1440×900 · acceso: sin scroll horizontal
+✔ 1440×900 · acceso: cambiador visible arriba y con scroll
+✔ 1440×900 · medidas: sin scroll horizontal
+✔ 1440×900 · medidas: cambiador visible arriba y con scroll
+✔ 1440×900 · normas: sin scroll horizontal
+✔ 1440×900 · normas: cambiador visible arriba y con scroll
+✔ 1440×900 · metodo: sin scroll horizontal
+✔ 1440×900 · metodo: cambiador visible arriba y con scroll
+✔ 1440×900 · radar: sin scroll horizontal
+✔ 1440×900 · radar: cambiador visible arriba y con scroll
+✔ 1440×900 · resumen: sin scroll horizontal
+✔ 1440×900 · resumen: cambiador visible arriba y con scroll
+✔ aria-current en home
+✔ aria-current en analisis-hero
+✔ aria-current en situacion
+✔ aria-current en ficha-municipio
+✔ aria-current en acceso
+✔ aria-current en medidas
+✔ aria-current en normas
+✔ aria-current en metodo
+✔ aria-current en radar
+✔ aria-current en resumen
+✔ teclado: Tab recorre logo y los tres destinos
+✔ foco visible en el cambiador
+✔ móvil home: abre y cabe en pantalla
+✔ móvil home: opciones de ≥ 44 px
+✔ móvil home: flecha abajo mueve el foco
+✔ móvil home: Escape cierra y devuelve el foco al botón
+✔ móvil home: clic fuera cierra
+✔ móvil home: botón del cambiador ≥ 44×44
+✔ móvil analisis/#situacion/alquiler/48020: abre y cabe en pantalla
+✔ móvil analisis/#situacion/alquiler/48020: opciones de ≥ 44 px
+✔ móvil analisis/#situacion/alquiler/48020: flecha abajo mueve el foco
+✔ móvil analisis/#situacion/alquiler/48020: Escape cierra y devuelve el foco al botón
+✔ móvil analisis/#situacion/alquiler/48020: clic fuera cierra
+✔ móvil analisis/#situacion/alquiler/48020: botón del cambiador ≥ 44×44
+✔ móvil radar/: abre y cabe en pantalla
+✔ móvil radar/: opciones de ≥ 44 px
+✔ móvil radar/: flecha abajo mueve el foco
+✔ móvil radar/: Escape cierra y devuelve el foco al botón
+✔ móvil radar/: clic fuera cierra
+✔ móvil radar/: botón del cambiador ≥ 44×44
+✔ home → Análisis desde el cambiador
+✔ Análisis → Radar
+✔ Radar → Resumen
+✔ «atrás» vuelve a Radar
+✔ el logo vuelve al inicio
+✔ Análisis · hero: cabecera visible con cambiador y sin píldora de vistas
+✔ Análisis · al entrar aparecen las vistas y sigue el cambiador
+✔ ruta antigua #situacion/alquiler/48020 sigue funcionando
+✔ ruta antigua #municipios/48020 sigue funcionando
+✔ ruta antigua #acceso sigue funcionando
+✔ ruta antigua #medidas sigue funcionando
+✔ ruta antigua #medidas/M01 sigue funcionando
+✔ ruta antigua #medidas?rep=matriz sigue funcionando
+✔ ruta antigua #normas sigue funcionando
+✔ ruta antigua #metodo sigue funcionando
+✔ ruta antigua #metodo/glosario sigue funcionando
+✔ sin errores de consola ni 404 en todo el recorrido
+
+147/147 correctas

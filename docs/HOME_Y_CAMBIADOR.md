@@ -1,0 +1,55 @@
+# Home unificada y cambiador global (rama `home-unificada`)
+
+Parte de `main` · `86aeae3`. Rama local, **sin subir ni publicar**. Auditoría de partida: [`AUDITORIA_HOME.md`](AUDITORIA_HOME.md).
+
+## Qué hay ahora
+- **Cambiador de producto global** (`site/shared/marco.js` + `global.css`): el mismo componente en home, Análisis, Resumen y Radar, con el orden **Análisis · Resumen · Radar**.
+  - Escritorio y tableta: cápsula siempre visible con el producto activo marcado (`aria-current="page"`).
+  - Móvil (≤ 760 px): botón `Análisis ▾` siempre en la barra que despliega un selector ligero con las tres opciones y una frase de cada una. No está detrás del menú de vistas.
+  - Enlaces reales; Escape cierra y devuelve el foco al botón; flechas arriba/abajo recorren las opciones; un clic fuera, elegir una opción o navegar lo cierra; botón y opciones de ≥ 44 px; se mantiene dentro de la pantalla desde 320 px.
+- **Cabecera del marco** (home, Resumen, Radar): logo aprobado a la izquierda (en móvil, el isotipo: silueta de Bizkaia con corchetes) + cambiador. Sticky.
+- **Análisis**: su cabecera ya **no se esconde en el hero**; el cambiador vive en ella en todo momento. En el hero solo se callan lo propio de las vistas (píldora, nombre de la vista, «Menú», «Copiar enlace»). «Copiar enlace» pasa al menú de vistas en tableta/móvil.
+- **Home**: hero editorial con el **Flow** como atmósfera y la **geometría real de los 113 municipios** como pieza protagonista (contorno; sin gráficos ni cifras inventadas), titular y texto aprobados, dos acciones (entrar al análisis / ver las tres experiencias) y debajo tres accesos distintos con vistas previas **reales** (capturas de lo ya publicado).
+- **Marca única**: el favicon, `apple-touch-icon` y los iconos del manifiesto salen ahora del logo aprobado (se eliminó el símbolo de círculos).
+
+## Decisiones visuales
+1. **Una sola cabecera por página.** En el Análisis el cambiador comparte fila con la navegación local (logo · vistas · cambiador) en vez de apilar dos barras: ahorra altura en móvil y evita que los `top` sticky de las seis vistas (basados en `--banda`) cambien.
+2. **Dos niveles de jerarquía visual:** el cambiador global es azul marino `#102E50` (lo de «dónde estoy en la plataforma»); la píldora de vistas del Análisis conserva su azul noche de Astara (lo de «dónde estoy en el producto»).
+3. **Paleta del marco** `#102E50` / `#11B9B6` con variantes; el turquesa solo como acento, nunca como texto sobre claro (4,5:1 no se alcanza: se usa `#0A7673` para texto). Contrastes medidos: marino sobre blanco 13,7:1; texto secundario 7,1:1; turquesa sobre marino 5,7:1; marino sobre turquesa (botón) 5,7:1.
+4. **Los tres accesos se leen como tres productos**: marco de ventana (Análisis, con las seis vistas como chips), de diapositiva (Resumen, «9 diapositivas») y de panel (Radar, «Prototipo»). Análisis es más ancho. Estados reales: Resumen y Radar dicen «En integración».
+5. **La tarjeta entera es clicable** (enlace estirado); el foco de teclado se dibuja alrededor de la tarjeta; el hover solo con puntero fino.
+6. **Sin movimiento obligatorio**: no hay parallax ni vídeo; las transiciones son de 180–350 ms y se anulan con «Reducir movimiento». «Aumentar contraste» sustituye el velo del hero por uno sólido y la barra por un fondo opaco.
+7. **Recursos**: Flow en WebP (223 KB, con `preload`), vistas previas en WebP (32–57 KB), `loading="lazy"` en las tarjetas, geometría del territorio cargada en reposo (si falla, el hero funciona igual).
+
+## Archivos
+- Nuevos: `site/shared/global.css`, `home.css`, `home.js`, `img/` (Flow, logo, isotipo, tres vistas previas), `docs/AUDITORIA_HOME.md`, `docs/HOME_Y_CAMBIADOR.md`, `docs/capturas-home/`.
+- Modificados: `site/index.html`, `shared/marco.js` y `marco.css`, `manifest.webmanifest`, iconos, `radar/index.html`, `resumen/index.html`, `analisis/index.html`, `analisis/css/producto.css`, `movil.css` y `situacion.css` (se quitó una regla que ocultaba el cambiador a ≤ 380 px).
+- **No se ha tocado**: datos, calculadora de Acceso, 34 medidas, 113 municipios, normativa, textos del glosario, rutas `#` ni la lógica de las vistas.
+
+## Pruebas (Chrome, automatizadas; resultado completo en `capturas-home/pruebas-cambiador.txt`)
+**147/147 correctas**, con 0 errores de consola y 0 recursos 404:
+- Sin scroll horizontal y cambiador visible arriba y con scroll profundo en 320×700, 375×812, 390×844, 768×1024, 1280×800 y 1440×900, en home, hero y vistas del Análisis, Radar y Resumen.
+- `aria-current` coincide con la página abierta en las diez pantallas.
+- Teclado: Tab recorre logo y tres destinos; el foco se ve. Móvil: abrir, flechas, Escape devuelve el foco, clic fuera cierra.
+- Navegación entre productos desde el cambiador, «atrás» y logo.
+- El Análisis conserva todas sus rutas: situación, municipios, acceso, medidas (ficha y matriz), normas y método (con glosario).
+
+Capturas «antes» y «después»: `docs/capturas-home/antes/` y `despues/` (escritorio 1440×900, tableta 768×1024, móvil 390×844 y 320×700; menús abiertos, hover, foco, Aumentar contraste y Reducir movimiento).
+
+## Sin validar (no inventar evidencia)
+- **Safari y dispositivos reales**: todo se ha comprobado con Chrome (escritorio y emulación). Falta iPhone/iPad/Safari reales, incluidas safe areas con muesca y teclado virtual.
+- **VoiceOver** y **zoom de texto al 200 %**: no se han podido probar.
+- **Modo lectura/presentación del Resumen** y las vistas del Radar: no están migrados, así que no hay nada que comprobar; los dos son pantallas «en construcción» con la cabecera global. Cuando se migren hay que comprobar que su modo de presentación a pantalla completa deja una salida inmediata al cambiador (el Resumen original ya lleva enlaces a Análisis y Radar en su barra).
+- Los textos de las tarjetas y de las frases del cambiador («Explorar en profundidad», «Comprender lo esencial», «Seguir los cambios») salen del documento de encargo; los de las tarjetas son los de las webs publicadas.
+
+## Incidencias y puntos abiertos
+1. El Resumen enlazaba a su web antigua (`vizcaya-vivienda-resumen`); ahora apunta a la presentación nueva (`vivienda-bizkaia-presentacion`).
+2. La vista previa del Radar es una captura del prototipo publicado (6 de 12 indicadores, «datos descargados el 20 de octubre de 2026»); conviene regenerarla cuando cambien los datos. Las tres previas son capturas estáticas: hay que rehacerlas si cambia el diseño de cada producto.
+3. El logo del Análisis y el de `shared/img` son el mismo archivo duplicado; unificar al migrar el resto.
+4. Entre 900 y 1200 px de ancho, la cabecera del Análisis (logo + nombre de vista + cápsula + Menú) está al límite; revisar si se añaden vistas.
+5. Hay que decidir si la home mantiene «Productos ▾» en móvil (sin producto activo) o muestra «Análisis ▾».
+
+## Cómo iniciarla en local
+```bash
+python3 servidor.py        # http://localhost:4190/
+```

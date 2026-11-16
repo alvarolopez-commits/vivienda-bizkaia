@@ -20,6 +20,7 @@ Abre http://localhost:4190/
 | `docs/PRINCIPIOS_UX.md` | Reglas de UX de plataforma y estilo, con lista de comprobación |
 | `docs/ARQUITECTURA.md` | Cómo se conectan las subapps al marco |
 | `docs/DECISIONES_ABIERTAS.md` | Lo que falta por decidir |
+| `docs/AUDITORIA_HOME.md` y `docs/HOME_Y_CAMBIADOR.md` | Home editorial y cambiador global de producto (rama `home-unificada`): auditoría, decisiones, pruebas y capturas |
 | `docs/MIGRACION_ANALISIS.md` | Qué se conserva de Astara, qué cambia y qué falta del Análisis |
 | `docs/ESTUDIO_SAFARI_APPLE.md` | Estudio de partida (Safari y guías de Apple) |
 
