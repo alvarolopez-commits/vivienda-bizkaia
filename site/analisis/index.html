@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Vivienda en Bizkaia · Análisis</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Análisis y medidas de vivienda en Bizkaia: dónde falla el acceso, a quién afecta, qué medidas hay y quién decide cada una.">
+  <meta name="theme-color" content="#f7f8fb">
+  <link rel="icon" href="../shared/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../shared/icons/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <!-- fuentes alojadas en el proyecto (antes se pedían a Google Fonts) -->
+  <link rel="stylesheet" href="../shared/fonts.css">
+  <!-- sistema tipográfico único (typography.css), tokens y materiales del Design System (tokens.css), marco compartido (cabecera, menú, botones)
+       y una hoja por vista: solo está activa la de la vista abierta -->
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/marco.css">
+  <link rel="stylesheet" href="css/lectura.css">
+  <link rel="stylesheet" href="css/situacion.css" id="css-situacion">
+  <link rel="stylesheet" href="css/medidas.css" id="css-medidas">
+  <link rel="stylesheet" href="css/medidas-diseno.css" id="css-medidas-diseno">
+  <link rel="stylesheet" href="css/municipios.css" id="css-municipios">
+  <link rel="stylesheet" href="css/acceso.css" id="css-acceso">
+  <link rel="stylesheet" href="css/normas.css" id="css-normas">
+  <link rel="stylesheet" href="css/metodo.css" id="css-metodo">
+  <link rel="stylesheet" href="css/inicio.css">
+  <link rel="stylesheet" href="css/movimiento.css">
+  <link rel="stylesheet" href="css/producto.css">
+  <link rel="stylesheet" href="css/movil.css">
+  <link rel="stylesheet" href="css/impresion.css" media="print">
+  <script src="js/pre-inicio.js"></script>
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/nav.js"></script>
+  <script src="../shared/marco.js" defer></script>
+</head>
+<body data-seccion="analisis" data-raiz="../" data-marco="integrado">
+  <a class="salto" href="#vista" id="salto">Saltar al contenido</a>
+
+  <!-- Marco único: las seis pestañas (Situación, Municipios, Acceso, Medidas, Normas y Método) se abren aquí, con el mismo marco, el mismo almacén de datos y el mismo sistema de diseño. -->
+  <header class="banda">
+    <a class="marca" href="../" title="Ir al portal de Vivienda en Bizkaia"><img src="img/logo-vivienda-bizkaia.png" alt="Vivienda Bizkaia" width="800" height="212"></a>
+    <nav class="vistas vidrio" aria-label="Pestañas">
+      <a href="#situacion" data-vista="situacion">Situación</a>
+      <a href="#municipios" data-vista="municipios">Municipios</a>
+      <a href="#acceso" data-vista="acceso">Acceso</a>
+      <a href="#medidas" data-vista="medidas">Medidas</a>
+      <a href="#normas" data-vista="normas">Normas</a>
+      <a href="#metodo" data-vista="metodo">Método</a>
+    </nav>
+    <p class="vista-activa" id="vista-activa">Situación</p>
+    <div class="banda-dcha">
+      <ul class="otros-productos" aria-label="Secciones y acciones">
+        <li><nav class="selector-secciones vidrio" aria-label="Secciones de Vivienda en Bizkaia" data-selector-secciones></nav></li>
+        <li><button type="button" class="btn vidrio" id="copiar-enlace" data-copiar-enlace title="Copia la dirección de esta consulta (vista, municipios, filtros y supuestos)" data-propuesta>Copiar enlace</button></li>
+      </ul>
+      <button type="button" class="menu-boton" id="menu-abrir" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false">Menú</button>
+    </div>
+  </header>
+
+  <dialog id="menu" class="menu" aria-label="Pestañas">
+    <nav class="menu-lista" aria-label="Vistas">
+      <a href="#situacion" data-vista="situacion">Situación</a>
+      <a href="#municipios" data-vista="municipios">Municipios</a>
+      <a href="#acceso" data-vista="acceso">Acceso</a>
+      <a href="#medidas" data-vista="medidas">Medidas</a>
+      <a href="#normas" data-vista="normas">Normas</a>
+      <a href="#metodo" data-vista="metodo">Método</a>
+    </nav>
+    <section class="menu-otros" aria-labelledby="menu-otros-t">
+      <h2 id="menu-otros-t">Secciones</h2>
+      <nav class="selector-secciones" aria-label="Secciones de Vivienda en Bizkaia" data-selector-secciones></nav>
+      <button type="button" class="btn vidrio menu-copiar" data-copiar-enlace data-propuesta>Copiar enlace</button>
+    </section>
+    <form method="dialog"><button class="btn cerrar">Cerrar <span aria-hidden="true">×</span></button></form>
+  </dialog>
+
+  <!-- Inicio: solo se ve con la dirección raíz (html.con-inicio). Primero el hero (editorial inmersiva),
+       después, debajo, la vista Situación de siempre (la puerta a los tres productos la hacen ahora el portal y el selector de secciones). Los textos son los de las tres webs publicadas (sus descripciones); no hay cifras de adorno. -->
+  <section id="inicio" class="hero" aria-label="Inicio">
+    <div class="hero-card">
+      <div class="hero-fondo" aria-hidden="true"><img alt="" decoding="async"></div>
+      <div class="hero-texto">
+        <h1 class="hero-t rise" style="--i:1">El acceso a la vivienda en los <span class="hero-n n-munis" data-roll></span> municipios de Bizkaia</h1>
+        <p class="hero-sub rise" style="--i:2">Dónde falla, a quién afecta, qué medidas hay y quién decide cada una. Con datos oficiales y su fuente.</p>
+        <div class="hero-cta rise" style="--i:3">
+          <a class="hero-btn primario" href="#situacion" data-ir="analisis" data-propuesta>Explorar el análisis <span aria-hidden="true">↓</span></a>
+          <a class="hero-btn vidrio" href="../resumen/">Ver el resumen <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Umbral: marca el punto donde empieza el análisis (aparece la cabecera de las seis vistas) -->
+    <div class="umbral" id="umbral" aria-hidden="true"><p class="umbral-t" data-propuesta>Análisis y medidas</p></div>
+  </section>
+
+  <!-- La vista activa se monta aquí; solo hay una montada a la vez -->
+  <main id="vista" tabindex="-1"></main>
+
+  <div id="velo" aria-hidden="true"></div>  <!-- cubre el contenido durante el cambio de vista (css/movimiento.css) -->
+  <div class="solo-lectores" role="status" aria-live="polite" data-anuncio></div>
+</body>
+</html>
