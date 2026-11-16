@@ -131,7 +131,7 @@ async function init() {
       el("span", { class: "chip" }, [el("b", { text: Object.keys(store.territorio.municipios).length }), ` ${store.territorio.unidad.varias}`])]).filter(Boolean));
     filters.replaceChildren(...(views[view]?.bar?.(sub) ?? []));
     document.querySelector(".bar").hidden = !filters.children.length; // Situación no tiene filtros globales: el tipo de alerta está junto al mapa
-    if (!head.sinAviso) scope.append(el("span", { class: "chip", "data-nuevo": "" }, [el("b", { text: "Prototipo" }), " de diseño · escritorio"]));
+    if (!head.sinAviso) scope.append(el("span", { class: "chip", "data-nuevo": "" }, [el("b", { text: "Prototipo" }), " de diseño"]));
     document.title = `${title} · ${store.territorio.producto} · ${store.territorio.nombre} (prototipo)`;
     if (current !== `${view}/${sub ?? ""}`) {
       const keep = view === "situacion" && sub === "alertas";

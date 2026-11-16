@@ -227,7 +227,7 @@ export function renderSituacion(root, store, ctx) {
   const meta = el("ul", { class: "meta", "aria-label": "Datos de esta vista" }, [
     el("li", {}, [ico("i-meta-fecha", "mt-ico"), el("span", { class: "m-et", text: "Datos descargados el " }), el("b", { text: longDate(store.territorio.fecha_datos) })]),
     el("li", {}, [ico("i-meta-municipios", "mt-ico"), el("b", { text: String(total) }), el("span", { class: "m-et", text: ` ${unit.varias}` })]),
-    el("li", { "data-nuevo": "" }, [ico("i-meta-prototipo", "mt-ico"), el("b", { text: "Prototipo" }), el("span", { class: "m-et", text: " de diseño · escritorio" })]),
+    el("li", { "data-nuevo": "" }, [ico("i-meta-prototipo", "mt-ico"), el("b", { text: "Prototipo" }), el("span", { class: "m-et", text: " de diseño" })]),
   ]);
   body.replaceChildren(
     kb,

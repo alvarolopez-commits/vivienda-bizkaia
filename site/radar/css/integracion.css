@@ -41,3 +41,10 @@
 @media (min-width: 761px) {
   .radar-integrado .bar { top: calc(var(--gcab) + 16px + env(safe-area-inset-top, 0px)); }
 }
+
+/* ---------- Línea visual del proyecto (la de la home y el Análisis) ---------- */
+/* El turquesa se retira (solo queda el de los corchetes del logotipo): los acentos pasan al azul y al hielo de la marca. Los colores de estado
+   (empeora, estable, mejora) y los de los datos no se tocan. */
+.radar-integrado { --teal: #8bcdff; --teal-ink: #1a4d7a; --ik-sel: rgba(26, 77, 122, .09); }
+/* La base del marco pisaba el titular de la página (más grande y más pesado que el del Radar): se devuelve el del Radar con el tracking cerrado de la home */
+.radar-integrado h1 { margin: 0; max-width: none; color: inherit; font: 600 clamp(28px, 2.3vw, 32px)/1.1 var(--font-display); letter-spacing: -.035em; text-wrap: balance; }
