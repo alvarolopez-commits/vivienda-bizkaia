@@ -1,0 +1,108 @@
+/* Home de «Vivienda en Bizkaia»: hero editorial y tres accesos. Paleta de marca: azul marino #102E50, azul de acento #1A4D7A y hielo #8BCDFF (la paleta azul de siempre).
+   Movimiento solo útil (150–250 ms), sin parallax; soporta prefers-reduced-motion y prefers-contrast. */
+
+/* ---------- Hero ---------- */
+.hx { max-width: 1520px; margin-inline: auto; padding: 16px max(var(--margen), env(safe-area-inset-right, 0px)) 0 max(var(--margen), env(safe-area-inset-left, 0px)); }
+.hx-card {
+  position: relative; isolation: isolate; overflow: hidden; display: grid; align-items: end;
+  min-height: clamp(560px, 74vh, 680px); border-radius: 32px; color: #fff; background: var(--navy-900);
+  box-shadow: 0 30px 60px -34px rgba(10, 31, 54, .7);
+}
+.hx-fondo { position: absolute; inset: 0; z-index: -2; }
+.hx-fondo img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; }
+/* velo azul marino: da contraste al texto a la izquierda y deja respirar la luz del Flow a la derecha */
+.hx-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(98deg, rgba(10, 31, 54, .94) 0%, rgba(10, 31, 54, .74) 36%, rgba(10, 31, 54, .12) 72%), linear-gradient(0deg, rgba(10, 31, 54, .7), rgba(10, 31, 54, 0) 42%); }
+
+/* territorio real: los 113 municipios (geometría de municipios.geojson), solo contorno */
+.hx-atlas { position: absolute; z-index: 0; right: 2%; top: 50%; height: 88%; width: auto; max-width: 54%; transform: translateY(-50%); opacity: 0; transition: opacity .9s ease; pointer-events: none; }
+.hx-atlas.listo { opacity: 1; }
+.hx-atlas path { fill: rgba(139, 205, 255, .06); stroke: rgba(255, 255, 255, .5); stroke-width: .7; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.hx-atlas .borde { fill: none; stroke: var(--hielo); stroke-width: 1.6; opacity: .9; }
+
+.hx-texto { position: relative; z-index: 1; max-width: 660px; padding: clamp(28px, 5vw, 72px); }
+.hx-eyebrow { margin: 0 0 16px; color: var(--hielo); font: 600 .8125rem/1.2 var(--font); letter-spacing: .14em; text-transform: uppercase; }
+.hx-texto h1 { margin: 0 0 20px; max-width: 17ch; color: #fff; font: 700 clamp(2.125rem, 4.7vw, 4rem)/1.04 var(--font-display); letter-spacing: -.025em; text-wrap: balance; }
+.hx-n { color: var(--hielo); }
+.hx-sub { margin: 0 0 32px; max-width: 46ch; color: #dbe6f1; font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.5; }
+.hx-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn-p, .btn-s { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; font: 600 1rem/1 var(--font); text-decoration: none; transition: transform .18s ease, background-color .18s ease, border-color .18s ease; }
+.btn-p { background: var(--hielo); color: var(--navy); box-shadow: 0 14px 30px -14px rgba(139, 205, 255, .9); }
+.btn-s { border: 1px solid rgba(255, 255, 255, .55); background: rgba(255, 255, 255, .08); color: #fff; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.btn-p:active, .btn-s:active { transform: translateY(1px); }
+.hx :focus-visible { outline-color: #fff; }
+
+/* ---------- Tres experiencias ---------- */
+.tres { position: relative; max-width: 1520px; margin-inline: auto; padding: clamp(48px, 7vw, 96px) max(var(--margen), env(safe-area-inset-right, 0px)) 0 max(var(--margen), env(safe-area-inset-left, 0px)); scroll-margin-top: 80px; }
+.tres::before { content: ""; position: absolute; z-index: -1; left: 50%; top: -120px; width: min(1100px, 100%); height: 420px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(139, 205, 255, .16), rgba(139, 205, 255, 0)); pointer-events: none; }
+.tres-cab { max-width: 62ch; margin-bottom: clamp(24px, 4vw, 40px); }
+.tres-cab h2 { margin: 0 0 12px; color: var(--navy); font: 700 clamp(1.75rem, 3.2vw, 2.5rem)/1.12 var(--font-display); letter-spacing: -.02em; text-wrap: balance; }
+.tres-sub { margin: 0; color: var(--ink-2); font-size: 1.0625rem; }
+
+.exp-rejilla { display: grid; gap: clamp(16px, 2vw, 24px); grid-template-columns: 1.3fr 1fr 1fr; align-items: stretch; }
+.exp { position: relative; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 28px; background: var(--paper); box-shadow: 0 1px 0 #fff inset, 0 22px 44px -30px rgba(16, 46, 80, .45); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.exp-vista { position: relative; height: clamp(190px, 17vw, 250px); overflow: hidden; background: #e7eef5; border-bottom: 1px solid var(--line); }
+.exp-vista img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: left top; transition: transform .35s ease; }
+/* tres marcos distintos, para que se lean como tres productos: ventana de aplicación, diapositiva y panel */
+.exp-vista--ventana { padding-top: 26px; background: #dfe8f1; }
+.exp-vista--ventana::before { content: ""; position: absolute; left: 14px; top: 9px; width: 9px; height: 9px; border-radius: 50%; background: #c0cfdd; box-shadow: 15px 0 0 #c0cfdd, 30px 0 0 #c0cfdd; }
+.exp-vista--diapositiva { background: #1f1d41; }
+.exp-vista--panel { background: var(--navy-900); }
+.exp-vista--panel img { object-position: left center; }
+.exp-sello { position: absolute; right: 12px; bottom: 12px; padding: 6px 12px; border-radius: 999px; background: rgba(10, 31, 54, .86); color: #fff; font: 600 .8125rem/1 var(--font); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.exp-cuerpo { display: flex; flex: 1; flex-direction: column; gap: 12px; padding: 24px; }
+.exp-k { margin: 0; color: var(--azul); font: 600 .8125rem/1.2 var(--font); letter-spacing: .1em; text-transform: uppercase; }
+.exp h3 { margin: 0; color: var(--navy); font: 700 1.75rem/1.1 var(--font-display); letter-spacing: -.015em; }
+.exp-t { margin: 0; color: var(--ink-2); }
+.exp-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 0; padding: 0; list-style: none; }
+.exp-chips li { padding: 6px 12px; border-radius: 999px; background: var(--canvas); border: 1px solid var(--line); color: var(--navy); font: 500 .8125rem/1 var(--font); }
+.exp-estado { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin: 4px 0 0; padding: 6px 12px; border-radius: 999px; background: var(--azul-suave); color: var(--navy); font: 500 .8125rem/1.3 var(--font); }
+.exp-estado::before { content: ""; width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--azul); }
+.exp-cta { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; min-height: 48px; margin-top: auto; padding: 0 22px; border-radius: 999px; background: var(--navy); color: #fff; font: 600 1rem/1 var(--font); text-decoration: none; }
+/* toda la tarjeta es clicable: el enlace se estira sobre ella; el foco se dibuja alrededor de la tarjeta */
+.exp-cta::after { content: ""; position: absolute; inset: 0; border-radius: 28px; }   /* se estira hasta la tarjeta (.exp es position: relative) */
+.exp-cta:focus-visible { outline: none; }
+.exp-cta:focus-visible::after { outline: 3px solid var(--azul); outline-offset: -3px; border-radius: 28px; }
+.exp:active { transform: scale(.995); }
+
+/* hover solo con puntero fino: en iPad/iPhone no deja nada «pegado» */
+@media (hover: hover) and (pointer: fine) {
+  .btn-p:hover { background: #a9dbff; transform: translateY(-1px); }
+  .btn-s:hover { background: rgba(255, 255, 255, .16); border-color: #fff; }
+  .exp:hover { transform: translateY(-4px); border-color: var(--hielo); box-shadow: 0 1px 0 #fff inset, 0 30px 54px -30px rgba(16, 46, 80, .55); }
+  .exp:hover .exp-vista img { transform: scale(1.03); }
+  .exp:hover .exp-cta { background: var(--navy-900); }
+}
+
+/* tableta: Análisis ocupa el ancho; Resumen y Radar, debajo, a dos columnas */
+@media (max-width: 1099px) {
+  .exp-rejilla { grid-template-columns: 1fr 1fr; }
+  .exp--analisis { grid-column: 1 / -1; }
+  .exp--analisis { flex-direction: row; }
+  .exp--analisis .exp-vista { flex: 1.15; height: auto; min-height: 280px; border-bottom: 0; border-right: 1px solid var(--line); }
+  .exp--analisis .exp-cuerpo { flex: 1; justify-content: center; }
+}
+/* móvil: hero vertical y tres tarjetas a ancho completo */
+@media (max-width: 760px) {
+  .hx { padding-top: 12px; }
+  .hx-card { min-height: min(680px, calc(100svh - 104px)); border-radius: 26px; }
+  .hx-atlas { top: 3%; right: -6%; height: 54%; max-width: 92%; transform: none; opacity: 0; }
+  .hx-atlas.listo { opacity: .75; }
+  .hx-texto { padding: 24px 22px 28px; }
+  .hx-texto h1 { font-size: clamp(1.875rem, 8.6vw, 2.375rem); }
+  .hx-sub { margin-bottom: 24px; font-size: 1.0625rem; }
+  .btn-p, .btn-s { flex: 1 1 100%; min-height: 52px; }
+  .exp-rejilla { grid-template-columns: 1fr; }
+  .exp--analisis { flex-direction: column; }
+  .exp--analisis .exp-vista { height: 220px; min-height: 0; border-right: 0; border-bottom: 1px solid var(--line); flex: none; }
+  .exp-vista { height: 210px; }
+  .exp-cta { align-self: stretch; justify-content: center; }
+  .tres { scroll-margin-top: 72px; }
+}
+@media (max-width: 340px) { .hx-texto h1 { font-size: 1.75rem; } }
+
+@media (prefers-reduced-motion: reduce) { .hx-atlas { transition: none; } .exp, .exp-vista img { transition: none; } }
+@media (prefers-contrast: more) {
+  .hx-card::before { background: rgba(10, 31, 54, .92); }
+  .exp, .exp-chips li { border-color: var(--ink); }
+  .exp-estado { border: 1px solid var(--ink); }
+}

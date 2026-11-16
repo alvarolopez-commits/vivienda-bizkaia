@@ -1,0 +1,44 @@
+/* Base de las páginas del marco (home, Resumen y Radar). Los componentes globales (cabecera, cambiador y pie) están en global.css.
+   Paleta de la marca aprobada: azul marino #102E50, azul de acento #1A4D7A y hielo #8BCDFF (la paleta azul de siempre). Montserrat en titulares; Geist en cuerpo, navegación y controles. */
+
+:root {
+  --navy: #102e50; --navy-900: #0a1f36; --hielo: #8bcdff; --azul: #1a4d7a; --azul-suave: #e6eef7;
+  --ink: #0c2036; --ink-2: #455a70; --canvas: #f7f8fb; --paper: #ffffff; --line: #d8e1ea;
+  --font: "Geist", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Montserrat", "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  --margen: clamp(16px, 4vw, 56px);
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column;
+  background: var(--canvas); color: var(--ink); font: 400 1rem/1.55 var(--font); -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+a, button, summary { touch-action: manipulation; }
+img { max-width: 100%; }
+main { flex: 1 0 auto; }
+:focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; border-radius: 8px; }
+
+.saltar { position: absolute; left: var(--margen); top: 8px; z-index: 100; padding: 10px 16px; border-radius: 10px; background: var(--navy); color: #fff; text-decoration: none; transform: translateY(-200%); }
+.saltar:focus { transform: none; }
+.cont { width: 100%; max-width: 1520px; margin-inline: auto; padding-inline: max(var(--margen), env(safe-area-inset-left, 0px)) max(var(--margen), env(safe-area-inset-right, 0px)); }
+
+/* ---------- Pantallas «en construcción» (Resumen y Radar) ---------- */
+.hero-simple { padding-block: clamp(40px, 7vw, 96px) 24px; }
+.eyebrow { margin: 0 0 12px; color: var(--azul); font: 600 .8125rem/1.2 var(--font); letter-spacing: .1em; text-transform: uppercase; }
+h1 { margin: 0 0 16px; max-width: 20ch; color: var(--navy); font: 700 clamp(2rem, 5.2vw, 3.5rem)/1.08 var(--font-display); letter-spacing: -.02em; }
+.lead { margin: 0; max-width: 60ch; color: var(--ink-2); font-size: clamp(1.0625rem, 1.6vw, 1.25rem); }
+.estado { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 20px; padding: 6px 14px; border-radius: 999px; background: var(--azul-suave); color: var(--navy); font: 600 .875rem/1.2 var(--font); }
+.estado::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--azul); }
+.panel { margin-top: 32px; padding: 24px; border: 1px solid var(--line); border-radius: 22px; background: var(--paper); }
+.panel h2 { margin: 0 0 12px; color: var(--navy); font: 700 1.125rem/1.3 var(--font-display); }
+.panel ul { margin: 0; padding-left: 1.2em; color: var(--ink-2); }
+.panel li + li { margin-top: 6px; }
+.panel a { color: var(--azul); font-weight: 600; text-underline-offset: 3px; }
+.panel-nota { margin: 16px 0 0; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+@media (prefers-contrast: more) { :root { --ink-2: #1e3248; --line: #5b6f84; } .panel { border-color: var(--ink); } }

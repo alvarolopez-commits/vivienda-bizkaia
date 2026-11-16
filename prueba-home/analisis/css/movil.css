@@ -1,0 +1,206 @@
+/* Móvil y tablet (fase de interacción). Se carga siempre y la última, así que gana a las hojas de cada vista.
+   Principios (docs/PRINCIPIOS_UX.md): una columna, zonas táctiles de 44 px, nada que obligue a desplazarse en horizontal,
+   la información importante sin depender del hover, y el vidrio solo en cabecera y controles. Escritorio no cambia.
+   Puntos de corte: 1099 px (cabecera compacta, vistas a una columna), 760 px (móvil grande), 480 px (móvil). */
+
+/* ---------- Cabecera compacta ----------
+   Antes esta regla vivía en situacion.css, que solo está activa en esa vista: en las demás la píldora de seis vistas seguía
+   en pantalla y desbordaba. Ahora vale para todas. */
+/* con el selector de producto en la barra, la píldora de seis vistas ya no cabe junto a él por debajo de 1280 px: la barra pasa a su forma compacta */
+@media (max-width: 1279px) {
+  .vistas { display: none; }
+  .vista-activa, .menu-boton { display: block; }
+  .vista-activa { justify-self: center; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .menu-boton { min-height: 44px; padding: 8px 6px; }
+}
+.menu-copiar { justify-self: start; min-height: 44px; }
+
+/* =====================================================================================================================
+   MEDIDAS
+   ===================================================================================================================== */
+@media (max-width: 1099px) {
+  .medidas { --stage-h: auto; }
+  .m-cab { padding-block: var(--s5) var(--s3); }
+  .m-cab .vista-cab { flex: 1 1 100%; }
+  .cabecera-modos { width: 100%; }
+  .modos { width: 100%; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .modo { min-height: 48px; padding: 0 var(--s2); font-size: .875rem; }
+
+  /* cinta de criterios: líneas y controles en columna */
+  .m-barra, .m-barra:has(+ .shell[data-modo="explorar"]) { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
+  .m-ctrl, .m-barra:has(+ .shell[data-modo="explorar"]) .m-ctrl { flex-wrap: wrap; }
+  .m-lineas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  /* escenario y lista, una debajo de otra; la página es la que se desplaza (nada de cajas con scroll propio dentro de la página) */
+  .medidas .shell[data-modo="explorar"] { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; }
+  .medidas .m-stage { height: auto; min-height: 0; padding: var(--s4); grid-template-columns: minmax(0, 1fr); grid-template-areas: "titulo" "cab" "cuerpo"; grid-template-rows: auto; }
+  .m-stage .rep-cab { justify-self: stretch; border-radius: 22px; }
+  .m-stage > div:last-child { overflow: visible; }
+  .con-lente > .sr-only { position: absolute; }   /* la regla del cristal deslizante lo dejaba «relative» y ocupaba una celda de la rejilla */
+  /* el plano de burbujas conserva un ancho legible (las etiquetas M04, M10… no se leen a 300 px) y se desplaza con el dedo dentro de su caja */
+  .m-stage .burbujas-marco { overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; justify-items: start; }
+  .burbujas { width: 760px; max-width: none; max-height: none; }
+  /* un antecesor con backdrop-filter se convierte en el «bloque contenedor» de los hijos fijos: la hoja inferior quedaba pegada a la lista y no a la pantalla */
+  .m-side { overflow: visible; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .m-side.rise, .m-barra.rise { animation: none !important; translate: none !important; }   /* mientras dura la entrada, el desplazamiento animado también hace de bloque contenedor de la hoja fija */
+  .m-lista { overflow: visible; }
+
+  /* los pop-over de criterios y pesos se abren como hoja desde abajo */
+  .m-pop, .m-pop-pesos { position: fixed; z-index: 60; left: var(--s3); right: var(--s3); top: auto; bottom: max(var(--s3), env(safe-area-inset-bottom)); width: auto; max-height: 78dvh; overflow: auto; }
+
+  /* la ficha de una medida: hoja inferior con el contenido detrás atenuado */
+  .m-side .panel-medida, .shell[data-detalle="abierto"] .panel-medida, .shell[data-detalle="abierto"] .m-side .panel-medida {
+    position: fixed; z-index: 60; inset: auto 0 0 0; margin: 0; width: auto; max-height: 84dvh; overflow: auto; overscroll-behavior: contain;
+    padding: var(--s5) var(--margen) max(var(--s6), env(safe-area-inset-bottom));
+    border: 0; border-radius: 28px 28px 0 0; background: var(--surface); box-shadow: 0 0 0 100vmax rgba(10, 15, 34, .32), 0 -24px 60px -24px rgba(10, 15, 34, .5);
+  }
+  .cerrar-panel { width: 44px; height: 44px; }
+  .chip-quitar { width: 44px; height: 44px; }
+
+  .medida-ficha .criterios { grid-template-columns: minmax(0, 1fr); }
+  .ficha-cols { grid-template-columns: minmax(0, 1fr); gap: var(--s5); }
+  .eligen { grid-template-columns: minmax(0, 1fr); }
+  .criterios > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+
+  /* comparar: la tabla se desplaza en horizontal dentro de su caja, con los rótulos de fila a la vista */
+  .tabla.comparar-medidas { overflow-x: auto; overscroll-behavior-x: contain; }
+  .comparar-medidas .fila { min-width: 44rem; gap: var(--s4); }
+  .comparar-medidas .cab { position: static; }
+}
+@media (max-width: 560px) {
+  .modos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .m-lineas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* =====================================================================================================================
+   LECTURA (Municipios, Acceso, Normas, Método) Y AJUSTES DE MEDIDAS
+   ===================================================================================================================== */
+@media (max-width: 1099px) {
+  /* la columna única de lectura se queda en el ancho de la pantalla (con «auto» la pista crecía hasta el contenido más ancho: 600 px en la comparación) */
+  .lec-contenido, .v-normas .lec-contenido { grid-template-columns: minmax(0, 1fr); }
+  /* tarjetas de sección: menos relleno lateral para que el contenido tenga ancho */
+  .lec-contenido .sec, .lec-contenido .method-block { padding: var(--s5) var(--s4); border-radius: 22px; scroll-margin-top: calc(var(--banda) + 64px); }
+
+  /* «En esta página»: de tarjeta alta a una fila de chips que se desliza con el dedo y se queda fija bajo la cabecera */
+  .lec-indice.lateral {
+    position: sticky; top: calc(var(--banda) + env(safe-area-inset-top, 0px) + var(--s2)); z-index: 20;
+    display: flex; flex-wrap: nowrap; gap: 4px; padding: 4px; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
+    border-radius: var(--r-pildora);
+  }
+  .lec-indice.lateral::-webkit-scrollbar { display: none; }
+  /* pestañas de sección (Acceso, Normas…): una sola fila que se desliza; en dos filas tapaban un tercio de la pantalla al desplazarse */
+  .lec-indice.pestanas { flex-wrap: nowrap; width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; top: calc(var(--banda) + env(safe-area-inset-top, 0px) + var(--s2)); }
+  .lec-indice.pestanas::-webkit-scrollbar { display: none; }
+  .lec-indice.pestanas .lec-ir { flex: none; display: inline-flex; align-items: center; }
+  .lec-indice.lateral .lec-indice-t, .lec-indice.lateral .lec-grupo { display: none; }
+  .lec-indice.lateral .lec-ir { flex: none; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; padding: 0 16px; border-radius: var(--r-pildora); }
+
+  /* cadena de «Entender»: columnas más juntas para que quepa */
+  .enlaces { gap: var(--s3); padding: var(--s3); }
+  .nodo { padding: 8px; font-size: .75rem; overflow-wrap: anywhere; }
+  .enlaces-titulo { overflow-wrap: anywhere; }
+}
+
+/* filtros de línea: el cristal deslizante no sigue bien una rejilla que se parte en filas; el estado se marca con el fondo del propio botón */
+@media (max-width: 1099px) {
+  .m-lineas .lente { display: none; }
+  /* movimiento.css deja transparente todo lo «pulsado» dentro de un cristal deslizante (con !important); aquí no hay cristal, así que lo recuperamos */
+  .m-lineas.con-lente .opcion[aria-pressed="true"] { background: var(--ink) !important; color: #fff; box-shadow: 0 8px 20px -10px rgba(34, 30, 65, .6) !important; }
+  .m-lineas .opcion[aria-pressed="true"] .n, .m-lineas .opcion[aria-pressed="true"] small { color: #d7e0f5; }
+}
+
+/* comparar: primera columna estrecha y fija a la izquierda para leer cada fila con las medidas desplazadas */
+@media (max-width: 1099px) {
+  .comparar-medidas .fila { grid-template-columns: 7rem repeat(var(--n), minmax(13rem, 1fr)); min-width: 0; width: max-content; min-width: 100%; }
+  .comparar-medidas [role="rowheader"] { position: sticky; left: 0; z-index: 2; background: var(--surface); padding-right: var(--s2); }
+  .comparar-medidas .cab { background: var(--panel); }
+  .comparar-medidas .cab > :first-child { position: sticky; left: 0; z-index: 3; background: var(--panel); }
+}
+
+/* =====================================================================================================================
+   SITUACIÓN
+   ===================================================================================================================== */
+@media (max-width: 1099px) {
+  /* el mapa tenía altura 0: .mapa-zona es «flex: 1 1 0» (escritorio) y en columna ese flex-basis anula el height de situacion.css */
+  .mapa-zona { flex: none; }
+  .mapa { touch-action: pan-y pinch-zoom; }          /* la página se sigue desplazando con el dedo sobre el mapa; el zoom del mapa usa sus botones */
+  .herramientas { bottom: auto; }                    /* con top y bottom a la vez, el cristal de los botones se estiraba hasta formar un óvalo sobre el mapa */
+  .herramientas button, .herramientas a { min-width: 44px; min-height: 44px; }
+}
+
+/* =====================================================================================================================
+   ACCESO Y MUNICIPIOS (comparación)
+   ===================================================================================================================== */
+@media (max-width: 760px) {
+  .v-acceso .x-resultado { grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
+  .v-acceso .x-kpi { padding: var(--s3) var(--s4); }
+
+  /* comparar dos municipios: cada indicador pasa de una fila de cinco columnas a tres líneas (nombre · cifras con su barra · diferencia) */
+  .v-municipios .cabeceras, .v-municipios .cabeceras.n2, .v-municipios .columnas.n2 { grid-template-columns: minmax(0, 1fr); }   /* «1fr» a secas dejaba que el banner fijara 600 px */
+  .v-municipios .ficha, .v-municipios .ficha.cmp { grid-template-columns: minmax(0, 1fr); }
+  .v-municipios .muni-banner, .v-municipios .ficha > * { min-width: 0; }
+  .v-municipios .cmp-cols { display: none; }
+  .v-municipios .cmp .fila-ind { grid-template-columns: minmax(0, 5.5rem) minmax(0, 1fr) minmax(0, 5.5rem); gap: var(--s2) var(--s3); }
+  .v-municipios .cmp .nombre-ind { grid-column: 1 / -1; grid-row: 1; }
+  .v-municipios .cmp .cifra-dot.d0 { grid-column: 1; grid-row: 2; }
+  .v-municipios .cmp .pista-marco { grid-column: 2; grid-row: 2; }
+  .v-municipios .cmp .cifra-dot.d1 { grid-column: 3; grid-row: 2; }
+  .v-municipios .cmp .cmp-dif { grid-column: 1 / -1; grid-row: 3; text-align: left; }
+}
+@media (max-width: 760px) {
+  /* comparar hogares: la tabla de dos municipios se desplaza dentro de su caja */
+  .v-municipios .cmp-hogares-caja { overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+}
+
+/* Cajas con desplazamiento horizontal: los textos solo para lectores (.sr-only, absolutos) de las celdas se colocaban respecto a un antecesor
+   que no recorta y ampliaban el ancho de TODA la página (608 px en Normas). Con la caja como referencia, quedan recortados con ella. */
+.table-scroll, .table-wrap, .tabla, .cmp-hogares-caja { position: relative; }
+
+/* =====================================================================================================================
+   ZONAS TÁCTILES DE 44 PX (HIG) en pantallas pequeñas y con puntero táctil (iPad horizontal incluido)
+   ===================================================================================================================== */
+@media (max-width: 1099px), (pointer: coarse) {
+  /* !important solo en el alto mínimo: cada vista fija el suyo (36–40 px) con selectores más específicos */
+  .btn, .opcion, .sin-b, .lec-ir, .ctx-a, .menu-copiar { min-height: 44px !important; }
+  .ctx-a { display: inline-flex; align-items: center; }
+  .sin-b, .opcion { min-width: 44px; }
+  .ficha-cerrar, .m-fila-add { width: 44px; height: 44px; }
+  .rj-casilla { min-width: 44px; min-height: 44px; }
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select { min-height: 44px; }
+  .kpi-completo summary, .sin-dato summary { min-height: 44px; }
+  a.volver { display: inline-flex; align-items: center; min-height: 44px; }
+
+  /* botones «i» de información: se ven igual de pequeños, pero el área pulsable llega a 44 px */
+  .info-b { position: relative; }
+  .rep-titulo .info-b { position: absolute; }
+  .info-b::after { content: ""; position: absolute; inset: 50% auto auto 50%; width: 44px; height: 44px; transform: translate(-50%, -50%); }
+
+  /* casillas de la matriz: la casilla es de 24 px y su margen completa los 44 */
+  .matrix-table .col-sel input { width: 24px; height: 24px; margin: 10px; }
+  /* enlaces de listas y tablas (no los de texto corrido): alto cómodo */
+  .matrix-table .row-name a, .entender dt a, .sources .source a, .src-list a { display: inline-block; padding-block: 14px; }
+}
+
+/* =====================================================================================================================
+   NORMAS (competencias apiladas) Y MATRIZ DE MEDIDAS
+   ===================================================================================================================== */
+@media (max-width: 760px) {
+  /* competencias: cada instrumento es una tarjeta con su nombre y, debajo, qué hace cada nivel de gobierno (en vez de una tabla de 640 px) */
+  .v-normas .comp { min-width: 0; gap: var(--s2); }
+  .v-normas .comp-fila.cab { display: none; }
+  .v-normas .comp-fila { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s2) var(--s3); padding: var(--s3) var(--s4); border: 1px solid var(--line); border-radius: 16px; }
+  .v-normas .comp-fila:nth-child(even) { background: var(--bg); }
+  .v-normas .comp-instr { grid-column: 1 / -1; font-weight: 600; }
+  .v-normas .comp-celda { display: flex; align-items: center; justify-content: flex-start; gap: var(--s2); min-height: 28px; font-size: .8125rem; line-height: 1.25; text-align: left; color: var(--ink-2); }
+  .v-normas .comp-celda::after { content: attr(data-nivel); }
+  .v-normas .comp-celda:not(:has(i))::before { content: "–"; display: inline-block; width: 18px; text-align: center; color: var(--muted); }
+}
+
+/* matriz: solo la casilla y el nombre quedan fijos; el orden y la nota se desplazan con las demás columnas */
+@media (max-width: 760px) {
+  .matrix-table th.col-orden, .matrix-table td.m-rank, .matrix-table th.col-nota, .matrix-table td.col-nota { position: static; }
+  .matrix-table th.col-medida, .matrix-table tbody th.row-name, .matrix-table.con-nota th.col-medida, .matrix-table.con-nota tbody th.row-name { left: 44px; min-width: 9.5rem; max-width: 11rem; }
+  .matrix-table tbody th.row-name { font-size: .8125rem; }
+}
+@media (max-width: 760px) { .v-normas .comp-celda i { flex: none; } }
+
