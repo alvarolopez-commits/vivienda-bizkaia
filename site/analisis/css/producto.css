@@ -9,14 +9,21 @@
 .con-inicio:not(.en-analisis) :is(.vistas, .vista-activa, .menu-boton, .li-copiar) { display: none; }
 .con-inicio .hero { padding-top: var(--s3); }
 /* la cabecera es la pieza global: por encima de mapas, hojas y paneles (menos los diálogos y las notas de información) y estable en las transiciones entre productos */
-.banda { z-index: 80; view-transition-name: cabecera-global; }
+.banda {
+  z-index: 80; view-transition-name: cabecera-global; height: 64px; box-sizing: border-box;
+  background: rgba(247, 248, 251, .82); -webkit-backdrop-filter: saturate(1.5) blur(18px); backdrop-filter: saturate(1.5) blur(18px);
+  border-bottom: 1px solid rgba(16, 46, 80, .09); box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset;
+  /* mismos márgenes laterales que la cabecera global: el logo no se mueve al pasar de una página a otra, tampoco en pantallas anchas */
+  padding-inline: max(var(--margen), env(safe-area-inset-left, 0px), calc((100% - 1520px) / 2 + var(--margen))) max(var(--margen), env(safe-area-inset-right, 0px), calc((100% - 1520px) / 2 + var(--margen)));
+}
 
 .otros-productos { margin: 0; padding: 0; list-style: none; gap: var(--s3); }
 .gsw-host { display: inline-flex; }
 
 /* tableta y móvil: «Copiar enlace» se va al menú de vistas; el cambiador sigue en la barra */
-@media (max-width: 1099px) { .li-copiar { display: none; } }
+@media (max-width: 1279px) { .li-copiar { display: none; } }
 @media (max-width: 760px) { .vista-activa { display: none !important; } }   /* en móvil la barra lleva el producto activo, no el nombre de la vista */
-@media (max-width: 469px) { .marca img { width: 48px; height: 40px; object-fit: cover; object-position: left center; } }   /* isotipo cuando no cabe el rótulo */
+@media (max-width: 760px) { .marca img { height: 34px; } }
+@media (max-width: 379px) { .marca img { width: 42px; height: 34px; object-fit: cover; object-position: left center; } }   /* isotipo si no cabe el rótulo */
 .menu-copiar { justify-self: start; }
 @media print { .pie { display: none; } }

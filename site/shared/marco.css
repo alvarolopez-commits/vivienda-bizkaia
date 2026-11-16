@@ -3,7 +3,7 @@
 
 :root {
   --navy: #102e50; --navy-900: #0a1f36; --hielo: #8bcdff; --azul: #1a4d7a; --azul-suave: #e6eef7;
-  --ink: #0c2036; --ink-2: #455a70; --canvas: #f3f6fa; --paper: #ffffff; --line: #d8e1ea;
+  --ink: #0c2036; --ink-2: #455a70; --canvas: #f7f8fb; --paper: #ffffff; --line: #d8e1ea;
   --font: "Geist", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   --font-display: "Montserrat", "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
   --margen: clamp(16px, 4vw, 56px);

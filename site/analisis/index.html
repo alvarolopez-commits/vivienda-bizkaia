@@ -11,6 +11,8 @@
   <link rel="apple-touch-icon" href="../shared/icons/apple-touch-icon.png">
   <link rel="manifest" href="../manifest.webmanifest">
   <!-- fuentes alojadas en el proyecto (antes se pedían a Google Fonts) -->
+  <link rel="preload" href="../shared/fonts/geist-latin-edc7ad.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../shared/fonts/montserrat-latin-83a31c.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../shared/fonts.css">
   <!-- sistema tipográfico único (typography.css), tokens y materiales del Design System (tokens.css), marco compartido (cabecera, menú, botones)
        y una hoja por vista: solo está activa la de la vista abierta -->
@@ -53,8 +55,8 @@
     <p class="vista-activa" id="vista-activa">Situación</p>
     <div class="banda-dcha">
       <ul class="otros-productos" aria-label="Secciones y acciones">
-        <li class="li-prod"><div class="gsw-host" data-selector-secciones></div></li>
         <li class="li-copiar"><button type="button" class="btn vidrio" id="copiar-enlace" data-copiar-enlace title="Copia la dirección de esta consulta (vista, municipios, filtros y supuestos)" data-propuesta>Copiar enlace</button></li>
+        <li class="li-prod"><div class="gsw-host" data-selector-secciones></div></li>
       </ul>
       <button type="button" class="menu-boton" id="menu-abrir" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false">Menú</button>
     </div>

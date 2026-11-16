@@ -7,7 +7,7 @@
 
 .gcab, .gsw, .pie {
   --v-navy: #102e50; --v-navy-900: #0a1f36; --v-hielo: #8bcdff; --v-azul: #1a4d7a;
-  --v-canvas: #f3f6fa; --v-paper: #ffffff; --v-ink: #0c2036; --v-ink-2: #455a70; --v-line: #d8e1ea; --v-plata: #b9c8d8;
+  --v-canvas: #f7f8fb; --v-paper: #ffffff; --v-ink: #0c2036; --v-ink-2: #455a70; --v-line: #d8e1ea; --v-plata: #b9c8d8;
   --v-ease: cubic-bezier(.2, .8, .2, 1);
   --v-font: "Geist", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   --v-font-display: "Montserrat", "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -24,11 +24,11 @@
 /* ---------- Cabecera del marco (home, Resumen, Radar) ---------- */
 .gcab {
   position: sticky; top: 0; z-index: 80; padding-top: env(safe-area-inset-top, 0px);
-  background: rgba(243, 246, 250, .82); -webkit-backdrop-filter: saturate(1.5) blur(18px); backdrop-filter: saturate(1.5) blur(18px);
+  background: rgba(247, 248, 251, .82); -webkit-backdrop-filter: saturate(1.5) blur(18px); backdrop-filter: saturate(1.5) blur(18px);
   border-bottom: 1px solid rgba(16, 46, 80, .09); box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset;
 }
 .gcab-in {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; max-width: 1520px; margin-inline: auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 63px; max-width: 1520px; margin-inline: auto;
   padding-inline: max(clamp(16px, 4vw, 56px), env(safe-area-inset-left, 0px)) max(clamp(16px, 4vw, 56px), env(safe-area-inset-right, 0px));
 }
 .gmarca { display: inline-flex; align-items: center; min-height: 44px; border-radius: 10px; }
@@ -100,15 +100,24 @@
 @media (max-width: 760px) {
   .gsw-cap { display: none; }
   .gsw-mov { display: block; }
-  .gcab-in { min-height: 60px; }
+  .gmarca img { height: 34px; }                 /* rótulo completo también en móvil: 129 px de ancho */
+  .gsw-host { min-width: 128px; }
 }
-@media (max-width: 349px) { .gmarca img { width: 48px; height: 40px; object-fit: cover; object-position: left center; } }
+@media (max-width: 379px) { .gmarca img { width: 42px; height: 34px; object-fit: cover; object-position: left center; } }   /* isotipo si no cabe el rótulo */
+
+/* sin salto de diseño: hasta que el marco monta la cabecera se reserva su altura; el hueco del selector del Análisis también */
+body:not([data-marco="integrado"]):not(.marco-listo) { padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
+.gsw-host { min-height: 48px; }
+@media (min-width: 761px) { .gsw-host { min-width: 302px; } }
+html { scroll-padding-top: 80px; }
 
 /* ---------- Pie: sencillo, sin navegación entre productos (eso lo hace la cabecera) ---------- */
 .pie { margin-top: 64px; padding: 28px 0 max(28px, env(safe-area-inset-bottom, 0px)); background: var(--v-navy); color: var(--v-plata); }
-.pie-in { max-width: 1520px; margin-inline: auto; padding-inline: max(clamp(16px, 4vw, 56px), env(safe-area-inset-left, 0px)) max(clamp(16px, 4vw, 56px), env(safe-area-inset-right, 0px)); }
-.pie-nota { margin: 0; font-size: .875rem; line-height: 1.5; }
-.pie-nota b { color: #fff; font-weight: 600; }
+.pie-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; max-width: 1520px; margin-inline: auto; padding-inline: max(clamp(16px, 4vw, 56px), env(safe-area-inset-left, 0px)) max(clamp(16px, 4vw, 56px), env(safe-area-inset-right, 0px)); }
+.pie-marca { display: inline-flex; align-items: center; min-height: 44px; border-radius: 10px; }
+.pie-marca img { display: block; height: 32px; width: auto; }
+.pie-nota { margin: 0; max-width: 56ch; font-size: .875rem; line-height: 1.5; }
+.pie :focus-visible { outline: 3px solid var(--v-hielo); outline-offset: 3px; }
 
 /* ---------- Accesibilidad ---------- */
 @media (prefers-reduced-motion: reduce) {

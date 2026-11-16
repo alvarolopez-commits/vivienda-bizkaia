@@ -55,3 +55,11 @@ Capturas «antes» y «después»: `docs/capturas-home/antes/` y `despues/` (esc
 ```bash
 python3 servidor.py        # http://localhost:4190/
 ```
+
+## Fase 4 · pulido e integración (continuidad entre productos)
+- **Cabecera idéntica en las cuatro páginas:** misma altura (64 px), fondo, borde, márgenes (también en pantallas de 1920 px) y logo; el selector va siempre al borde derecho. Medido: logo y barra en la misma posición en home, Análisis, Radar y Resumen a 1440, 1920 y 390 px. El fondo de página del marco es ahora el del Análisis (`#F7F8FB`).
+- **Móvil:** rótulo completo de Vivienda Bizkaia en la barra desde 380 px (isotipo por debajo); selector «producto ▾» siempre visible; la barra compacta del Análisis arranca por debajo de 1280 px (antes 1100) porque con el selector no cabían la píldora de vistas y el botón de copiar.
+- **Sin saltos al cargar:** se reserva la altura de la cabecera hasta que el marco la monta; hueco reservado para el selector del Análisis; fuentes Geist y Montserrat precargadas; `scroll-padding-top` para que ningún ancla quede bajo la cabecera.
+- **Pie:** logo en versión blanca (nuevo `logo-vivienda-bizkaia-blanco.png`) y una nota; sin navegación entre productos. Etiquetas de estado de las tarjetas acortadas («En integración · versión publicada»).
+- **Pruebas:** 147/147 en Chrome y 0 fallos en 19 anchos (320–1920) × 4 pantallas (sin scroll horizontal, sin solapes en la barra, selector visible, barra de 64 px).
+- **Limitación real:** Resumen y Radar siguen sin migrar (pantallas «en construcción» con la cabecera global y enlace a lo publicado); sus rutas profundas externas (Radar antiguo, desde el glosario del Análisis) no se han tocado. Se mantiene la paleta azul pedida por Alvaro; el documento de esta fase menciona turquesa, que no se ha vuelto a usar.

@@ -6,7 +6,8 @@
 /* ---------- Cabecera compacta ----------
    Antes esta regla vivía en situacion.css, que solo está activa en esa vista: en las demás la píldora de seis vistas seguía
    en pantalla y desbordaba. Ahora vale para todas. */
-@media (max-width: 1099px) {
+/* con el selector de producto en la barra, la píldora de seis vistas ya no cabe junto a él por debajo de 1280 px: la barra pasa a su forma compacta */
+@media (max-width: 1279px) {
   .vistas { display: none; }
   .vista-activa, .menu-boton { display: block; }
   .vista-activa { justify-self: center; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

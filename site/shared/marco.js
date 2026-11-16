@@ -151,8 +151,11 @@
 
   // ---- Pie sencillo: la navegación entre productos es la de la cabecera ----
   function pie() {
-    return h("footer", { class: "pie" }, [h("div", { class: "pie-in" }, [
-      h("p", { class: "pie-nota" }, [h("b", {}, ["Vivienda en Bizkaia"]), " · Versión de trabajo. Los datos y textos son los de las webs publicadas."])])]);
+    var marca = h("a", { class: "pie-marca", href: raiz, title: "Ir al inicio de Vivienda en Bizkaia" }, [
+      h("img", { src: raiz + "shared/img/logo-vivienda-bizkaia-blanco.png", alt: "Vivienda Bizkaia, inicio", width: "800", height: "212", loading: "lazy" })
+    ]);
+    return h("footer", { class: "pie" }, [h("div", { class: "pie-in" }, [marca,
+      h("p", { class: "pie-nota" }, ["Versión de trabajo. Los datos y textos son los de las webs publicadas."])])]);
   }
 
   // ---- Montaje ----
@@ -164,5 +167,6 @@
     if (saltar) body.insertBefore(cab, saltar.nextSibling); else body.insertBefore(cab, body.firstChild);
   }
   body.appendChild(pie());
+  body.classList.add("marco-listo");
   try { sessionStorage.setItem(CLAVE, actual === "inicio" ? "" : actual); } catch (e) { /* ignorar */ }
 })();
