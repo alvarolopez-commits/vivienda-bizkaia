@@ -63,8 +63,11 @@
   .hf-cifra { margin: 0 0 0 auto; }
   .hf-cifra b { font-size: 1.75rem; }
   .hf-cifra span { display: none; }
-  .hf-cta { margin: 0; flex: 1 1 100%; min-height: 40px; padding: 0; background: none; color: var(--hielo, #8bcdff); }
+  .hf-cta { margin: 0; flex: 1 1 100%; min-height: 44px; padding: 0; background: none; color: var(--hielo, #8bcdff); }
   .hf-cta::after { border-radius: 18px; }
 }
 @media (prefers-reduced-motion: reduce) { .hf-card { transition: none; } }
 @media (prefers-contrast: more) { .hf-card { background: rgba(255, 255, 255, .14); border-color: rgba(255, 255, 255, .6); } }
+
+/* móvil: el logotipo del pie es un enlace; 44 px de altura pulsable */
+@media (max-width: 760px) { .hf-pagina .pie-marca { min-height: 44px; } }

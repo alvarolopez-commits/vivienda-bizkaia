@@ -28,8 +28,8 @@
   .radar-integrado .ind-link { position: relative; }
   .radar-integrado .ind-link::after { content: ""; position: absolute; inset: -13px 0; }
   /* la barra de los 12 indicadores ocupa todo el ancho para que cada segmento se pueda tocar */
-  .radar-integrado .estatus-barra { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; width: 100%; }
-  .radar-integrado .estatus-barra .est { min-width: 0; height: 56px; }
+  .radar-integrado .estatus-barra { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; width: 100%; }   /* 3 columnas: cada segmento mide 44 px o más */
+  .radar-integrado .estatus-barra .est { min-width: 0; height: 48px; }
   .radar-integrado .hoja button:not(.est) { min-height: 44px; }
 }
 
@@ -48,3 +48,23 @@
 .radar-integrado { --teal: #8bcdff; --teal-ink: #1a4d7a; --ik-sel: rgba(26, 77, 122, .09); }
 /* La base del marco pisaba el titular de la página (más grande y más pesado que el del Radar): se devuelve el del Radar con el tracking cerrado de la home */
 .radar-integrado h1 { margin: 0; max-width: none; color: inherit; font: 600 clamp(28px, 2.3vw, 32px)/1.1 var(--font-display); letter-spacing: -.035em; text-wrap: balance; }
+
+/* ---------- Tamaño de los controles (auditoría del 2026-11-17) ---------- */
+/* enlaces sueltos de las fichas y de las descargas: altura pulsable de 24 px como mínimo (mínimo AA de WCAG 2.2, 2.5.8) */
+.radar-integrado .ind-link { display: inline-flex; align-items: center; min-height: 24px; }
+.radar-integrado .lista-archivos a { display: inline-flex; align-items: center; min-height: 24px; }
+@media (max-width: 760px) {
+  /* opciones, desplegables y descargas de Escenarios y Datos: 44 px en móvil */
+  .radar-integrado :is(#view-escenarios, #view-datos) .opcion { min-height: 44px; }
+  .radar-integrado :is(#view-escenarios, #view-datos) summary { min-height: 44px; display: flex; align-items: center; }
+  .radar-integrado .lista-archivos a { min-height: 44px; }
+}
+
+/* enlaces de las listas y tablas de Datos y Escenarios (fuentes, descargas): 24 px de altura pulsable como mínimo; los enlaces dentro de una frase no cambian */
+.radar-integrado :is(#view-datos, #view-escenarios) :is(td, th, li, dd, dt) > a { display: inline-block; padding-block: 3px; }
+@media (max-width: 760px) {
+  .radar-integrado :is(#view-datos, #view-escenarios) :is(td, th, li, dd, dt) > a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; }
+  .radar-integrado #view-escenarios .paso-boton { min-width: 44px; }
+  .radar-integrado :is(#view-datos, #view-escenarios) .boton { min-height: 44px; }
+  .radar-integrado .hoja button:not(.est) { min-width: 44px; }
+}
