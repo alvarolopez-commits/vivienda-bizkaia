@@ -6,12 +6,26 @@
 /* ---------- Cabecera compacta ----------
    Antes esta regla vivía en situacion.css, que solo está activa en esa vista: en las demás la píldora de seis vistas seguía
    en pantalla y desbordaba. Ahora vale para todas. */
-/* con el selector de producto en la barra, la píldora de seis vistas ya no cabe junto a él por debajo de 1280 px: la barra pasa a su forma compacta */
+/* Por debajo de 1280 px la píldora de seis vistas no cabe junto al selector de producto. En vez de esconderla tras «Menú» (se perdía el resto del
+   producto), la barra pasa a DOS FILAS: arriba, marca + selector de producto; debajo, las seis vistas como pestañas siempre visibles (se deslizan
+   con el dedo y la activa se centra). --banda pasa a 108 px, así que todos los elementos fijos de las vistas (basados en esa variable) se ajustan solos. */
 @media (max-width: 1279px) {
-  .vistas { display: none; }
-  .vista-activa, .menu-boton { display: block; }
-  .vista-activa { justify-self: center; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .menu-boton { min-height: 44px; padding: 8px 6px; }
+  :root { --banda: 108px; }
+  .banda { grid-template-rows: 64px 44px; align-content: start; row-gap: 0; overflow-x: clip; }   /* la fila de pestañas se desliza dentro de sí misma: no debe ensanchar la página */
+  .banda .marca { grid-column: 1; grid-row: 1; align-self: center; }
+  .banda .banda-dcha { grid-column: 3; grid-row: 1; align-self: center; }
+  .vista-activa { display: none; }
+  .menu-boton { display: block; min-height: 44px; padding: 8px 6px; }
+  .vistas {
+    display: flex; grid-column: 1 / -1; grid-row: 2; justify-self: stretch; width: auto; align-self: stretch; gap: 2px;
+    margin-inline: calc(var(--margen) * -1); padding: 0 var(--margen); border-radius: 0; border: 0; box-shadow: none; background: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; scroll-padding-inline: var(--margen);
+  }
+  .vistas::-webkit-scrollbar { display: none; }
+  .vistas .lente { display: none; }
+  .vistas a { flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 0; color: var(--muted); }
+  .vistas a[aria-current="page"] { background: none !important; box-shadow: none !important; color: var(--ink) !important; font-weight: 600; }
+  .vistas a[aria-current="page"]::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 3px; border-radius: 3px; background: var(--ink); }
 }
 .menu-copiar { justify-self: start; min-height: 44px; }
 
@@ -204,3 +218,11 @@
 }
 @media (max-width: 760px) { .v-normas .comp-celda i { flex: none; } }
 
+
+/* =====================================================================================================================
+   ESCRITORIO · título del indicador en una sola línea (más espacio para el mapa)
+   ===================================================================================================================== */
+@media (min-width: 1180px) {   /* por debajo el título más largo (hogares) no cabe en una línea y sigue envolviendo*/
+  .ind-cab { flex-wrap: nowrap; }
+  .ind-titulo { max-width: none; min-width: 0; white-space: nowrap; text-wrap: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}

@@ -7,10 +7,11 @@
    las vistas (píldora, nombre de la vista, «Menú» y «Copiar enlace») y se queda la marca y el cambiador de producto. */
 .con-inicio .banda, .con-inicio.en-analisis .banda { position: sticky; inset: auto; top: env(safe-area-inset-top, 0px); transform: none; visibility: visible; transition: none; }
 .con-inicio:not(.en-analisis) :is(.vistas, .vista-activa, .menu-boton, .li-copiar) { display: none; }
+.con-inicio:not(.en-analisis) .banda { height: 64px; }   /* en el hero la barra es de una sola fila */
 .con-inicio .hero { padding-top: var(--s3); }
 /* la cabecera es la pieza global: por encima de mapas, hojas y paneles (menos los diálogos y las notas de información) y estable en las transiciones entre productos */
 .banda {
-  z-index: 80; view-transition-name: cabecera-global; height: 64px; box-sizing: border-box;
+  z-index: 80; view-transition-name: cabecera-global; height: var(--banda); box-sizing: border-box;
   background: rgba(247, 248, 251, .82); -webkit-backdrop-filter: saturate(1.5) blur(18px); backdrop-filter: saturate(1.5) blur(18px);
   border-bottom: 1px solid rgba(16, 46, 80, .09); box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset;
   /* mismos márgenes laterales que la cabecera global: el logo no se mueve al pasar de una página a otra, tampoco en pantallas anchas */
