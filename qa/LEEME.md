@@ -1,4 +1,22 @@
-# Pruebas heredadas (qa/)
+# Pruebas (qa/)
+
+## Auditoría visual y técnica de todo el proyecto: `auditoria-visual.mjs`
+
+Es la prueba vigente y se ejecuta antes de cada publicación. Usa Chrome sin pantalla (Node 22 o posterior, sin dependencias) y recorre 21 rutas (portada, las 6 vistas del Análisis con el comparador, las 4 del Radar y las 9 diapositivas del Resumen) a 1280×720, 1440×900, 1920×1080 y 390×844 con emulación táctil: 84 comprobaciones.
+
+```bash
+python -m http.server 4195 --directory site                       # en una terminal
+node qa/auditoria-visual.mjs http://localhost:4195 auditoria.json  # en otra (opcional: tamaño y filtro de ruta como 3.º y 4.º argumento)
+node qa/auditoria-visual.mjs https://alvarolopez-commits.github.io/vivienda-bizkaia   # contra el sitio publicado
+```
+
+Mide, dentro de cada página: desborde horizontal; elementos que se salen de la pantalla (salvo dentro de cajas con desplazamiento propio); errores de consola, excepciones y peticiones fallidas; controles por debajo de 24 px (límite AA de WCAG 2.2, 2.5.8) y, en móvil, de 44 px (recomendado; el área ampliada con `::after` y los enlaces dentro de una frase cuentan como válidos); imágenes rotas; fuentes sin cargar; avisos `role="alert"` visibles; número de `h1`; y reglas propias (la portada y Situación caben en la pantalla; en escritorio ninguna diapositiva del Resumen recorta su contenido; en móvil el Resumen está en lectura vertical).
+
+**No mide** contraste, lectura con lector de pantalla ni comportamiento en Safari o en un teléfono real. Ignora el aviso conocido de View Transitions («Page already revealed»).
+
+Resultado de la última ejecución (2026-11-17, rama `ux/radar-resumen`): 84 de 84 sin fallos tras corregir los 36 que salieron en la primera pasada (tamaños de controles; ningún desborde, error de consola, petición fallida, imagen rota ni fuente sin cargar).
+
+## Pruebas heredadas
 
 Estas pruebas vienen de los repos que se integran en este proyecto. Se guardan aquí para no perderlas; **no se han vuelto a ejecutar contra la estructura unificada** y varias suponen las rutas de la app original, así que hay que adaptarlas antes de usarlas.
 

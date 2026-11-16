@@ -123,6 +123,6 @@ html.modal { overflow: hidden; }
 .info-metodo { margin: var(--s3) 0 0; padding-top: var(--s3); border-top: 1px solid var(--line); font-size: .875rem; color: var(--ink-2); }
 .info-metodo.falta { color: var(--muted); }
 @media (prefers-reduced-transparency: reduce) { .info-b { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--surface); } }
-.info-b.en-fila { width: 22px; height: 22px; margin: 0 0 0 4px; vertical-align: -5px; }
-.info-b.en-fila svg { width: 13px; height: 13px; }
+.info-b.en-fila { width: 24px; height: 24px; margin: 0 0 0 4px; vertical-align: -6px; }   /* 24 px: mínimo AA (WCAG 2.2, 2.5.8) */
+.info-b.en-fila svg { width: 14px; height: 14px; }
 .sec-cab .info-b.en-seccion { margin: var(--s2) 0 0; }
