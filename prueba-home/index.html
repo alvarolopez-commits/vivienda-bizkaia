@@ -6,7 +6,7 @@
   <title>Vivienda en Bizkaia</title>
   <meta name="description" content="El acceso a la vivienda en los municipios de Bizkaia: análisis en profundidad, resumen visual y radar de indicadores. Con datos oficiales y su fuente.">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#f7f8fb">
+  <meta name="theme-color" content="#f2f4f6">
   <link rel="icon" href="shared/icons/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="shared/icons/apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
@@ -14,8 +14,7 @@
   <meta property="og:title" content="Vivienda en Bizkaia">
   <meta property="og:description" content="Análisis, resumen y radar sobre el acceso a la vivienda en los municipios de Bizkaia.">
   <meta property="og:locale" content="es_ES">
-  <link rel="preload" href="shared/img/flow-3.webp" as="image" type="image/webp">
-  <link rel="preload" href="shared/fonts/geist-latin-edc7ad.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="shared/img/papel-fino.jpg" as="image" type="image/jpeg">
   <link rel="preload" href="shared/fonts/montserrat-latin-83a31c.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="shared/fonts.css">
   <link rel="stylesheet" href="shared/marco.css">
@@ -24,55 +23,40 @@
   <script src="shared/marco.js" defer></script>
   <script src="shared/home.js" defer></script>
 </head>
-<body data-seccion="inicio" data-raiz="./">
+<body data-seccion="inicio" data-raiz="./" class="hf-pagina">
   <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-  <!-- Home de una sola pantalla: el titular aprobado y los tres productos para elegir. Flow como atmósfera y el contorno real de los 113 municipios. -->
-  <main id="contenido" tabindex="-1">
-    <section class="hx" aria-labelledby="hx-titulo">
-      <div class="hx-card">
-        <div class="hx-fondo" aria-hidden="true"><img src="shared/img/flow-3.webp" alt="" width="1920" height="1320" fetchpriority="high" decoding="async"></div>
-        <svg class="hx-atlas" aria-hidden="true" focusable="false" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet"></svg>
+  <!-- Inicio: hero claro con forma de papel y banda azul noche con los tres productos. Referencia de composición: Fertility Evidence Explorer (Astara). Textos: los ya aprobados; cifras de las tarjetas: 113 municipios, 9 diapositivas, 12 indicadores. -->
+  <main id="contenido" tabindex="-1" class="hf">
+    <section class="hf-hero" aria-labelledby="hf-titulo">
+      <div class="hf-in">
+        <p class="hf-kicker">Vivienda en Bizkaia</p>
+        <h1 id="hf-titulo">El acceso a la vivienda en los <span data-municipios>113</span> municipios de Bizkaia</h1>
+        <p class="hf-lead">Dónde falla, a quién afecta, qué medidas hay y quién decide cada una.</p>
+      </div>
+    </section>
 
-        <h1 id="hx-titulo">El acceso a la vivienda en los <span class="hx-n" data-municipios>113</span> municipios de Bizkaia</h1>
-
-        <div class="exp-rejilla">
-          <article class="exp exp--analisis">
-            <div class="exp-vista exp-vista--ventana">
-              <img src="shared/img/preview-analisis.webp" width="1344" height="621" decoding="async"
-                   alt="Captura real del Análisis: mapa de Situación con Bilbao seleccionado y su ficha.">
-            </div>
-            <div class="exp-cuerpo">
-              <p class="exp-k">Explorar en profundidad</p>
-              <h2>Análisis</h2>
-              <a class="exp-cta" href="analisis/">Entrar al análisis <span aria-hidden="true">→</span></a>
-            </div>
+    <section class="hf-banda" aria-label="Elegir producto">
+      <div class="hf-in">
+        <p class="hf-banda-k">Elige cómo entrar</p>
+        <div class="hf-rejilla">
+          <article class="hf-card">
+            <p class="hf-k">Explorar en profundidad</p>
+            <h2>Análisis</h2>
+            <p class="hf-cifra"><b data-municipios>113</b><span>municipios</span></p>
+            <a class="hf-cta" href="analisis/">Entrar al análisis <span aria-hidden="true">→</span></a>
           </article>
-
-          <article class="exp exp--resumen">
-            <div class="exp-vista exp-vista--diapositiva">
-              <img src="shared/img/preview-resumen.webp" width="1440" height="740" decoding="async"
-                   alt="Captura real de la primera diapositiva del Resumen: «Falta vivienda asequible», con el mapa de Bizkaia por municipios.">
-              <span class="exp-sello">9 diapositivas</span>
-            </div>
-            <div class="exp-cuerpo">
-              <p class="exp-k">Comprender lo esencial</p>
-              <h2>Resumen</h2>
-              <a class="exp-cta" href="resumen/">Abrir el resumen <span aria-hidden="true">→</span></a>
-            </div>
+          <article class="hf-card">
+            <p class="hf-k">Comprender lo esencial</p>
+            <h2>Resumen</h2>
+            <p class="hf-cifra"><b>9</b><span>diapositivas</span></p>
+            <a class="hf-cta" href="resumen/">Abrir el resumen <span aria-hidden="true">→</span></a>
           </article>
-
-          <article class="exp exp--radar">
-            <div class="exp-vista exp-vista--panel">
-              <img src="shared/img/preview-radar.webp" width="1304" height="454" decoding="async"
-                   alt="Captura real del Radar: 6 de 12 indicadores clave empeoran frente a su periodo anterior, con la barra de estado de los doce indicadores.">
-              <span class="exp-sello">Prototipo</span>
-            </div>
-            <div class="exp-cuerpo">
-              <p class="exp-k">Seguir los cambios</p>
-              <h2>Radar</h2>
-              <a class="exp-cta" href="radar/">Abrir el radar <span aria-hidden="true">→</span></a>
-            </div>
+          <article class="hf-card">
+            <p class="hf-k">Seguir los cambios</p>
+            <h2>Radar <span class="hf-sello">Prototipo</span></h2>
+            <p class="hf-cifra"><b>12</b><span>indicadores</span></p>
+            <a class="hf-cta" href="radar/">Abrir el radar <span aria-hidden="true">→</span></a>
           </article>
         </div>
       </div>

@@ -1,0 +1,50 @@
+/* Radar dentro del proyecto unificado: convive con la cabecera común (marco) sin tocar sus datos ni su lógica. */
+.radar-integrado { --gcab: 64px; }
+.radar-integrado .app { min-height: calc(100vh - var(--gcab)); }
+
+/* ---------- Móvil: nada se sale de la pantalla ---------- */
+/* la franja de datos de la cabecera (fecha · municipios · prototipo) se parte en filas en vez de forzar scroll horizontal de toda la página */
+@media (max-width: 760px) {
+  .radar-integrado .scope, .radar-integrado .meta { max-width: 100%; }
+  .radar-integrado .meta { flex-direction: column; }
+  .radar-integrado .meta li { white-space: normal; padding: 11px 14px; }
+  .radar-integrado .meta li + li { border-left: 0; border-top: 1px solid var(--pci-table-divider); }
+}
+
+/* ---------- Móvil: la cabecera común ya identifica el producto; el Radar solo conserva sus pestañas ---------- */
+@media (max-width: 760px) {
+  .radar-integrado .app { padding-block: 8px 16px; gap: 8px; }
+  .radar-integrado .dock .lockup, .radar-integrado .dock .dock-foot { display: none; }
+  .radar-integrado .dock, .radar-integrado .dock:hover, .radar-integrado .dock:focus-within {
+    position: sticky; top: calc(var(--gcab) + env(safe-area-inset-top, 0px) + 6px); z-index: 20; padding: 4px; }
+  .radar-integrado .nav a { height: 44px; }
+  .radar-integrado .bar { top: calc(var(--gcab) + env(safe-area-inset-top, 0px) + 62px); }
+
+  /* zonas táctiles de 44 px en botones, chips, campos y selectores */
+  .radar-integrado .btn, .radar-integrado .chipf, .radar-integrado .seg button, .radar-integrado .field-pill select,
+  .radar-integrado .field-pill input, .radar-integrado select, .radar-integrado input[type="search"], .radar-integrado input[type="text"] { min-height: 44px; }
+  .radar-integrado .chipf { padding-block: 10px; }
+  /* los enlaces de texto sueltos ganan área pulsable sin cambiar cómo se ven */
+  .radar-integrado .ind-link { position: relative; }
+  .radar-integrado .ind-link::after { content: ""; position: absolute; inset: -13px 0; }
+  /* la barra de los 12 indicadores ocupa todo el ancho para que cada segmento se pueda tocar */
+  .radar-integrado .estatus-barra { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; width: 100%; }
+  .radar-integrado .estatus-barra .est { min-width: 0; height: 56px; }
+  .radar-integrado .hoja button:not(.est) { min-height: 44px; }
+}
+
+/* ---------- Escritorio y tableta: lo fijo del Radar queda debajo de la cabecera común ---------- */
+.radar-integrado .drawer { top: calc(var(--gcab) + 12px + env(safe-area-inset-top, 0px)); }
+@media (min-width: 981px) {
+  .radar-integrado .dock { top: calc(var(--gcab) + 16px + env(safe-area-inset-top, 0px)); }
+}
+@media (min-width: 761px) {
+  .radar-integrado .bar { top: calc(var(--gcab) + 16px + env(safe-area-inset-top, 0px)); }
+}
+
+/* ---------- Línea visual del proyecto (la de la home y el Análisis) ---------- */
+/* El turquesa se retira (solo queda el de los corchetes del logotipo): los acentos pasan al azul y al hielo de la marca. Los colores de estado
+   (empeora, estable, mejora) y los de los datos no se tocan. */
+.radar-integrado { --teal: #8bcdff; --teal-ink: #1a4d7a; --ik-sel: rgba(26, 77, 122, .09); }
+/* La base del marco pisaba el titular de la página (más grande y más pesado que el del Radar): se devuelve el del Radar con el tracking cerrado de la home */
+.radar-integrado h1 { margin: 0; max-width: none; color: inherit; font: 600 clamp(28px, 2.3vw, 32px)/1.1 var(--font-display); letter-spacing: -.035em; text-wrap: balance; }

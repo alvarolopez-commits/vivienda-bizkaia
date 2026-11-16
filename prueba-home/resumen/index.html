@@ -1,40 +1,66 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Resumen · Vivienda en Bizkaia</title>
-  <meta name="description" content="Resumen de vivienda en Bizkaia: el caso en nueve diapositivas.">
-  <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#f6f8fc">
-  <link rel="icon" href="../shared/icons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="../shared/icons/apple-touch-icon.png">
-  <link rel="manifest" href="../manifest.webmanifest">
-  <link rel="preload" href="../shared/fonts/geist-latin-edc7ad.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../shared/fonts/montserrat-latin-83a31c.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../shared/fonts.css">
-  <link rel="stylesheet" href="../shared/marco.css">
-  <link rel="stylesheet" href="../shared/global.css">
-  <script src="../shared/marco.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vivienda en Bizkaia · Resumen</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a1f36">
+<link rel="icon" href="../shared/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../shared/icons/apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="description" content="Resumen del acceso a la vivienda en Bizkaia: qué pasa con el alquiler y la compra, en qué municipios, cuánta vivienda hace falta y qué se puede hacer.">
+<link rel="stylesheet" href="../shared/fonts.css">
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/presentacion.css">
+<link rel="stylesheet" href="../shared/marco.css">
+<link rel="stylesheet" href="../shared/global.css">
+<link rel="stylesheet" href="css/integracion.css">
+<link rel="stylesheet" href="css/lectura-vertical.css">
+<script src="../shared/marco.js" defer></script>
 </head>
-<body data-seccion="resumen" data-raiz="../">
-  <a class="saltar" href="#contenido">Saltar al contenido</a>
-  <main id="contenido" tabindex="-1">
-    <section class="cont hero-simple">
-      <p class="estado">En construcción</p>
-      <p class="eyebrow">Resumen</p>
-      <h1>El caso en nueve diapositivas</h1>
-      <p class="lead">Aquí vivirá el Resumen: la presentación con sus modos Presentar y Leer, integrada en el mismo marco.</p>
-      <div class="panel">
-        <h2>Lo que traerá</h2>
-        <ul>
-          <li>Nueve diapositivas y 21 pasos, con modo Presentar (proyectada) y modo Leer (para quien recibe el enlace).</li>
-          <li>Los textos, cifras y cálculos son los dla presentación publicada del Resumen; solo cambia cómo se presentan.</li>
-        </ul>
-        <p class="panel-nota">Mientras tanto: <a href="https://vivienda-bizkaia-presentacion.vercel.app/" rel="noopener">la presentación publicada del Resumen</a>.</p>
-      </div>
-    </section>
-  </main>
-  <noscript><p class="cont">Productos: <a href="../analisis/">Análisis</a> · <a href="../resumen/">Resumen</a> · <a href="../radar/">Radar</a></p></noscript>
+<body data-modo="leer" data-motion="restrained" data-seccion="resumen" data-raiz="../" data-marco="integrado" class="resumen-integrado">
+
+<div class="barra-progreso" aria-hidden="true"><i></i></div>
+
+<header class="cabecera">
+  <p class="marca" data-marca>Vivienda en Bizkaia</p>
+  <!-- Pastillas de sección (etiquetas de interfaz, propuesta): una por diapositiva -->
+  <nav class="secciones" aria-label="Diapositivas" data-propuesta>
+    <button type="button" class="boton texto" data-ir="1">El problema</button>
+    <button type="button" class="boton texto" data-ir="2">Las cifras</button>
+    <button type="button" class="boton texto" data-ir="3">La calculadora</button>
+  </nav>
+  <div class="controles" role="group" aria-label="Controles de la presentación">
+    <button type="button" class="boton" data-accion="anterior" aria-label="Diapositiva anterior"><span aria-hidden="true">←</span></button>
+    <p class="progreso" data-progreso>Diapositiva 1 de 3 · Paso 1 de 1</p>
+    <button type="button" class="boton" data-accion="siguiente" aria-label="Diapositiva siguiente"><span aria-hidden="true">→</span></button>
+    <button type="button" class="boton texto" data-accion="notas" aria-label="Notas del orador" aria-pressed="false">Notas</button>
+    <button type="button" class="boton texto principal" data-accion="modo" aria-label="Cambiar al modo Presentar (pantalla completa)">Presentar</button>
+  </div>
+</header>
+
+<!-- El mapa 3D es uno solo para toda la presentación: vive detrás de las diapositivas y no se recrea al navegar -->
+<div class="fondo-mapa scene" id="fondo-mapa" aria-hidden="true"><div class="terr-map" id="mapa"></div></div>
+
+<!-- Fondo claro: cubre el mapa en las diapositivas de tema claro (se enciende con body[data-tema="claro"]) -->
+<div class="fondo-claro" aria-hidden="true"></div>
+
+<!-- Selector común de producto (Análisis · Resumen · Radar): sustituye a los enlaces sueltos que llevaban a las webs publicadas por separado. Solo en Leer. -->
+<div class="ecosistema" data-selector-secciones></div>
+
+<main id="escenario"></main>
+
+<aside id="notas" class="vidrio-foco" hidden aria-label="Notas del orador" data-propuesta>
+  <h2>Notas del orador</h2>
+  <p class="aviso">Propuesta: texto nuevo, pendiente de aprobación del autor.</p>
+  <div data-notas-texto><p>Sin notas todavía.</p></div>
+</aside>
+
+<p class="sr-only" role="status" data-anuncio></p>
+
+<script src="original/vendor/gsap/gsap.min.js"></script>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>
