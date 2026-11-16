@@ -1,4 +1,2 @@
-// Se ejecuta al principio de la carga (script clásico, sin esperar a los módulos): marca la página como «inicio» si la dirección es la raíz
-// (vacía, «#» o «#inicio»). Así el hero se pinta desde el primer fotograma y las direcciones directas (#situacion/…, #municipios/…) no lo muestran
-// ni un instante. La lógica completa está en inicio.js.
-if (/^#?(inicio)?$/.test(location.hash)) document.documentElement.classList.add("con-inicio");
+// Retirado el 2026-11-17: el Análisis ya no tiene hero de inicio; la dirección raíz abre directamente la vista Situación (el titular y la elección de producto
+// están en la portada del proyecto). Este archivo se conserva vacío para no romper el enlace de index.html; no hace nada.
