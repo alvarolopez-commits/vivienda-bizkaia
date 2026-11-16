@@ -1,3 +1,10 @@
+/* La base del marco (shared/marco.css) trae reglas globales pensadas para las páginas «en construcción» (body, h1, .lead, :focus-visible…).
+   Aquí se devuelve al Resumen lo suyo: sin esto los titulares salían en azul marino sobre azul noche y el foco, con un azul que no se ve. */
+.resumen-integrado { display: block; min-height: 0; background: var(--fondo); color: var(--t1); font: 400 16px/1.45 var(--f-ui); }
+.resumen-integrado main { flex: none; }
+.resumen-integrado h1 { margin: 0; max-width: none; color: inherit; font-family: var(--f-display); }
+.resumen-integrado :focus-visible { outline: 2px solid var(--cielo); outline-offset: 2px; border-radius: revert; }
+
 /* Resumen dentro del proyecto unificado: el selector común ocupa el sitio de los enlaces a otros productos; el pie común no aplica a una presentación a pantalla completa. */
 .resumen-integrado .pie { display: none; }
 

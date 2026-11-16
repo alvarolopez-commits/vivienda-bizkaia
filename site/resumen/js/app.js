@@ -3,7 +3,7 @@
 import { DIAPOSITIVAS, escribirHash, leerHash, siguiente, anterior, inicio, fin } from "./estado.js";
 import { modoInicial, intensidad, entrarPantallaCompleta, salirPantallaCompleta } from "./modos.js";
 import { crearDiapositivas } from "./diapositivas/index.js";
-import { announce } from "../original/js/comun.js";
+import { announce, reduced } from "../original/js/comun.js";
 import { montarMapa } from "./mapa3d.js";
 import { textoNotas } from "./notas.js";
 import { transicionar } from "./movimiento.js";
@@ -12,6 +12,14 @@ const $ = (s, r = document) => r.querySelector(s);
 const body = document.body;
 const escenario = $("#escenario");
 const panelNotas = $("#notas");
+
+// Lectura vertical (móvil, ≤ 760 px): las nueve diapositivas se apilan como secciones que se leen deslizando, con todos los pasos a la vista.
+// No hay modo Presentar, ni mapa 3D de fondo, ni barra de diapositivas. En pantallas anchas todo es como antes. Se decide al cargar; si la ventana cruza el
+// límite (girar el móvil) se recarga.
+const ESTRECHA = matchMedia("(max-width: 760px)");
+const vertical = ESTRECHA.matches;
+ESTRECHA.addEventListener?.("change", () => location.reload());
+if (vertical) { document.documentElement.dataset.disposicion = "vertical"; body.dataset.disposicion = "vertical"; }
 
 const json = (url) => fetch(url).then((r) => { if (!r.ok) throw new Error(`${url}: ${r.status}`); return r.json(); });
 
@@ -24,11 +32,27 @@ const ctx = {
 
 const diapositivas = crearDiapositivas(ctx);
 escenario.append(...diapositivas.map((d) => d.raiz));
+if (vertical) {
+  diapositivas.forEach((d) => { d.raiz.dataset.tema = d.tema ?? "oscuro"; d.raiz.dataset.estado = "activa"; d.ir(1, 0); });
+}
 
 let actual = null; // { d, p } que se está viendo
 
 // ---------- aplicar un estado ----------
+function aplicarVertical(e) {
+  const cambio = !actual || actual.d !== e.d;
+  const nueva = diapositivas[e.d - 1];
+  nueva.ir(e.p, 0);
+  const primera = !actual;
+  actual = e;
+  if (cambio && !(primera && e.d === 1)) {
+    const ir = () => nueva.raiz.scrollIntoView({ block: "start", behavior: primera || reduced() ? "instant" : "smooth" });
+    if (primera) requestAnimationFrame(() => requestAnimationFrame(ir)); else ir();   // al cargar, cuando ya hay maquetación
+  }
+}
+
 function aplicar(e, dir) {
+  if (vertical) { aplicarVertical(e); return; }
   const anteriorD = actual?.d;
   const nueva = diapositivas[e.d - 1];
   if (anteriorD !== e.d) {
@@ -121,8 +145,15 @@ $('[data-accion="modo"]').addEventListener("click", () => fijarModo(body.dataset
 $('[data-accion="notas"]').addEventListener("click", () => fijarNotas(panelNotas.hidden));
 document.querySelectorAll("[data-ir]").forEach((b) => b.addEventListener("click", () => ir({ d: Number(b.dataset.ir), p: 1 })));
 
+// ---------- lectura vertical: la línea de avance sigue al desplazamiento ----------
+if (vertical) {
+  const avance = () => { const h = document.documentElement, max = h.scrollHeight - innerHeight; body.style.setProperty("--avance", String(max > 0 ? Math.min(1, h.scrollTop / max) : 0)); };
+  addEventListener("scroll", avance, { passive: true });
+  addEventListener("resize", avance);
+}
+
 // ---------- arranque ----------
-body.dataset.modo = modoInicial(location.search);
+body.dataset.modo = vertical ? "leer" : modoInicial(location.search);
 body.dataset.motion = intensidad(body.dataset.modo, location.search);
 $('[data-accion="modo"]').textContent = body.dataset.modo === "presentar" ? "Leer" : "Presentar";
 sincronizar();
@@ -131,6 +162,7 @@ body.dataset.listo = "1";
 // El mapa se monta cuando llegan los datos; la presentación se navega antes y, al estar listo, la diapositiva actual lo coloca.
 ctx.datos
   .then(async (datos) => {
+    if (vertical) { body.dataset.mapa = "sin"; return; }
     ctx.mapa = await montarMapa($("#mapa"), datos);
     if (actual) diapositivas[actual.d - 1].ir(actual.p, 0);
     body.dataset.mapa = ctx.mapa.plano ? "plano" : "3d";
