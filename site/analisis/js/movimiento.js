@@ -54,6 +54,12 @@ export function lente(c) {
   new MutationObserver(poner).observe(c, { childList: true, attributes: true, attributeFilter: ["aria-pressed", "aria-current"], subtree: true });
   if ("ResizeObserver" in window) new ResizeObserver(poner).observe(c);
   document.fonts?.ready.then(poner);
+  // Reintentos: si al colocar la píldora el menú aún no tenía medidas (fuentes por cargar, página con scroll, cambio de ruta), la pestaña activa se quedaba
+  // sin su fondo hasta pulsar otra. Se vuelve a colocar al terminar la carga, poco después y en cada cambio de dirección.
+  addEventListener("load", poner);
+  addEventListener("pageshow", poner);
+  addEventListener("hashchange", () => setTimeout(poner, 80));
+  [200, 700, 1800].forEach((ms) => setTimeout(poner, ms));
   colocar(c, l);
 }
 

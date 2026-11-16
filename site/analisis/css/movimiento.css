@@ -85,3 +85,11 @@ body[data-motion="expressive"] .roll.is-in .roll__strip { animation: rodar 700ms
   .v-normas .hilo-linea, .v-normas .hito { animation: none !important; }
   #vista[aria-busy="true"]:empty::after { animation: pulse 1.4s var(--ease-inout) infinite; transform: none; background: rgba(255, 255, 255, .5); }
 }
+
+/* Respaldo de la píldora deslizante: si todavía no se ha colocado (opacidad 0), el elegido se pinta solo con su fondo oscuro, para que nunca quede un texto blanco
+   sobre fondo claro. Solo en escritorio; en pantallas estrechas las pestañas usan su propio subrayado (movil.css). */
+@media (min-width: 1280px) {
+  .con-lente:has(> .lente[style*="opacity: 0"]) > [aria-current="page"],
+  .con-lente:has(> .lente[style*="opacity: 0"]) > [aria-pressed="true"],
+  .con-lente:has(> .lente[style*="opacity: 0"]) > [aria-current="true"] { background: var(--ink) !important; color: #fff !important; box-shadow: 0 6px 14px -8px rgba(34, 30, 65, .65) !important; }
+}
