@@ -1,0 +1,9 @@
+/* Resumen dentro del proyecto unificado: el selector común ocupa el sitio de los enlaces a otros productos; el pie común no aplica a una presentación a pantalla completa. */
+.resumen-integrado .pie { display: none; }
+
+/* El selector común sobre las diapositivas (oscuras y claras): píldora de vidrio oscuro, legible sobre cualquiera */
+.resumen-integrado .ecosistema .gsw-cap ul { background: rgba(10, 31, 54, .78); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 0 0 1px rgba(255, 255, 255, .16), 0 8px 24px -12px rgba(0, 0, 0, .6); }
+.resumen-integrado .ecosistema .gsw-cap a { color: rgba(255, 255, 255, .86); }
+.resumen-integrado .ecosistema .gsw-cap a[aria-current="page"] { color: #0a1f36; }
+.resumen-integrado .ecosistema .gsw-thumb { background: #fff; }
+.resumen-integrado .ecosistema .gsw-cap.sin-thumb a[aria-current="page"] { background: #fff; }
