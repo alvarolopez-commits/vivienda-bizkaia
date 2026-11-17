@@ -99,3 +99,7 @@
 .v-acceso .x-controles .x-botones, .v-acceso .alcance-controles .x-botones { display: flex; flex-wrap: nowrap; gap: 2px; padding: 3px; border: 1px solid var(--line-2, var(--line)); border-radius: 16px; background: var(--panel); }
 .v-acceso .x-controles .opcion, .v-acceso .alcance-controles .opcion { flex: 1 1 0; min-width: 0; display: flex; align-items: center; justify-content: center; min-height: 42px; padding: 4px 6px; border-radius: 13px; text-align: center; white-space: normal; line-height: 1.15; font-size: .8125rem; }
 @media (hover: hover) and (pointer: fine) { .v-acceso .x-controles .opcion:not([aria-pressed="true"]):hover { background: rgba(255, 255, 255, .85); } }
+
+/* DEC · reflujo a 320 px (WCAG 1.4.10): la columna única de la rejilla no podía encogerse por debajo del ancho mínimo de su contenido (349 px en una pantalla de 320). */
+.v-acceso .alcance { grid-template-columns: minmax(0, 1fr); }
+.v-acceso .alcance > *, .v-acceso .alcance-cuerpo > *, .v-acceso .alcance-controles > * { min-width: 0; max-width: 100%; }
