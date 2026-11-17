@@ -103,3 +103,6 @@
 /* DEC · reflujo a 320 px (WCAG 1.4.10): la columna única de la rejilla no podía encogerse por debajo del ancho mínimo de su contenido (349 px en una pantalla de 320). */
 .v-acceso .alcance { grid-template-columns: minmax(0, 1fr); }
 .v-acceso .alcance > *, .v-acceso .alcance-cuerpo > *, .v-acceso .alcance-controles > * { min-width: 0; max-width: 100%; }
+
+/* DEC · legibilidad en móvil (heurística): los rótulos «Lo que eliges» y «Lo que no cambia» pasan de 11 a 12 px */
+@media (max-width: 760px) { .v-acceso .x-lado-t, .v-acceso .x-fijos-t { font-size: .75rem; } }

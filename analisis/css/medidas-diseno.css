@@ -172,3 +172,6 @@ body.con-bandeja .medidas { padding-bottom: 96px; }
 .m-stage .leyenda-lineas i { width: 8px; height: 8px; flex: none; }
 .m-stage .burbujas { max-height: calc(var(--stage-h) - 200px); }
 @media (max-width: 1400px) { .m-stage .leyenda-lineas { flex-wrap: wrap; } }   /* con menos ancho no caben las seis en una fila: se parten, sin salirse */
+
+/* DEC · legibilidad en móvil (heurística): la leyenda de líneas pasa de 11,5 a 12 px */
+@media (max-width: 760px) { .leyenda-lineas li { font-size: 12px; } }

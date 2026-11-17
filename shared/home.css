@@ -71,3 +71,6 @@
 
 /* móvil: el logotipo del pie es un enlace; 44 px de altura pulsable */
 @media (max-width: 760px) { .hf-pagina .pie-marca { min-height: 44px; } }
+
+/* DEC · legibilidad en móvil (heurística): ningún texto por debajo de 12 px */
+@media (max-width: 760px) { .hf-banda-k, .hf-sello { font-size: .75rem; } }
