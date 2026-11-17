@@ -126,3 +126,6 @@
   :is(#view-escenarios, #view-datos) .kpi-tira {grid-template-columns: repeat(2, minmax(0, 1fr));}
   :is(#view-escenarios, #view-datos) .peticiones {grid-template-columns: minmax(0, 1fr);}
 }
+
+/* DEC · legibilidad en móvil (heurística): las etiquetas pasan de 11 a 12 px */
+@media (max-width: 760px) { :is(#view-escenarios, #view-datos) .etiqueta { font-size: 12px; } }

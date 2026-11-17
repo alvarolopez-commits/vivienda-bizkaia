@@ -21,6 +21,8 @@ import { join } from "node:path";
 const BASE = (process.argv[2] || "http://localhost:4195").replace(/\/$/, "");
 const SALIDA = process.argv[3] || "auditoria-dec.json";
 const FILTRO = process.argv[4] || "";
+const [AN, AL] = (process.argv[5] || process.env.VP || "1440x900").split("x").map(Number);   // tamaño de pantalla: «390x844» activa la emulación de móvil táctil
+const MOVIL = AN < 768;
 const CHROME = ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe", "/usr/bin/google-chrome"].find((p) => existsSync(p));
 const PUERTO = 9800 + Math.floor(Math.random() * 150);
 const dormir = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -49,7 +51,7 @@ const CONTRASTE = `(() => {
   const ratio = (a, b) => { const l1 = lum(a), l2 = lum(b); return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05); };
   const visible = (e) => { const r = e.getBoundingClientRect(), cs = getComputedStyle(e); return r.width > 0 && r.height > 0 && cs.visibility !== "hidden" && cs.display !== "none" && !e.closest("[hidden],[inert],[aria-hidden=true],.sr-only,.solo-lectores,svg"); };
   const enPantalla = (e) => { const r = e.getBoundingClientRect(); for (let a = e.parentElement; a && a !== document.body; a = a.parentElement) { const o = getComputedStyle(a); if (o.overflowY !== "visible" || o.overflowX !== "visible") { const q = a.getBoundingClientRect(); if (r.bottom <= q.top + 1 || r.top >= q.bottom - 1 || r.right <= q.left + 1 || r.left >= q.right - 1) return false; } } return true; };
-  const out = { fail: [], review: [], inciertos: [], sospechosos: [], medidos: 0 };
+  const out = { fail: [], review: [], inciertos: [], sospechosos: [], pequenos: [], medidos: 0 };
   const vistos = new Set();
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   let n;
@@ -77,6 +79,7 @@ const CONTRASTE = `(() => {
     const grande = px >= 24 || (px >= 18.66 && peso >= 700);
     const umbral = grande ? 3 : 4.5, r = ratio(fgc, bg);
     out.medidos++;
+    if (px < 12 && !out.pequenos.some((q) => q.el === e.tagName.toLowerCase() + "." + String(e.className.baseVal ?? e.className).split(" ")[0])) out.pequenos.push({ el: e.tagName.toLowerCase() + "." + String(e.className.baseVal ?? e.className).split(" ")[0], px: Math.round(px * 10) / 10, t: t.slice(0, 30) });
     const clave = e.tagName.toLowerCase() + "." + String(e.className.baseVal ?? e.className).split(" ")[0] + "|" + cs.color + "|" + (incierto ? "?" : Math.round(bg.r) + "," + Math.round(bg.g) + "," + Math.round(bg.b));
     if (vistos.has(clave)) continue; vistos.add(clave);
     if (incierto) { const rc = e.getBoundingClientRect(); out.inciertos.push({ k: incierto, el: clave.split("|")[0], fg: [Math.round(fgc.r), Math.round(fgc.g), Math.round(fgc.b)], umbral, px: Math.round(px), t: t.slice(0, 40), x: rc.left + scrollX, y: rc.top + scrollY, w: rc.width, h: rc.height }); continue; }
@@ -108,7 +111,7 @@ const NOMBRES = `(() => {
   }
   const d = document.documentElement;
   out.estructura = { lang: d.lang || null, titulo: !!document.title.trim(), mains: document.querySelectorAll("main").length, h1: [...document.querySelectorAll("h1")].filter(visible).length,
-    salto: !!document.querySelector("a.salto, a.saltar, [data-saltar], a[href^='#'][class*=salt]"), imgSinAlt: [...document.images].filter((i) => !i.hasAttribute("alt") && visible(i)).length };
+    salto: !!document.querySelector("a.salto, a.saltar, [data-saltar], a[href^='#'][class*=salt]"), vp: (document.querySelector('meta[name=viewport]')?.content || ''), imgSinAlt: [...document.images].filter((i) => !i.hasAttribute("alt") && visible(i)).length };
   return out;
 })()`;
 
@@ -145,7 +148,7 @@ const MUESTREO = (b64, items) => `(async () => {
 async function lanzar() {
   if (!CHROME) throw new Error("No se encontró Chrome.");
   const perfil = mkdtempSync(join(tmpdir(), "vb-dec-"));
-  const proc = spawn(CHROME, ["--headless=new", `--remote-debugging-port=${PUERTO}`, `--user-data-dir=${perfil}`, "--no-first-run", "--disable-extensions", "--disable-background-timer-throttling", "--disable-renderer-backgrounding", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist", "--enable-webgl", "--window-size=1440,900", "about:blank"], { stdio: "ignore" });
+  const proc = spawn(CHROME, ["--headless=new", `--remote-debugging-port=${PUERTO}`, `--user-data-dir=${perfil}`, "--no-first-run", "--disable-extensions", "--disable-background-timer-throttling", "--disable-renderer-backgrounding", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist", "--enable-webgl", `--window-size=${AN},${AL}`, "about:blank"], { stdio: "ignore" });
   let objetivo = null;
   for (let i = 0; i < 100 && !objetivo; i++) { try { objetivo = (await (await fetch(`http://127.0.0.1:${PUERTO}/json/list`)).json()).find((t) => t.type === "page"); } catch { /* arrancando */ } if (!objetivo) await dormir(100); }
   if (!objetivo) { proc.kill(); throw new Error("Chrome no abrió el puerto de depuración."); }
@@ -173,8 +176,8 @@ try {
     const H = (regla, estado, evidencia, extra = {}) => r.hallazgos.push({ regla, estado, evidencia, ...extra });
     try {
     // ---------- escritorio 1440
-    await cdp.send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
-    await cdp.send("Emulation.setTouchEmulationEnabled", { enabled: false });
+    await cdp.send("Emulation.setDeviceMetricsOverride", { width: AN, height: AL, deviceScaleFactor: 1, mobile: MOVIL });
+    await cdp.send("Emulation.setTouchEmulationEnabled", MOVIL ? { enabled: true, maxTouchPoints: 5 } : { enabled: false });
     await cdp.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "no-preference" }] });
     await ir(cdp, ruta, espera);
     const c = await evalua(cdp, CONTRASTE);
@@ -184,10 +187,10 @@ try {
       try {
         const alto = await evalua(cdp, "document.documentElement.scrollHeight");
         const sy = await evalua(cdp, "window.scrollY");
-        const dentro = porPixeles.filter((m) => m.y - sy >= 0 && m.y - sy + m.h <= 900), resto = porPixeles.filter((m) => !dentro.includes(m));
+        const dentro = porPixeles.filter((m) => m.y - sy >= 0 && m.y - sy + m.h <= AL), resto = porPixeles.filter((m) => !dentro.includes(m));
         // lo visible en pantalla se mide en una captura normal (fiel a lo que ve la persona); lo que queda fuera, en una captura de toda la página
         if (dentro.length) { const shot = await cdp.send("Page.captureScreenshot", { format: "png" }); med.push(...(await evalua(cdp, MUESTREO(shot.data, dentro.map((m) => ({ ...m, y: m.y - sy })))))); }
-        if (resto.length && alto > 905) { const shot = await cdp.send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { x: 0, y: 0, width: 1440, height: Math.min(alto, 6000), scale: 1 } }); med.push(...(await evalua(cdp, MUESTREO(shot.data, resto)))); }
+        if (resto.length && alto > AL + 5) { const shot = await cdp.send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { x: 0, y: 0, width: AN, height: Math.min(alto, 6000), scale: 1 } }); med.push(...(await evalua(cdp, MUESTREO(shot.data, resto)))); }
       } catch (err) { H("DEC-004", "not_evaluated", `${porPixeles.length} textos con fondo no deducible por antecesores no se pudieron medir sobre píxeles (${err.message})`); }
     }
     const confirmados = med.filter((m) => m.k === "fallo por antecesores" && m.medido && m.r < m.umbral);
@@ -202,11 +205,12 @@ try {
       if (ok.length) H("DEC-004", "pass", `${ok.length} textos sobre fondo con imagen, degradado o cristal cumplen (medido sobre píxeles de una captura)`);
       if (sin.length || c.inciertos.length > 40) H("DEC-004", "needs_review", `${sin.length + Math.max(0, c.inciertos.length - 40)} textos sin medir (fuera de la captura o por encima del límite de muestreo)`, { ejemplos: sin.slice(0, 3).map((m) => ({ t: m.t, motivo: m.motivo })) });
     }
+    if (MOVIL) H("Legibilidad en móvil (heurística)", c.pequenos.length ? "needs_review" : "pass", c.pequenos.length ? `${c.pequenos.length} estilos de texto por debajo de 12 px en pantalla de ${AN} px` : "ningún texto por debajo de 12 px", { ejemplos: c.pequenos.slice(0, 6) });
     const nm = await evalua(cdp, NOMBRES);
     H("DEC-008", nm.sinNombre.length ? "fail" : "pass", `${nm.total} controles; ${nm.sinNombre.length} sin nombre accesible`, { fallos: nm.sinNombre.slice(0, 6) });
     if (nm.contradice.length) H("DEC-008", "needs_review", `${nm.contradice.length} controles cuyo nombre accesible no contiene su texto visible (WCAG 2.5.3)`, { ejemplos: nm.contradice.slice(0, 4) });
     const e = nm.estructura;
-    const estr = []; if (!e.lang) estr.push("sin lang"); if (!e.titulo) estr.push("sin título"); if (e.mains !== 1) estr.push(`${e.mains} main`); if (e.imgSinAlt) estr.push(`${e.imgSinAlt} imágenes sin alt`);
+    const estr = []; if (!e.lang) estr.push("sin lang"); if (!e.titulo) estr.push("sin título"); if (e.mains !== 1) estr.push(`${e.mains} main`); if (e.imgSinAlt) estr.push(`${e.imgSinAlt} imágenes sin alt`); if (/user-scalable\s*=\s*(no|0)|maximum-scale\s*=\s*(1(\.0)?)/.test(e.vp)) estr.push("el zoom del usuario está bloqueado (WCAG 1.4.4)");
     H("Estructura", estr.length ? "fail" : "pass", estr.length ? estr.join(", ") : `lang ${e.lang}, título, un main, ${e.h1} h1, imágenes con alt`, { saltoVisible: e.salto });
     // ---------- teclado: Tab
     await evalua(cdp, "document.activeElement && document.activeElement.blur(); window.scrollTo(0,0); 0");

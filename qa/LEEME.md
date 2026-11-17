@@ -23,6 +23,7 @@ Segunda prueba vigente, basada en el protocolo DEC (BRAND/REPORTS/BASE UI). Mism
 ```bash
 node qa/auditoria-dec.mjs http://localhost:4195 auditoria-dec.json
 node qa/auditoria-dec.mjs http://localhost:4195 salida.json "radar/#datos"   # una vista (sin «/» inicial en Git Bash)
+node qa/auditoria-dec.mjs http://localhost:4195 movil.json "" 390x844            # móvil táctil (también 360x740): añade texto <12 px y zoom bloqueado
 ```
 
 Última ejecución (2026-11-17, rama `ux/radar-resumen`): 167 comprobaciones, 0 `fail`, 1 `needs_review` (foco del mapa de Situación), 166 `pass`. Informe, falsos positivos descartados y límites en [`docs/DEC_REPASO.md`](../docs/DEC_REPASO.md). **No mide** lectura con lector de pantalla, Safari o móvil real, contraste de estados hover/error ni indicadores no textuales.

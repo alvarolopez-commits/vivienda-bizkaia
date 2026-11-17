@@ -103,3 +103,19 @@ python -m http.server 4195 --directory site
 node qa/auditoria-dec.mjs http://localhost:4195 auditoria-dec.json
 node qa/auditoria-dec.mjs http://localhost:4195 salida.json "radar/#datos"   # una sola vista (sin barra inicial: Git Bash la reescribe)
 ```
+
+## 7. Fase móvil (2026-11-17)
+
+La auditoría DEC de la primera fase solo midió contraste, teclado y nombres a 1440 px. Esta fase la repite con emulación de móvil táctil a **390×844** y **360×740** sobre las mismas 21 vistas, y añade dos comprobaciones: texto por debajo de 12 px (heurística) y bloqueo del zoom del usuario (WCAG 1.4.4). Se lanza con `node qa/auditoria-dec.mjs http://localhost:4195 salida.json "" 390x844`.
+
+**Resultado antes de corregir (390 px):** 192 comprobaciones, 3 `fail`, 7 `needs_review`. **A 360 px, ya con las correcciones:** 189 comprobaciones, 0 `fail`, 2 `needs_review`.
+
+| # | Hallazgo (evidencia) | Regla y tipo | Cambio | Estado |
+|---|---|---|---|---|
+| M1 | Radar, barra de secciones y caja de cifras: texto secundario `#bccae9` daba 4,27:1 («Situación») y 3,71:1 (texto de apoyo del hero) sobre el fondo más claro que tienen en móvil. Medido sobre píxeles en Indicadores, Escenarios y Datos | DEC-004 · norma | `--fg-2: #dbe5fa` y `--muted: #a9b6da` en `.ink` ([`radar/css/integracion.css`](../site/radar/css/integracion.css)) | Verificado: 0 `fail` a 390 px en las tres vistas |
+| M2 | Resumen en móvil: ningún enlace al inicio del proyecto (Análisis y Radar llevan el logo; el Resumen solo el selector). Comprobado en captura y en el código (`marco.js` no monta `.gmarca` en el hueco `.ecosistema`) | DEC-013 · heurística | Logo en blanco a la izquierda de la barra superior, solo en lectura vertical; 44 px de alto ([`shared/marco.js`](../site/shared/marco.js), [`resumen/index.html`](../site/resumen/index.html), [`resumen/css/lectura-vertical.css`](../site/resumen/css/lectura-vertical.css)) | Verificado a 390 px: sin desborde; oculto en escritorio |
+| M3 | Texto de 11 a 11,5 px en móvil: «Elige cómo entrar» y «Prototipo» (portada), «Lo que eliges» y «Lo que no cambia» (Acceso), leyenda de líneas (Medidas), etiquetas «Cálculo propio» y «Obligatorio» (Radar) | Legibilidad · heurística (no es una norma de contraste) | A 12 px con `@media (max-width: 760px)` en `home.css`, `acceso.css`, `medidas-diseno.css`, `escenarios-datos.css` | Verificado en las vistas del Radar y en la leyenda de Medidas |
+
+**Pendiente de decisión (no lo he tocado):** en el Resumen de **escritorio** tampoco hay enlace al inicio. Está así porque la presentación a pantalla completa no tiene cabecera y un logo a la izquierda se pelearía con los títulos. Si lo quieres, la opción menos intrusiva es un logo pequeño en la esquina inferior izquierda de Leer.
+
+**Límites de esta fase.** Es emulación de Chrome: no sustituye a un iPhone o Android reales (barra de direcciones que se oculta, teclado en pantalla, zonas seguras, Safari). Los gestos táctiles, el zoom con pellizco y la lectura con VoiceOver o TalkBack no están evaluados. La batería visual de 84 comprobaciones ya cubría 390 px: tamaños de zonas táctiles, desborde y errores.

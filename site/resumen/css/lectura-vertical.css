@@ -13,6 +13,12 @@ body[data-disposicion="vertical"] #escenario { position: static; z-index: auto; 
 body[data-disposicion="vertical"] .ecosistema { position: sticky; top: 0; right: auto; z-index: 40; justify-content: flex-end; gap: 0;
   padding: calc(8px + env(safe-area-inset-top, 0px)) var(--margen) 8px; background: rgba(34, 30, 65, .94); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
 
+/* DEC-013: enlace al inicio del proyecto (logo en blanco) a la izquierda de la barra; en pantallas anchas la presentación no lo muestra */
+.ecosistema .gmarca-mini { display: none; }
+body[data-disposicion="vertical"] .ecosistema { justify-content: space-between; align-items: center; }
+body[data-disposicion="vertical"] .ecosistema .gmarca-mini { display: inline-flex; align-items: center; min-height: 44px; padding-right: 12px; }
+body[data-disposicion="vertical"] .ecosistema .gmarca-mini img { display: block; height: 26px; width: auto; }
+
 /* cada diapositiva es una sección que crece con su contenido */
 body[data-disposicion="vertical"] .diapositiva { position: relative; inset: auto; overflow: visible; padding: 44px var(--margen) 48px; background: var(--fondo); color: var(--t1); }
 body[data-disposicion="vertical"] .diapositiva[data-tema="claro"] {

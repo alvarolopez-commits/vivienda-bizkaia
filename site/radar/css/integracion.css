@@ -70,3 +70,7 @@
   .radar-integrado :is(#view-datos, #view-escenarios) .boton { min-height: 44px; }
   .radar-integrado .hoja button:not(.est) { min-width: 44px; }
 }
+
+/* DEC-004 · en móvil las islas oscuras (barra de secciones, caja de cifras) quedan sobre un fondo más claro y el texto secundario #bccae9 daba 4,27:1 y 3,71:1.
+   #dbe5fa lo sube a más de 4,9:1 sobre esos fondos; el tono apagado se aclara en la misma proporción para que la jerarquía se mantenga. */
+.radar-integrado .ink { --fg-2: #dbe5fa; --muted: #a9b6da; }

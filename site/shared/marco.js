@@ -160,7 +160,15 @@
 
   // ---- Montaje ----
   if (body.getAttribute("data-marco") === "integrado") {
-    Array.prototype.forEach.call(body.querySelectorAll("[data-selector-secciones]"), function (host) { host.appendChild(selector()); });
+    Array.prototype.forEach.call(body.querySelectorAll("[data-selector-secciones]"), function (host) {
+      // DEC-013 (orientación): donde la subapp no tiene cabecera propia (Resumen) el hueco puede pedir además un enlace pequeño al inicio del proyecto
+      if (host.hasAttribute("data-con-inicio")) {
+        host.appendChild(h("a", { class: "gmarca-mini", href: raiz, title: "Ir al inicio de Vivienda en Bizkaia" }, [
+          h("img", { src: raiz + "shared/img/logo-vivienda-bizkaia-blanco.png", alt: "Vivienda Bizkaia, inicio", width: "800", height: "212" })
+        ]));
+      }
+      host.appendChild(selector());
+    });
   } else {
     var saltar = body.querySelector(".saltar");
     var cab = cabecera();
