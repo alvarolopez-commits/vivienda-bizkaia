@@ -46,6 +46,8 @@
 /* El turquesa se retira (solo queda el de los corchetes del logotipo): los acentos pasan al azul y al hielo de la marca. Los colores de estado
    (empeora, estable, mejora) y los de los datos no se tocan. */
 .radar-integrado { --teal: #8bcdff; --teal-ink: #1a4d7a; --ik-sel: rgba(26, 77, 122, .09); }
+/* DEC-004 · el gris de apoyo #64748b daba 4,31:1 sobre #f0f4f9 y 4,48:1 sobre #f7f8fb (mínimo 4,5:1 en texto de 12–16 px); #566478 da 5,3:1 o más sobre ambos y sigue leyéndose como texto secundario */
+.radar-integrado { --pci-text-muted: #566478; --muted: #566478; --faint: #566478; }
 /* La base del marco pisaba el titular de la página (más grande y más pesado que el del Radar): se devuelve el del Radar con el tracking cerrado de la home */
 .radar-integrado h1 { margin: 0; max-width: none; color: inherit; font: 600 clamp(28px, 2.3vw, 32px)/1.1 var(--font-display); letter-spacing: -.035em; text-wrap: balance; }
 

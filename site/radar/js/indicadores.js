@@ -42,7 +42,12 @@ export function renderIndicadores(root, store, ctx) {
         el("td", {}, [i.clave ? stateTag(i.actual.estado, store.catalogo.estados[i.actual.estado]) : el("span", { class: "na", text: "sin semáforo" })]),
       ]);
     }));
-    count.textContent = `${rows.length} de ${all.length} indicadores.`;
+    // DEC-027/028: la búsqueda ignora la dimensión elegida, así que el recuento lo dice; y con cero resultados se explica y se ofrece la salida en vez de dejar una tabla vacía
+    count.textContent = st.q ? `${rows.length} de ${all.length} indicadores contienen «${st.q}» (la búsqueda mira todas las dimensiones).` : `${rows.length} de ${all.length} indicadores.`;
+    if (!rows.length) {
+      const td = el("td", { colspan: "6", class: "na", "data-propuesta": "", text: `Ningún indicador contiene «${st.q}». Borra la búsqueda para volver a ver el catálogo.` });
+      tbody.replaceChildren(el("tr", {}, [td]));
+    }
   };
   const by = ks.reduce((n, k) => ({ ...n, [k.actual.estado]: (n[k.actual.estado] ?? 0) + 1 }), {});
   const catalog = () => el("div", { class: "stack" }, [

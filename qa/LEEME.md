@@ -16,6 +16,17 @@ Mide, dentro de cada página: desborde horizontal; elementos que se salen de la 
 
 Resultado de la última ejecución (2026-11-17, rama `ux/radar-resumen`): 84 de 84 sin fallos tras corregir los 36 que salieron en la primera pasada (tamaños de controles; ningún desborde, error de consola, petición fallida, imagen rota ni fuente sin cargar).
 
+## Auditoría DEC de accesibilidad y UX: `auditoria-dec.mjs`
+
+Segunda prueba vigente, basada en el protocolo DEC (BRAND/REPORTS/BASE UI). Misma mecánica que la visual (Chrome sin pantalla, Node 22 o posterior, sin dependencias) sobre las mismas 21 rutas. Mide **contraste de texto** (confirmado sobre píxeles cuando el fondo no se deduce de los antecesores), **recorrido con Tab** (trampas e indicador de foco), **nombre accesible** (incluida la coherencia con el texto visible), estructura (`lang`, título, `main`, `alt`), **reflujo a 320 px** y **movimiento reducido**. Cada resultado es `fail`, `needs_review`, `pass` o `not_evaluated`; no hay puntuación global.
+
+```bash
+node qa/auditoria-dec.mjs http://localhost:4195 auditoria-dec.json
+node qa/auditoria-dec.mjs http://localhost:4195 salida.json "radar/#datos"   # una vista (sin «/» inicial en Git Bash)
+```
+
+Última ejecución (2026-11-17, rama `ux/radar-resumen`): 167 comprobaciones, 0 `fail`, 1 `needs_review` (foco del mapa de Situación), 166 `pass`. Informe, falsos positivos descartados y límites en [`docs/DEC_REPASO.md`](../docs/DEC_REPASO.md). **No mide** lectura con lector de pantalla, Safari o móvil real, contraste de estados hover/error ni indicadores no textuales.
+
 ## Pruebas heredadas
 
 Estas pruebas vienen de los repos que se integran en este proyecto. Se guardan aquí para no perderlas; **no se han vuelto a ejecutar contra la estructura unificada** y varias suponen las rutas de la app original, así que hay que adaptarlas antes de usarlas.
