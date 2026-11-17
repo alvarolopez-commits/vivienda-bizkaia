@@ -24,3 +24,10 @@
 
 /* Direcciones del cierre («Sigue el dato»): altura pulsable de 24 px como mínimo en escritorio (en móvil, 44 px: lectura-vertical.css) */
 .resumen-integrado .pie-dir .dir a { display: inline-flex; align-items: center; min-height: 24px; }
+
+/* DEC-013 (escritorio): enlace al inicio del proyecto a la izquierda del selector, en una pastilla de cristal oscuro como la del selector para que se lea sobre diapositivas claras y oscuras */
+body:not([data-disposicion="vertical"]) .ecosistema { align-items: center; }
+body:not([data-disposicion="vertical"]) .ecosistema .gmarca-mini { display: inline-flex; align-items: center; align-self: stretch; min-height: 44px; padding: 0 18px; border-radius: 999px; background: rgba(10, 31, 54, .78);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 0 0 1px rgba(255, 255, 255, .16), 0 8px 24px -12px rgba(0, 0, 0, .6); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+body:not([data-disposicion="vertical"]) .ecosistema .gmarca-mini img { display: block; height: clamp(26px, 1.9vw, 32px); width: auto; }
+body:not([data-disposicion="vertical"]) .ecosistema .gmarca-mini:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
